@@ -1,6 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+from . import user_bp
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
@@ -11,17 +12,14 @@ from flask_jwt_extended import jwt_required
 import requests
 
 
-api = Blueprint('api', __name__)
-CORS(api)  # Allow CORS requests to this API
-
-
-@api.route('/hello', methods=['GET'])
+@user_bp.route('/hello', methods=['GET'])
 def handle_hello():
     response_body = {}
     response_body["message"]= "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
     return response_body, 200
 
-@api.route('/users', methods=['GET'])
+
+@user_bp.route('/users', methods=['GET'])
 def users():
     response_body = {}
     rows = db.session.execute(db.select(Users)).scalars()
@@ -31,7 +29,8 @@ def users():
     response_body['results'] = results
     return response_body, 200
 
-@api.route('/login', methods=['POST'])
+
+@user_bp.route('/login', methods=['POST'])
 def login():
     response_body = {}
     data = request.json
@@ -48,7 +47,7 @@ def login():
     response_body['results'] = user.serialize()
     return response_body, 200
 
-@api.route('/protected', methods=['GET'])
+@user_bp.route('/protected', methods=['GET'])
 @jwt_required()
 def protected():
     response_body = {}
@@ -56,7 +55,7 @@ def protected():
     response_body['logged_in_as'] = current_user
     return response_body, 200
 
-@api.route('/signup', methods=['POST'])
+@user_bp.route('/signup', methods=['POST'])
 def signup():
     response_body = {}
     data = request.json
