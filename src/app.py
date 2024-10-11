@@ -7,9 +7,10 @@ from flask_migrate import Migrate
 from flask_swagger import swagger
 from api.utils import APIException, generate_sitemap
 from api.models import db
-from api.routes import api
+from api import user_bp
 from api.admin import setup_admin
 from api.commands import setup_commands
+from flask_jwt_extended import JWTManager
 
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
@@ -28,8 +29,13 @@ db.init_app(app)
 # Others configutations
 setup_admin(app)  # Add the admin
 setup_commands(app)  # Add the admin
-app.register_blueprint(api, url_prefix='/api')  # Add all endpoints form the API with a "api" prefix
-
+app.register_blueprint(user_bp, url_prefix='/api')
+# app.register_blueprint(user_bp, url_prefix='/api')
+# app.register_blueprint(user_bp, url_prefix='/api')
+# app.register_blueprint(user_bp, url_prefix='/api')
+#  Setup the Flask-JWT.Extended extension
+app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
+jwt = JWTManager(app)
 
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
