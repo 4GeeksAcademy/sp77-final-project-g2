@@ -21,6 +21,7 @@ typing-extensions = "*"
 flask-jwt-extended = "*"
 requests = "*"
 openai = "*"
+newsapi-python = "*"
 
 [requires]
 python_version = "3.10"
