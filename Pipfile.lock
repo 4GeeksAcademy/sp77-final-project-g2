@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ea53884caa603616fdf341c93aef2fd992a1f45dcf3d7b52f1e6ea737a4003ef"
+            "sha256": "74ba171c5d954f2f4fbb29c5de1c979e0624dd13faca59115221d135c51f4dbe"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -34,11 +34,11 @@
         },
         "anyio": {
             "hashes": [
-                "sha256:137b4559cbb034c477165047febb6ff83f390fc3b20bf181c1fc0a728cb8beeb",
-                "sha256:c7d2e9d63e31599eeb636c8c5c03a7e108d73b345f064f1c19fdc87b79036a9a"
+                "sha256:4c8bc31ccdb51c7f7bd251f51c609e038d63e34219b44aa86e47576389880b4c",
+                "sha256:6d170c36fba3bdd840c73d3868c1e777e33676a69c3a72cf0a0d5d6d8009b61d"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==4.6.0"
+            "version": "==4.6.2.post1"
         },
         "blinker": {
             "hashes": [
@@ -542,6 +542,14 @@
             ],
             "markers": "python_version >= '3.9'",
             "version": "==3.0.1"
+        },
+        "newsapi-python": {
+            "hashes": [
+                "sha256:11d34013a24d92ca7b7cbdac84ed2d504862b1e22467bc2a9a6913a70962318e",
+                "sha256:a4b66d5dd9892198cdaa476f7542f2625cdd218e5e3121c8f880b2ace717a3c2"
+            ],
+            "index": "pypi",
+            "version": "==0.2.7"
         },
         "openai": {
             "hashes": [
