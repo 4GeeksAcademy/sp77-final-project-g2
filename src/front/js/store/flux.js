@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			demo: [{title: "FIRST", background: "white", initial: "white"},
 				     {title: "SECOND", background: "white", initial: "white"}],
 			message: null,
+			ideas: []
 		},
 		actions: {
 			exampleFunction: () => {getActions().changeColor(0, "green");},
@@ -28,6 +29,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return element;
 				});
 				setStore({ demo: demo });  // Reset the global store
+			},
+			getIdeas: async (budget, country, area) => {
+				const uri = `${process.env.BACKEND_URL}/advisor`;
+				const options = {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						budget,
+						country,
+						area
+					})
+				};
+				const response = await fetch(uri, options);
+				if(!response.ok){
+					console.log(response.status);
+					return;
+				}
+				const data = await response.json();
+				setStore({ideas: data.ideas});
 			}
 		}
 	};
