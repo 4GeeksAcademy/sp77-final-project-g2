@@ -9,6 +9,8 @@ from flask_cors import CORS
 from api.models import db, Users, Ideas, FavoriteIdeas
 from openai import OpenAI
 
+CORS(ideas_bp)
+
 @ideas_bp.route('/advisor', methods=['POST'])
 def advisor():
     response_body = {}
