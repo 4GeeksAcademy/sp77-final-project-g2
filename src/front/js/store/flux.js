@@ -4,7 +4,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			demo: [{title: "FIRST", background: "white", initial: "white"},
 				     {title: "SECOND", background: "white", initial: "white"}],
 			message: null,
-			ideas: []
+			ideas: [],
+			news: []
 		},
 		actions: {
 			exampleFunction: () => {getActions().changeColor(0, "green");},
@@ -50,6 +51,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				const data = await response.json();
 				setStore({ideas: data.ideas});
+			},
+			getNews: async() => {
+				const uri = `${process.env.BACKEND_URL}/news`;
+				const options = {
+					method: 'GET'
+				}
+				const response = await fetch(uri, options);
+				if(!response.ok){
+					console.log(response.status);
+					return;
+				}
+				const data = await response.json();
+				setStore({news: data.news})
 			}
 		}
 	};
