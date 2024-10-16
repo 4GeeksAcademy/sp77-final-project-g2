@@ -4,12 +4,12 @@ import { Context } from "../store/appContext.js";
 
 const News = () => {
     const {store, actions} = useContext(Context);
-    
+
     return (
         <div className="container">
             <h1>Noticias Destacadas</h1>
             <div className="row">
-                {articles.map((item, index) => (
+                {store.news.map((item, index) => (
                     <div key={index} className="col-md-4">
                         <div className="card">
                             {item.urlToImage && (
@@ -18,10 +18,10 @@ const News = () => {
                             <div className="card-body">
                                 <h5>{item.title}</h5>
                                 <p>{item.description}</p>
-                                <button type="button" className="btn btn-grey">Ver Más</button>
+                                <button type="button" className="btn btn-dark">Ver Más</button>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 ))}
             </div>
         </div>
