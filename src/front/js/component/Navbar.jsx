@@ -1,20 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { Navbar as BootstrapNavbar, Nav, Container } from 'react-bootstrap';
+import logo from '../../img/logo-entero.png';
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar navbar-light bg-light">
-			<div className="container">
+		<BootstrapNavbar expand="lg" className="navbar-dark bg-dark">
+			<Container>
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+					<img
+						src={logo}
+						alt="Logo"
+						style={{ maxHeight: '40px', width: 'auto' }}
+						className="d-inline-block align-top"
+					/>
 				</Link>
-				<div className="ml-auto">
-					<Link to="/demo">
-						<button className="btn btn-primary">Check the Context in action</button>
-					</Link>
-				</div>
-			</div>
-		</nav>
+
+				<BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
+
+				<BootstrapNavbar.Collapse id="basic-navbar-nav">
+				<Nav className="ms-auto">
+                        <Nav.Link as={Link} to="/chatAI">ChatAI</Nav.Link>
+                        <Nav.Link as={Link} to="/news">News</Nav.Link>
+                    </Nav>
+
+					<Nav>
+						<Nav.Link as={Link} to="/login">LogIn</Nav.Link>
+						<Nav.Link as={Link} to="/signup">SignUp</Nav.Link>
+					</Nav>
+				</BootstrapNavbar.Collapse>
+			</Container>
+		</BootstrapNavbar>
 	);
 };
