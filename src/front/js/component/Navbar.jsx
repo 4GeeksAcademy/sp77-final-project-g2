@@ -22,8 +22,7 @@ export const Navbar = () => {
 				<Nav className="ms-auto">
                         <Nav.Link as={Link} to="/advisor">ChatAI</Nav.Link>
                         <Nav.Link as={Link} to="/news">News</Nav.Link>
-                    </Nav>
-
+        </Nav>
 					<Nav>
 						<Nav.Link as={Link} to="/login">LogIn</Nav.Link>
 						<Nav.Link as={Link} to="/signup">SignUp</Nav.Link>
