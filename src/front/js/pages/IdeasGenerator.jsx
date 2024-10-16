@@ -17,7 +17,6 @@ const IdeasGenerator = () => {
         actions.saveFavoriteIdea(item);
     }
 
-
     return (
         <div className="container">
             <h1>Business Ideas Generator</h1>
@@ -53,7 +52,7 @@ const IdeasGenerator = () => {
                     <h2>Ideas for You</h2>
                     <div className="row">
                         {store.ideas.map((item, index) => (
-                            <div className="col-md-4" key={index}>
+                            <div className="col-md-6" key={index}>
                                 <div className="card mb-4">
                                     <div className="card-body">
                                         <h5>{item.title}</h5>
