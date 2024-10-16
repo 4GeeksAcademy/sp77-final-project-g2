@@ -13,6 +13,10 @@ const IdeasGenerator = () => {
         actions.getIdeas(budget, country, area);
     }
 
+    const isFavoriteIdea = (item) => {
+        actions.saveFavoriteIdea(item);
+    }
+
 
     return (
         <div className="container">
@@ -54,6 +58,7 @@ const IdeasGenerator = () => {
                                     <div className="card-body">
                                         <h5>{item.title}</h5>
                                         <p>{item.description}</p>
+                                        <button className="btn btn-light" onClick={() => isFavoriteIdea(item)}><i className="fas fa-lightbulb"></i></button>
                                     </div>
                                 </div>
                             </div>
