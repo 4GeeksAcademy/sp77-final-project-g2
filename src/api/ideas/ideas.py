@@ -9,6 +9,8 @@ from flask_cors import CORS
 from api.models import db, Users, Ideas, FavoriteIdeas
 from openai import OpenAI
 
+CORS(ideas_bp)
+
 @ideas_bp.route('/advisor', methods=['POST'])
 def advisor():
     response_body = {}
@@ -25,17 +27,17 @@ def advisor():
     user_message = user_message = f"Tengo un presupuesto de {budget} euros, vivo en {country}, y me interesa el sector de {area}."
 
     response = client.chat.completions.create(
-        model = "gpt-4o",
+        model = "gpt-4o-mini",
         messages = [
             {"role": "system", 
-            "content": ("Eres un consultor de negocios que genera cinco ideas de negocio en español. "
+            "content": ("Eres un consultor de negocios que genera cuatro ideas de negocio en español. "
                         "Para cada idea, proporciona un título corto y una muy breve descripción. "
                         "No utilices números, listas, ni formato especial como negritas o asteriscos. "
                         "Usa 'Title:' seguido del nombre de la idea y 'Description:' seguido de la descripción de la idea.")},
             {"role": "user", "content": user_message}
         ],
         temperature = 0.7,
-        max_completion_tokens = 400,
+        max_completion_tokens = 300,
         n = 1
     )
 
