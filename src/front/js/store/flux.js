@@ -5,7 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				     {title: "SECOND", background: "white", initial: "white"}],
 			message: null,
 			ideas: [],
-			news: []
+			news: [],
+			converter: ""
 		},
 		actions: {
 			exampleFunction: () => {getActions().changeColor(0, "green");},
@@ -64,6 +65,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				const data = await response.json();
 				setStore({news: data.news})
+			},
+			getConverter: async(amount, from, to) =>{
+				const uri = `${process.env.BACKEND_URL}/convert?amount=${amount}&from=${from}&to=${to}`;
+				const options = {
+                    method: 'GET'
+                };
+				const response = await fetch(uri, options);
+				if(!response.ok){
+					console.log(response.status);
+					return;
+				}
+				const data = await response.json();
+				setStore({amount: data})
+
 			}
 		}
 	};
