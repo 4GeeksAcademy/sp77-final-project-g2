@@ -19,10 +19,10 @@ export const Navbar = () => {
 				<BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
 
 				<BootstrapNavbar.Collapse id="basic-navbar-nav">
-				<Nav className="ms-auto">
+					<Nav className="ms-auto">
                         <Nav.Link as={Link} to="/advisor">ChatAI</Nav.Link>
                         <Nav.Link as={Link} to="/news">News</Nav.Link>
-        </Nav>
+        			</Nav>
 					<Nav>
 						<Nav.Link as={Link} to="/login">LogIn</Nav.Link>
 						<Nav.Link as={Link} to="/signup">SignUp</Nav.Link>
