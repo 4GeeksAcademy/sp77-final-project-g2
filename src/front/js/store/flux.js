@@ -52,8 +52,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				setStore({ideas: data.ideas});
 			},
-			getNews: async() => {
-				const uri = `${process.env.BACKEND_URL}/news`;
+			getNews: async(country = "", category = "") => {
+				let uri = `${process.env.BACKEND_URL}/news`;
+				if (country || category) {
+					uri += `?country=${country}&category=${category}`;
+				}
 				const options = {
 					method: 'GET'
 				}
