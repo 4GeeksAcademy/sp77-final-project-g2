@@ -13,6 +13,7 @@ import { Demo } from "./pages/Demo.jsx";
 import { Single } from "./pages/Single.jsx";
 import IdeasGenerator from "./pages/IdeasGenerator.jsx";
 import News from "./pages/News.jsx";
+import Converter from "./pages/Converter.jsx";
 
 
 // Create your first component
@@ -32,6 +33,7 @@ const Layout = () => {
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<IdeasGenerator />} path="/advisor" />
                         <Route element={<News />} path="/news" />
+                        <Route element={<Converter />} path="/converter" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} path="*"/>
                     </Routes>
