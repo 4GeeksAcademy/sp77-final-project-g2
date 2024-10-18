@@ -6,6 +6,7 @@ import ScrollToTop from "./component/ScrollToTop.jsx";
 import { BackendURL } from "./component/BackendURL.jsx";
 import { Navbar } from "./component/Navbar.jsx";
 import { Footer } from "./component/Footer.jsx";
+import { Body } from "./component/Body.jsx";
 // Custom pages / views
 import { Home } from "./pages/Home.jsx";
 import { Demo } from "./pages/Demo.jsx";
