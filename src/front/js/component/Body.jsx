@@ -1,13 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Slider1 from "../../img/Slider-1.jpg";
 import Slider2 from "../../img/Slider-2.jpg";
 import Slider3 from "../../img/Slider-3.jpg";
+import About from "../../img/About.jpg";
+import Service from "../../img/Service.jpg";
+import Contact from "../../img/Contact.jpg";
+import News from "../../img/News.jpg";
+import Currency from "../../img/Currency.jpg";
+import ChatIA from "../../img/ChatIA.png";
+
 
 
 export const Body = () => {
     return (
         <main>
-             {/*Carousel*/}
+            {/*Carousel*/}
             <div id="carouselExampleCaptions" class="carousel slide">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -16,25 +24,34 @@ export const Body = () => {
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src={Slider1} class="d-block w-100" alt="..."/>
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>First slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                            </div>
+                        <img src={Slider1} class="d-block w-100" alt="..." />
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Do you have a project in mind?</h5>
+                            <p>We will help you with our AI chat</p>
+                            <Link to="/login">
+                                <button type="button" class="btn btn-info btn-lg">LogIn</button>
+                            </Link>
+                        </div>
                     </div>
                     <div class="carousel-item">
-                        <img src={Slider2} class="d-block w-100" alt="..."/>
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Second slide label</h5>
-                                <p>Some representative placeholder content for the second slide.</p>
-                            </div>
+                        <img src={Slider2} class="d-block w-100" alt="..." />
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>AI will give you the best ideas</h5>
+                            <p>Choose a budget for your project, we will give you several ideas for your business</p>
+                            <Link to="/login">
+                                <button type="button" class="btn btn-info btn-lg">LogIn</button>
+                            </Link>
+                        </div>
                     </div>
                     <div class="carousel-item">
-                        <img src={Slider3} class="d-block w-100" alt="..."/>
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Third slide label</h5>
-                                <p>Some representative placeholder content for the third slide.</p>
-                            </div>
+                        <img src={Slider3} class="d-block w-100" alt="..." />
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>The power of AI in your hands</h5>
+                            <p>With AI and your answers we will customize the project that best suits you</p>
+                            <Link to="/login">
+                                <button type="button" class="btn btn-info btn-lg">LogIn</button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -48,37 +65,48 @@ export const Body = () => {
             </div>
 
 
+            {/*Info*/}
             <div className="container marketing">
+                <div className="text-center py-3">
+                    <h1>We bring your projects and ideas to </h1>
+                    <h1>life with artificial intelligence</h1>
+                </div>
                 <div className="row">
                     <div className="col-lg-4">
-                        <svg className="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect><i class="fa-solid fa-users"></i></svg>
-                        <h2 className="fw-normal">Heading</h2>
-                        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+                        <img src={About} className="w-50" alt="..." />
+                        <h2 className="fw-normal text-start">About Us</h2>
+                        <p>We have a multidisciplinary team with years of experience in the field, each project is unique. We work with you to create personalized solutions.</p>
                         <p><a className="btn btn-secondary" href="#">View details »</a></p>
                     </div>
                     <div className="col-lg-4">
-                        <svg className="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
-                        <h2 className="fw-normal">Heading</h2>
-                        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
+                        <img src={Service} className="w-50" alt="" />
+                        <h2 className="fw-normal">Service</h2>
+                        <p>We offer a variety of services tailored to specific project needs. Through our chat you can have ideas for ventures immediately.</p>
                         <p><a className="btn btn-secondary" href="#">View details »</a></p>
                     </div>
                     <div className="col-lg-4">
-                        <svg className="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
-                        <h2 className="fw-normal">Heading</h2>
-                        <p>And lastly this, the third column of representative placeholder content.</p>
+                        <img src={Contact} className="w-50" alt="" />
+                        <h2 className="fw-normal text-start">Contact</h2>
+                        <p>Ready to take your project to the next level? Sign up and start using AI for free to get project ideas.
+                        </p>
                         <p><a className="btn btn-secondary" href="#">View details »</a></p>
                     </div>
                 </div>
 
+
+                {/*Sections*/}
                 <hr className="featurette-divider" />
 
                 <div className="row featurette">
                     <div className="col-md-7">
-                        <h2 className="featurette-heading fw-normal lh-1">First featurette heading. <span className="text-body-secondary">It’ll blow your mind.</span></h2>
-                        <p className="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+                        <h2 className="featurette-heading fw-normal lh-1">Stay up to date</h2>
+                        <p className="lead">Always updated with the latest news.</p>
+                        <Link to="/news">
+                                <button type="button" class="btn btn-info btn-lg">News</button>
+                        </Link>
                     </div>
                     <div className="col-md-5">
-                        <svg className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="https://www.entelgy.com/media/k2/items/cache/a40a392b1e89ecdebf3667e19f1338c4_XL.jpg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%"></rect></svg>
+                        <img src={News} alt="" />
                     </div>
                 </div>
 
@@ -86,11 +114,14 @@ export const Body = () => {
 
                 <div className="row featurette">
                     <div className="col-md-7 order-md-2">
-                        <h2 className="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span className="text-body-secondary">See for yourself.</span></h2>
-                        <p className="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+                        <h2 className="featurette-heading fw-normal lh-1">Chat with artificial intelligence</h2>
+                        <p className="lead">Use our artificial intelligence chat to bring your projects to life.</p>
+                        <Link to="/advisor">
+                                <button type="button" class="btn btn-info btn-lg">ChatIA</button>
+                        </Link>
                     </div>
-                    <div className="col-md-5 order-md-1">
-                        <svg className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+                    <div className="col-md-5">
+                        <img src={ChatIA} alt="" />
                     </div>
                 </div>
 
@@ -98,17 +129,18 @@ export const Body = () => {
 
                 <div className="row featurette">
                     <div className="col-md-7">
-                        <h2 className="featurette-heading fw-normal lh-1">And lastly, this one. <span className="text-body-secondary">Checkmate.</span></h2>
-                        <p className="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+                        <h2 className="featurette-heading fw-normal lh-1">Currency converter</h2>
+                        <p className="lead">Use the currency converter so you can calculate your budgets in different countries</p>
+                        <Link to="/">
+                                <button type="button" class="btn btn-info btn-lg">Converter</button>
+                        </Link>
                     </div>
-                    <div className="col-md-5">
-                        <svg className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+                    <div className="col-md-5 order-md-1">
+                        <img src={Currency} alt="" />
                     </div>
                 </div>
 
                 <hr className="featurette-divider" />
-
-
 
             </div>
         </main>
