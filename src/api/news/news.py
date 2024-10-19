@@ -10,52 +10,51 @@ import requests
 
 @news_bp.route('/news', methods=['GET'])
 def get_news():
-    # Inicializar EventRegistry con la API Key desde el entorno
     er = EventRegistry(apiKey=os.getenv("NEWS_API_KEY"))
 
-    # Obtener los parámetros de país y categoría de la URL
-    country = request.args.get('country', '')  # Ej: "us"
-    category = request.args.get('category', '')  # Ej: "technology"
+    # Obtener el parámetro de categoría de la URL
+    category = request.args.get('category', None)  # Ej: "technology"
 
-    # Crear la consulta para EventRegistry
-    q = QueryArticlesIter(
-        dataType=["news"],  # Filtrar solo por noticias
-        sourceLocationUri=er.getLocationUri(country) if country else None,  # Filtro por país
-        categoryUri=er.getCategoryUri(category) if category else None  # Filtro por categoría
-    )
+    # Si no se proporciona categoría, devolver noticias generales en inglés o español
+    if not category:
+        q = QueryArticlesIter(lang=["eng", "spa"], dataType=["news"])  # Filtro de idiomas
+    else:
+        category_uri = er.getCategoryUri(category)
+        q = QueryArticlesIter(categoryUri=category_uri, lang=["eng", "spa"], dataType=["news"])  # Filtro de categoría e idiomas
 
-    # Configurar lo que queremos obtener: título, imagen, fecha, descripción y categoría
+    # Definir qué información se va a devolver
     return_info = ReturnInfo(
         articleInfo=ArticleInfoFlags(
-            bodyLen=200,  # Obtener una descripción corta del artículo (hasta 200 caracteres)
-            categories=True,  # Incluir categorías del artículo
-            image=True,  # Incluir imagen
+            bodyLen=200,       # Longitud máxima del cuerpo de la noticia
+            categories=True,   # Incluir categorías
+            image=True,        # Incluir imágenes
+            concepts=True,     # Incluir conceptos
         )
     )
 
-    # Ejecutar la consulta y obtener los artículos
     articles = []
     for article in q.execQuery(er, sortBy="date", maxItems=10, returnInfo=return_info):
-        categories = [category.get("label") for category in article.get("categories", [])]  # Obtener las categorías
+        concepts = [concept.get("label").get("eng") for concept in article.get("concepts", [])]
 
-        # Filtrar artículos que no tienen imagen o categoría
-        if not article.get("image") or not categories:
-            continue  # Saltar este artículo si no tiene imagen o categoría
+        # Filtrar noticias que no tienen imagen o conceptos
+        if not article.get("image") or not concepts:
+            continue
 
         articles.append({
             "title": article.get("title"),
             "url": article.get("url"),
             "image": article.get("image"),
-            "date": article.get("date"),
-            "description": article.get("body", "")[:200],  # Descripción corta del artículo
-            "categories": categories  # Categorías del artículo
+            "date": article.get("dateTimePub", ""),
+            "description": article.get("body", "")[:200],  # Breve descripción
+            "concepts": concepts,  # Conceptos asociados
+            "source": article.get("source", {}).get("title", "Unknown Source")  # Fuente de la noticia
         })
 
-    # Crear la respuesta
     response_body = {
         "message": "Últimas noticias",
         "news": articles
     }
 
     return jsonify(response_body), 200
+
     
