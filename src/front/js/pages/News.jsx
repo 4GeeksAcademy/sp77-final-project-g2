@@ -4,23 +4,20 @@ import { Context } from "../store/appContext.js";
 const News = () => {
     const { store, actions } = useContext(Context);
 
-    // Estado para almacenar la categoría seleccionada
+
     const [category, setCategory] = useState("");
 
-    // Función para manejar la búsqueda
     const handleSearch = () => {
         if (!category) {
             alert("Por favor, selecciona una categoría.");
             return;
         }
-        actions.getNews(category);  // Llamar a getNews con la categoría seleccionada
+        actions.getNews(category);
     };
 
     return (
         <div className="container">
             <h1>Noticias Destacadas</h1>
-
-            {/* Selector de categorías */}
             <div className="row mb-3">
                 <div className="col-md-6">
                     <select className="form-control" value={category} onChange={(e) => setCategory(e.target.value)}>
