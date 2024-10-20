@@ -23,11 +23,7 @@ const News = () => {
             {/* Selector de categorías */}
             <div className="row mb-3">
                 <div className="col-md-6">
-                    <select 
-                        className="form-control" 
-                        value={category} 
-                        onChange={(e) => setCategory(e.target.value)}
-                    >
+                    <select className="form-control" value={category} onChange={(e) => setCategory(e.target.value)}>
                         <option value="">Selecciona una categoría</option>
                         <option value="technology">Tecnología</option>
                         <option value="sports">Deportes</option>
@@ -47,10 +43,10 @@ const News = () => {
                     <p>No se encontraron noticias.</p>
                 ) : (
                     store.news.map((item, index) => (
-                        <div key={index} className="col-md-4">
+                        <div key={index} className="col-md-3">
                             <div className="card">
                                 {item.image && (
-                                    <img src={item.image} className="card-img-top" alt={item.title} />
+                                    <img src={item.image} className="card-img-top" alt={item.title} style={{ aspectRatio: '3 / 2', overflow: 'hidden' }}/>
                                 )}
                                 <div className="card-body">
                                     <h5>{item.title}</h5>
