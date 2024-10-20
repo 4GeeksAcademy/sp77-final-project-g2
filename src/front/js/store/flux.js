@@ -5,7 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				     {title: "SECOND", background: "white", initial: "white"}],
 			message: null,
 			ideas: [],
-			news: []
+			news: [],
+			converter: ""
 		},
 		actions: {
 			exampleFunction: () => {getActions().changeColor(0, "green");},
