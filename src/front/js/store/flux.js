@@ -53,17 +53,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ideas: data.ideas});
 			},
 			getNews: async (category) => {
-                const uri = `${process.env.BACKEND_URL}/news?category=${category}`;
-                const options = {
-                    method: 'GET'
-                };
-                const response = await fetch(uri, options);
-                if(!response.ok){
-                    console.log(response.status);
-                    return;
-                }
-                const data = await response.json();
-                setStore({ news: data.news });
+				const uri = `${process.env.BACKEND_URL}/news?category=${category}`;
+				const options = {
+					method: 'GET'
+				};
+				const response = await fetch(uri, options);
+				if(!response.ok){
+					console.log(response.status);
+					return;
+				}
+				const data = await response.json()
+				setStore({news: data.news});
             }
 		}
 	};
