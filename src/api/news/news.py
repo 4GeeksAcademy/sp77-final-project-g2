@@ -4,35 +4,38 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from api.models import db, Users
-from newsapi import NewsApiClient
+from eventregistry import *
 import requests
 
+CORS(news_bp)
 
 @news_bp.route('/news', methods=['GET'])
 def news():
     response_body = {}
+    er = EventRegistry(apiKey=os.getenv("NEWS_API_KEY"))   
 
-    articles_api_url = f'https://newsapi.org/v2/top-headlines?country=us&apiKey={os.getenv("NEWS_API_KEY")}'
-    articles_response = requests.get(articles_api_url)
-    news_data = articles_response.json()
-    articles = news_data.get('articles', [])[:50]
+    category = request.args.get('category', None)
+    category_uri = er.getCategoryUri(category)
+    q = QueryArticlesIter(
+        categoryUri=category_uri,
+        lang=["eng", "spa"],
+        dataType=['news'],
+        isDuplicateFilter="skipDuplicates"
+    )
 
+    articles = []
+    seen_titles = set()
+    for article in q.execQuery(er, sortBy="date", sortByAsc=False, maxItems=12):
+        title = article.get("title")
+        if article.get("image") and title not in seen_titles:
+            articles.append({"title": title,
+                            "url": article.get("url"),
+                            "image": article.get("image"),
+                            "date": article.get("date"),
+                            "description": article.get("body", "")[:130],
+                            "source": article.get("source", {}).get("title", "Unknown Source")})
+            seen_titles.add(title)
 
-    sources_api_url = f'https://newsapi.org/v2/top-headlines/sources?apiKey={os.getenv("NEWS_API_KEY")}'
-    sources_response = requests.get(sources_api_url)
-    sources_data = sources_response.json()
-
-    for article in articles:
-        for source in sources_data['sources']:
-            if article['source']['id'] == source['id']:
-                article['category'] = source['category']
-
-    filtered_articles = [
-        article for article in articles
-        if article.get('urlToImage') and article.get('category')
-        ]
-
-    response_body['message'] = f'Lista de headlines'
-    response_body['news'] = filtered_articles
+    response_body['message'] = f"Lista de Noticias por Categoría"
+    response_body['news'] = articles
     return jsonify(response_body), 200
-    
