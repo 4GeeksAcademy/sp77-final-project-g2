@@ -6,7 +6,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			ideas: [],
 			news: [],
-			converter: ""
+			converter: "",
+			name: "",
+			email: "",
+			isLoged: false,
 		},
 		actions: {
 			exampleFunction: () => {getActions().changeColor(0, "green");},
@@ -24,14 +27,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 	setStore({ message: data.message })
 			// 	return data;
 			// },
-			changeColor: (index, color) => {
-				const store = getStore();  // Get the store
-				const demo = store.demo.map((element, i) => {
-					if (i === index) element.background = color;
-					return element;
-				});
-				setStore({ demo: demo });  // Reset the global store
-			},
+			// changeColor: (index, color) => {
+			// 	const store = getStore();  // Get the store
+			// 	const demo = store.demo.map((element, i) => {
+			// 		if (i === index) element.background = color;
+			// 		return element;
+			// 	});
+			// 	setStore({ demo: demo });  // Reset the global store
+			// },
 			getIdeas: async (budget, country, area) => {
 				const uri = `${process.env.BACKEND_URL}/advisor`;
 				const options = {
@@ -65,7 +68,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				const data = await response.json()
 				setStore({news: data.news});
-            }
+            },
+			logIn: async (dataToSend) => {
+				const uri = `${process.env.BACKEND_URL}/login`;
+				const options = {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				};
+				const response = await fetch(uri, options);
+				if(!response.ok) {
+					console.log(response.status);
+					return;
+				}
+				const data = await response.json();
+				localStorage.setItem('user', JSON.stringify(data.results))
+				setStore({isLoged: true, name: data.results.email});
+			},
+			logOut: () => {
+				setStore({isLoged: false, name: ""});
+			}
 		}
 	};
 };
