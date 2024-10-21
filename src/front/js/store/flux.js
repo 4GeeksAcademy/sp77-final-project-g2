@@ -9,8 +9,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			fromCurrency: "",
 			toCurrency: "",
 			amount: 0,
-			conversionRate: null,
-			convertedAmount: null
+			conversionRate: 0,
+			convertedAmount: 0
 		},
 		actions: {
 			exampleFunction: () => {getActions().changeColor(0, "green");},
@@ -88,6 +88,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({news: data.news})
 			},
 			getConvert: async (fromCurrency, toCurrency, amount) => {
+				console.log("Acción getConvert llamada con:", fromCurrency, toCurrency, amount);
 				const uri = `${process.env.BACKEND_URL}/converter?from_currency=${fromCurrency}&to_currency=${toCurrency}&amount=${amount}`;
 				const options = {
 					method: 'GET'
@@ -107,12 +108,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// Si la respuesta es JSON, parsearla
 					if (contentType && contentType.includes("application/json")) {
 						const data = await response.json();
+						console.log("Respuesta de la API:", data);
 						setStore({
-							fromCurrency: data.from_currency,
-							toCurrency: data.to_currency,
-							originalAmount: data.original_amount,
+							fromCurrency: data.base_code,
+							toCurrency: data.target_code,
+							originalAmount: amount,
 							conversionRate: data.conversion_rate,
-							convertedAmount: data.converted_amount,
+							convertedAmount: data.conversion_result,  // Asegúrate de que 'data.conversion_result' sea asignado aquí
 							error: null
 						});
 					}

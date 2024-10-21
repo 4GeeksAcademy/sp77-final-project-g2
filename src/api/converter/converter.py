@@ -1,6 +1,7 @@
 import os
 from . import converter_bp
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, url_for, Blueprint
+from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from api.models import db, Users, Ideas, FavoriteIdeas
 import requests
@@ -9,21 +10,34 @@ CORS(converter_bp)
 
 @converter_bp.route('/converter', methods=['GET'])
 def converter():
-    response_body = {}
-    apiKey = os.getenv("CONVERTER_API_KEY")
-
+    # Obtener parámetros desde la URL
     from_currency = request.args.get('from_currency')
     to_currency = request.args.get('to_currency')
     amount = request.args.get('amount')
 
-    url = f"https://v6.exchangerate-api.com/v6/{apiKey}/pair/{from_currency}/{to_currency}/{amount}"
+    # Verificar que todos los parámetros están presentes
+    if not from_currency or not to_currency or not amount:
+        return jsonify({"error": "Faltan parámetros"}), 400
+
+    # Tu API key de ExchangeRate-API (esta la tienes que proteger en el servidor)
+    api_key = "4fdff3f21b0a298c92bb54f2"
+
+    # Crear la URL para la API de ExchangeRate
+    url = f"https://v6.exchangerate-api.com/v6/{api_key}/pair/{from_currency}/{to_currency}/{amount}"
+
+    # Hacer la solicitud GET a la API de ExchangeRate
     response = requests.get(url)
     data = response.json()
 
-    response_body['message'] = "Conversión de Divisas"
-    response_body['from_currency'] = from_currency
-    response_body['to_currency'] = to_currency
-    response_body['original_amount'] = amount
-    response_body['conversion_rate'] = data.get('conversion_rate')
-    response_body['converted_amount'] = data.get('conversion_result')
-    return (response_body), 200
+    # Verificar si la API devolvió un error
+    if data.get('result') == 'error':
+        return jsonify({"error": data.get('error-type')}), 400
+
+    # Devolver los datos relevantes en formato JSON, tal como lo hace ExchangeRate-API
+    return jsonify({
+        "result": "success",
+        "base_code": data.get('base_code'),
+        "target_code": data.get('target_code'),
+        "conversion_rate": data.get('conversion_rate'),
+        "conversion_result": data.get('conversion_result')
+    }), 200
