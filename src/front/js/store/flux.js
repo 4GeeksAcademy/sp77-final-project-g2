@@ -6,7 +6,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			ideas: [],
 			news: [],
-			converter: ""
+			fromCurrency: "",
+            toCurrency: "",
+            amount: 0,
+            conversionRate: null,
+            convertedAmount: null,
+            error: null
 		},
 		actions: {
 			exampleFunction: () => {getActions().changeColor(0, "green");},
@@ -66,20 +71,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				setStore({news: data.news})
 			},
-			getConverter: async(amount, from, to) =>{
-				const uri = `${process.env.BACKEND_URL}/convert?amount=${amount}&from=${from}&to=${to}`;
+			convertCurrency: async (fromCurrency, toCurrency, amount) => {
+				const uri = `${process.env.BACKEND_URL}/converter?from_currency=${fromCurrency}&to_currency=${toCurrency}&amount=${amount}`;
 				const options = {
-                    method: 'GET'
-                };
-				const response = await fetch(uri, options);
-				if(!response.ok){
-					console.log(response.status);
-					return;
-				}
-				const data = await response.json();
-				setStore({amount: data})
-
-			}
+					method: 'GET'
+				};
+			
+					const response = await fetch(uri, options);
+			
+					if (!response.ok) {
+						console.log("Error:", response.status);
+						return;
+					}
+			
+					const data = await response.json();
+					setStore({
+						fromCurrency: data.from_currency,
+						toCurrency: data.to_currency,
+						amount: data.original_amount,
+						conversionRate: data.conversion_rate,
+						convertedAmount: data.converted_amount,
+						error: null
+					});
+			}	
 		}
 	};
 };

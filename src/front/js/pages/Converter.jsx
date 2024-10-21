@@ -1,77 +1,49 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { Context } from '../store/appContext';
 
 const CurrencyConverter = () => {
-    const [amount, setAmount] = useState('');
-    const [fromCurrency, setFromCurrency] = useState('USD');
-    const [toCurrency, setToCurrency] = useState('EUR');
-    const [result, setResult] = useState(null);
-    const [error, setError] = useState(null);
+    const { store, actions } = useContext(Context);
+    const [fromCurrency, setFromCurrency] = useState('');
+    const [toCurrency, setToCurrency] = useState('');
+    const [amount, setAmount] = useState(0);
 
-    const handleConvert = async (e) => {
-        e.preventDefault();
-        setError(null); // Reset error message
-        setResult(null); // Reset result
-
-        try {
-            const response = await fetch(`/convert?amount=${amount}&from=${fromCurrency}&to=${toCurrency}`);
-            if (!response.ok) {
-                throw new Error('Error en la solicitud');
-            }
-            const data = await response.json();
-            setResult(data.conversion); // Suponiendo que la API devuelve la conversión en este campo
-        } catch (err) {
-            setError('Error al obtener la conversión');
-        }
+    const handleConvert = () => {
+        actions.convertCurrency(fromCurrency, toCurrency, amount);
     };
 
     return (
         <div>
-            <h1>Conversor de Monedas</h1>
-            <form onSubmit={handleConvert}>
-                <div>
-                    <label htmlFor="amount">Cantidad:</label>
-                    <input
-                        type="number"
-                        id="amount"
-                        value={amount}
-                        onChange={(e) => setAmount(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="from">De:</label>
-                    <select
-                        id="from"
-                        value={fromCurrency}
-                        onChange={(e) => setFromCurrency(e.target.value)}
-                    >
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                        {/* Agrega más opciones según sea necesario */}
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor="to">A:</label>
-                    <select
-                        id="to"
-                        value={toCurrency}
-                        onChange={(e) => setToCurrency(e.target.value)}
-                    >
-                        <option value="EUR">EUR</option>
-                        <option value="USD">USD</option>
-                        {/* Agrega más opciones según sea necesario */}
-                    </select>
-                </div>
-                <button type="submit">Convertir</button>
-            </form>
+            <h1>Currency Converter</h1>
+            <input 
+                type="text" 
+                placeholder="From currency (e.g. USD)" 
+                value={fromCurrency} 
+                onChange={(e) => setFromCurrency(e.target.value)} 
+            />
+            <input 
+                type="text" 
+                placeholder="To currency (e.g. EUR)" 
+                value={toCurrency} 
+                onChange={(e) => setToCurrency(e.target.value)} 
+            />
+            <input 
+                type="number" 
+                placeholder="Amount" 
+                value={amount} 
+                onChange={(e) => setAmount(e.target.value)} 
+            />
+            <button onClick={handleConvert}>Convert</button>
 
-            {result && (
+            {store.convertedAmount && (
                 <div>
-                    <h2>Resultado:</h2>
-                    <pre>{JSON.stringify(result, null, 2)}</pre>
+                    <p>Conversion Rate: {store.conversionRate}</p>
+                    <p>Converted Amount: {store.convertedAmount}</p>
                 </div>
             )}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+
+            {store.error && (
+                <p>Error: {store.error}</p>
+            )}
         </div>
     );
 };

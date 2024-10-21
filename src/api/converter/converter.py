@@ -5,23 +5,43 @@ from flask_cors import CORS
 from api.models import db, Users, Ideas, FavoriteIdeas
 import requests
 
+CORS(converter_bp)  # Habilitar CORS si es necesario
 
-@converter_bp.route('/converter', methods=['GET'])
+@converter_bp.route('/converter', methods=['GET'])  # Método GET
 def converter():
-    response_body: {}
-    cantidad = request.args.get('amount', type=float)
-    moneda_origen = request.args.get('from', default='EUR')
-    moneda_destino = request.args.get('to', default='USD')
-    app_id = os.get.env("CONVERTER_API_KEY")
-    url = f'https://openexchangerates.org/api/convert/{cantidad}/{moneda_origen}/{moneda_destino}?app_id={app_id}&prettyprint=false'
+    api_key = os.getenv("CONVERTER_API_KEY")
 
+    # Obtener los datos desde los parámetros de la URL
+    from_currency = request.args.get('from_currency')
+    to_currency = request.args.get('to_currency')
+    amount = request.args.get('amount')
+
+    # Verificar que los parámetros no estén vacíos
+    if not from_currency or not to_currency or not amount:
+        return jsonify({"error": "Faltan parámetros de entrada"}), 400
+
+    # Crear la URL para la solicitud de conversión
+    url = f"https://v6.exchangerate-api.com/v6/{api_key}/pair/{from_currency}/{to_currency}/{amount}"
+    
+    # Hacer la solicitud GET a la API
     response = requests.get(url)
-    if response.status_code == 200: 
-        converter_data = response.json()
-        response_body['message'] = 'Conversion ok'
-        response_body['results'] = converter_data
-        return jsonify(response_body), 200
 
-    else:
-        response_body['message'] = 'Error'
-        return jsonify(response_body), response.status_code
+    # Manejar errores en la solicitud
+    if response.status_code != 200:
+        return jsonify({"error": "Error al obtener las tasas de cambio"}), 500
+
+    # Obtener los datos en formato JSON de la respuesta
+    data = response.json()
+
+    # Verificar si hubo un error en los datos obtenidos
+    if data.get('result') == 'error':
+        return jsonify({"error": data.get('error-type')}), 400
+
+    # Retornar los resultados de la conversión
+    return jsonify({
+        "from_currency": from_currency,
+        "to_currency": to_currency,
+        "original_amount": amount,
+        "conversion_rate": data.get('conversion_rate'),
+        "converted_amount": data.get('conversion_result')
+    }), 200
