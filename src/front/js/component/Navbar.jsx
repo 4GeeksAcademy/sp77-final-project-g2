@@ -30,6 +30,19 @@ export const Navbar = () => {
 						</li>
 					</ul>
 				</div>
+				<div className="dropdown">
+					<button className="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+						<i className="fas fa-user"></i>
+					</button>
+					<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+						<li>
+							<Link className="dropdown-item" to="/login">Log In</Link>
+						</li>
+						<li>
+							<Link className="dropdown-item" to="/signup">Sign Up</Link>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</nav>
 	);
