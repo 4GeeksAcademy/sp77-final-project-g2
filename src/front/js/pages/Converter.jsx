@@ -1,43 +1,29 @@
 import React, { useContext, useState } from 'react';
-import { Context } from '../store/appContext';
+import { Context } from '../store/appContext';  // Importar el contexto de Flux
 
-const CurrencyConverter = () => {
+const Converter = () => {
     const { store, actions } = useContext(Context);
-    const [fromCurrency, setFromCurrency] = useState('');
-    const [toCurrency, setToCurrency] = useState('');
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState(0);  // Estado local para la cantidad a convertir
 
     const handleConvert = () => {
-        actions.convertCurrency(fromCurrency, toCurrency, amount);
+        actions.getConvert("USD", "EUR", amount);  // Llama a la acción con USD y EUR
     };
 
     return (
         <div>
-            <h1>Currency Converter</h1>
-            <input 
-                type="text" 
-                placeholder="From currency (e.g. USD)" 
-                value={fromCurrency} 
-                onChange={(e) => setFromCurrency(e.target.value)} 
-            />
-            <input 
-                type="text" 
-                placeholder="To currency (e.g. EUR)" 
-                value={toCurrency} 
-                onChange={(e) => setToCurrency(e.target.value)} 
-            />
+            <h1>Convertir de USD a EUR</h1>
             <input 
                 type="number" 
-                placeholder="Amount" 
                 value={amount} 
                 onChange={(e) => setAmount(e.target.value)} 
+                placeholder="Cantidad en USD"
             />
-            <button onClick={handleConvert}>Convert</button>
+            <button onClick={handleConvert}>Convertir</button>
 
             {store.convertedAmount && (
                 <div>
-                    <p>Conversion Rate: {store.conversionRate}</p>
-                    <p>Converted Amount: {store.convertedAmount}</p>
+                    <p>Tasa de conversión: {store.conversionRate}</p>
+                    <p>Monto convertido: {store.convertedAmount} EUR</p>
                 </div>
             )}
 
@@ -48,4 +34,4 @@ const CurrencyConverter = () => {
     );
 };
 
-export default CurrencyConverter;
+export default Converter;

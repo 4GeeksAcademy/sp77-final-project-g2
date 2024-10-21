@@ -5,43 +5,25 @@ from flask_cors import CORS
 from api.models import db, Users, Ideas, FavoriteIdeas
 import requests
 
-CORS(converter_bp)  # Habilitar CORS si es necesario
+CORS(converter_bp)
 
-@converter_bp.route('/converter', methods=['GET'])  # Método GET
+@converter_bp.route('/converter', methods=['GET'])
 def converter():
-    api_key = os.getenv("CONVERTER_API_KEY")
+    response_body = {}
+    apiKey = os.getenv("CONVERTER_API_KEY")
 
-    # Obtener los datos desde los parámetros de la URL
     from_currency = request.args.get('from_currency')
     to_currency = request.args.get('to_currency')
     amount = request.args.get('amount')
 
-    # Verificar que los parámetros no estén vacíos
-    if not from_currency or not to_currency or not amount:
-        return jsonify({"error": "Faltan parámetros de entrada"}), 400
-
-    # Crear la URL para la solicitud de conversión
-    url = f"https://v6.exchangerate-api.com/v6/{api_key}/pair/{from_currency}/{to_currency}/{amount}"
-    
-    # Hacer la solicitud GET a la API
+    url = f"https://v6.exchangerate-api.com/v6/{apiKey}/pair/{from_currency}/{to_currency}/{amount}"
     response = requests.get(url)
-
-    # Manejar errores en la solicitud
-    if response.status_code != 200:
-        return jsonify({"error": "Error al obtener las tasas de cambio"}), 500
-
-    # Obtener los datos en formato JSON de la respuesta
     data = response.json()
 
-    # Verificar si hubo un error en los datos obtenidos
-    if data.get('result') == 'error':
-        return jsonify({"error": data.get('error-type')}), 400
-
-    # Retornar los resultados de la conversión
-    return jsonify({
-        "from_currency": from_currency,
-        "to_currency": to_currency,
-        "original_amount": amount,
-        "conversion_rate": data.get('conversion_rate'),
-        "converted_amount": data.get('conversion_result')
-    }), 200
+    response_body['message'] = "Conversión de Divisas"
+    response_body['from_currency'] = from_currency
+    response_body['to_currency'] = to_currency
+    response_body['original_amount'] = amount
+    response_body['conversion_rate'] = data.get('conversion_rate')
+    response_body['converted_amount'] = data.get('conversion_result')
+    return (response_body), 200
