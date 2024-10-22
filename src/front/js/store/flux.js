@@ -127,6 +127,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return;
 				}
 				const data = await response.json();
+				console.log(data.results);
 				setStore({fromCurrency: data.results.base_code,
 						 toCurrency: data.results.target_code,
 						 originalAmount: amount,
