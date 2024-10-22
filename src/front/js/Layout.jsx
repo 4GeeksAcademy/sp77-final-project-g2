@@ -15,6 +15,7 @@ import IdeasGenerator from "./pages/IdeasGenerator.jsx";
 import News from "./pages/News.jsx";
 import Converter from "./pages/Converter.jsx";
 import Login from "./pages/Login.jsx";
+import SignUp from "./pages/SignUp.jsx";
 
 
 // Create your first component
@@ -36,6 +37,7 @@ const Layout = () => {
                         <Route element={<News />} path="/news" />
                         <Route element={<Converter />} path="/converter" />
                         <Route element={<Login />} path="/login" />
+                        <Route element={<SignUp />} path="/signup" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} path="*"/>
                     </Routes>
