@@ -1,20 +1,22 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [{title: "FIRST", background: "white", initial: "white"},
-				     {title: "SECOND", background: "white", initial: "white"}],
-			message: null,
+			// demo: [{ title: "FIRST", background: "white", initial: "white" },
+			// { title: "SECOND", background: "white", initial: "white" }],
+			// message: null,
 			ideas: [],
 			news: [],
 			fromCurrency: "",
             toCurrency: "",
             amount: 0,
-            conversionRate: null,
-            convertedAmount: null,
-            error: null
+            conversionRate: 0,
+            convertedAmount: 0,
+
+			user: "",
+			isLoged: false
 		},
 		actions: {
-			exampleFunction: () => {getActions().changeColor(0, "green");},
+			exampleFunction: () => { getActions().changeColor(0, "green"); },
 			// getMessage: async () => {
 			// 	const uri = `${process.env.BACKEND_URL}/api/hello`
 			// 	const options = {
@@ -51,12 +53,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				};
 				const response = await fetch(uri, options);
-				if(!response.ok){
+				if (!response.ok) {
 					console.log(response.status);
 					return;
 				}
 				const data = await response.json();
-				setStore({ideas: data.ideas});
+				setStore({ ideas: data.ideas });
 			},
 			getNews: async (category) => {
 				const uri = `${process.env.BACKEND_URL}/news?category=${category}`;
@@ -64,13 +66,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: 'GET'
 				};
 				const response = await fetch(uri, options);
-				if(!response.ok){
+				if (!response.ok) {
 					console.log(response.status);
 					return;
 				}
 				const data = await response.json()
-				setStore({news: data.news});
-            },
+				setStore({ news: data.news });
+			},
 			logIn: async (dataToSend) => {
 				const uri = `${process.env.BACKEND_URL}/login`;
 				const options = {
@@ -81,36 +83,90 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(dataToSend)
 				};
 				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log(response.status);
+					return;
+				}
+				const data = await response.json();
+				localStorage.setItem('token', data.access_token);
+				localStorage.setItem('user', JSON.stringify(data.results))
+				setStore({isLoged: true, name: data.results.email})
+			},
+			logout: () => {
+				setStore({isLoged: false, user: ""});
+				localStorage.removeItem('token')
+			},
+			isLogged: () => {
+				const token = localStorage.getItem('token')
+				if(token){
+					const userData = JSON.parse(localStorage.getItem('user'))
+					setStore({isLoged: true, user: userData.email})
+				}
+			},
+			signUp: async (dataToSend) => {
+				const uri = `${process.env.BACKEND_URL}/signup`;
+				const options = {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						first_name: dataToSend.firstName,
+						last_name: dataToSend.lastName,
+						email: dataToSend.email,
+						password: dataToSend.password
+					})
+				};
+			
+				const response = await fetch(uri, options);
+				
+				if (!response.ok) {
+					console.log('Error en el registro:', response.status);
+					return false;
+				}
+			
+				const data = await response.json();
+				setStore({ user: data.user });
+				console.log('Registro completado');
+				
+				return true;
+			},
+
+			getConvert: async (fromCurrency, toCurrency, amount) => {
+				const uri = `${process.env.BACKEND_URL}/converter?from_currency=${fromCurrency}&to_currency=${toCurrency}&amount=${amount}`;
+				const options = {
+					method: 'GET'
+				};
+				const response = await fetch(uri, options);
 				if(!response.ok) {
 					console.log(response.status);
 					return;
 				}
 				const data = await response.json();
-				setStore({news: data.news})
+				console.log(data.results);
+				setStore({fromCurrency: data.results.base_code,
+						 toCurrency: data.results.target_code,
+						 originalAmount: amount,
+						 conversionRate: data.results.conversion_rate,
+						 convertedAmount: data.results.conversion_result})
 			},
-			convertCurrency: async (fromCurrency, toCurrency, amount) => {
-				const uri = `${process.env.BACKEND_URL}/converter?from_currency=${fromCurrency}&to_currency=${toCurrency}&amount=${amount}`;
+			accessProtected: async () => {
+				const uri = `${process.env.BACKEND_URL}/protected`;
+				const token = localStorage.getItem('token');
 				const options = {
-					method: 'GET'
-				};
-			
-					const response = await fetch(uri, options);
-			
-					if (!response.ok) {
-						console.log("Error:", response.status);
-						return;
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${token}`
 					}
-			
-					const data = await response.json();
-					setStore({
-						fromCurrency: data.from_currency,
-						toCurrency: data.to_currency,
-						amount: data.original_amount,
-						conversionRate: data.conversion_rate,
-						convertedAmount: data.converted_amount,
-						error: null
-					});
-			}	
+				};
+				const response = await fetch(uri, options);
+				if(!response.ok){
+					console.log(response.status);
+					return;
+				}
+				const data = await response.json()
+			}
 		}
 	};
 };

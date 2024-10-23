@@ -9,7 +9,7 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleLogIn = () => {
+    const handleLogIn = (e) => {
         e.preventDefault();
         const dataToSend = {email, password};
         actions.logIn(dataToSend);
@@ -27,7 +27,7 @@ const Login = () => {
                         <h3>We are <span>InnovAI</span></h3>
                         <p>Welcome back! Log in to your account to view your ideas:</p>
                         <div className="floating-label">
-                            <input type="email" id="email" value={email} onChange={(e) => setEmail(e.targetvalue)} required />
+                            <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                             <label htmlFor="email">Email</label>
                             <div className="icon">
                                 <i className="fa-solid fa-envelope"></i>
