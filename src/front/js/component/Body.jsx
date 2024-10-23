@@ -11,7 +11,26 @@ import Currency from "../../img/Currency.jpg";
 import ChatIA from "../../img/ChatIA.png";
 import "../../styles/Body.css";
 
-
+const testimonialsData = [
+    {
+        name: "John Doe",
+        position: "CEO of ExampleCorp",
+        testimonial: "This service transformed our business! The AI ideas provided were game-changers.",
+        image: "path/to/john-image.jpg", // Asegúrate de tener imágenes de los testimonios
+    },
+    {
+        name: "Jane Smith",
+        position: "Founder of Creative Solutions",
+        testimonial: "The team was incredibly supportive and helped us generate innovative ideas.",
+        image: "path/to/jane-image.jpg",
+    },
+    {
+        name: "Michael Brown",
+        position: "Marketing Director at Tech Innovations",
+        testimonial: "A fantastic experience! The AI chat feature is intuitive and useful.",
+        image: "path/to/michael-image.jpg",
+    },
+];
 
 export const Body = () => {
     return (
@@ -44,7 +63,7 @@ export const Body = () => {
                             </Link>
                         </div>
                     </div>
-                    <div className="carousel-item">
+                    <div className="carousel-item">cd
                         <img src={Slider3} className="d-block w-100" alt="..." />
                         <div className="carousel-caption d-none d-md-block">
                             <h5>The power of AI in your hands</h5>
@@ -68,33 +87,68 @@ export const Body = () => {
 
             {/*Info*/}
             <div className="container marketing" id="marketing">
-                <div className="text-center py-3">
+                <h5 className="text-center pt-5">Intro</h5>
+                <div className="text-center pb-3 pt-0">
                     <h1>We bring your projects and ideas to </h1>
                     <h1>life with artificial intelligence</h1>
                 </div>
                 <div className="row">
                     <div className="col-lg-4">
-                        <span id="info-img"><i class="fa-solid fa-users"></i></span>
+                        <span id="info-img" className="mb-0"><i className="fa-solid fa-users"></i></span>
                         <h2 className="fw-normal text-center mt-0">About Us</h2>
                         <p>At our team, we believe that the best business ideas can come at any time, and we are here to help you bring them to life.</p>
                         <p><a className="btn btn-info btn-lg" href="#">View details »</a></p>
                     </div>
 
                     <div className="col-lg-4">
-                        <span id="info-img"><i class="fa-solid fa-building"></i></span>
-                        <h2 className="fw-normal text-center">Service</h2>
+                        <span id="info-img" className="mb-0"><i className="fa-solid fa-building"></i></span>
+                        <h2 className="fw-normal text-center mt-0">Service</h2>
                         <p>We offer a variety of services tailored to specific project needs. Through our chat you can have ideas for ventures immediately.</p>
                         <p><a className="btn btn-info btn-lg" href="#">View details »</a></p>
                     </div>
 
                     <div className="col-lg-4">
-                        <span id="info-img"><i class="fa-solid fa-address-book"></i></span>
-                        <h2 className="fw-normal text-center">Contact</h2>
+                        <span id="info-img" className="mb-0"><i className="fa-solid fa-address-book"></i></span>
+                        <h2 className="fw-normal text-center mt-0">Contact</h2>
                         <p>Ready to take your project to the next level? Sign up and start using AI for free to get project ideas.</p>
                         <p><a className="btn btn-info btn-lg" href="#">View details »</a></p>
                     </div>
 
                 </div>
+
+
+                {/*Corporation*/}
+                <section className="corporate-section py-3">
+                    <div className="container">
+                        <h2 className="text-center fw-bold">The Corporate</h2>
+                        <p className="text-center lead">At INNOVAI, we believe in driving innovation and excellence.</p>
+
+                        <div className="row mt-4">
+                            <div className="col-md-4 text-center">
+                                <h3 className="fw-normal">Our Mission</h3>
+                                <p>To empower businesses through innovative AI solutions that enhance productivity and creativity.</p>
+                            </div>
+                            <div className="col-md-4 text-center">
+                                <h3 className="fw-normal">Our Vision</h3>
+                                <p>To be a global leader in AI-driven solutions, transforming ideas into reality for businesses worldwide.</p>
+                            </div>
+                            <div className="col-md-4 text-center">
+                                <h3 className="fw-normal">Our Values</h3>
+                                <ul className="list-unstyled">
+                                    <li>Integrity</li>
+                                    <li>Innovation</li>
+                                    <li>Customer Focus</li>
+                                    <li>Collaboration</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div className="text-center mt-4">
+                            <h4>Join Us in Our Journey</h4>
+                            <p>We are always looking for talented individuals to join our team. If you share our passion for technology and innovation, <a href="/careers" className="btn btn-info">Explore Career Opportunities</a>.</p>
+                        </div>
+                    </div>
+                </section>
 
 
                 {/*Sections*/}
@@ -152,6 +206,27 @@ export const Body = () => {
                 <hr className="featurette-divider" />
 
             </div>
+
+
+            {/*Testimonials*/}
+            <section className="testimonials-section py-5">
+                <div className="container">
+                    <h2 className="text-center fw-bold">What Our Clients Say</h2>
+                    <div className="row mt-4">
+                        {testimonialsData.map((testimonial, index) => (
+                            <div className="col-md-4 text-center mb-4" key={index}>
+                                <img src={testimonial.image} alt={testimonial.name} className="img-fluid rounded-circle mb-3" />
+                                <h5>{testimonial.name}</h5>
+                                <h6 className="text-muted">{testimonial.position}</h6>
+                                <p className="lead">{`"${testimonial.testimonial}"`}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+
         </main>
+
     );
 };
