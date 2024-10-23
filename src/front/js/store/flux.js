@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// { title: "SECOND", background: "white", initial: "white" }],
 			// message: null,
 			ideas: [],
+			favoriteIdeas: [],
 			news: [],
 			fromCurrency: "",
             toCurrency: "",
@@ -166,6 +167,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return;
 				}
 				const data = await response.json()
+			},
+			addFavoriteIdea: async (newFavorite) => {
+				const duplicate = getStore().favorites.some(favorite => favorite.name === newFavorite.name)
+				if(!duplicate) {
+					setStore({favorites: [...getStore().favorites, newFavorite]});
+				}
+			},
+			getFavoriteIdeas: async (user_id) => {
+				const uri = `${process.env.BACKEND_URL}/users/${user_id}/favorite-ideas`;
+				const token = localStorage.getItem('token');
+				const options = {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${token}`
+					}
+				};
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					if (response.status === 403) {
+						console.error("Acceso denegado: Token inválido");
+						return;
+					}
+					if (response.status === 404) {
+						console.error("Recurso no encontrado");
+						return;
+					}
+				const data = await response.json();
+				setStore({ favorites: data.results });
+        		return data.results;
+				}
 			}
 		}
 	};
