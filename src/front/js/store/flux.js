@@ -1,16 +1,19 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [{ title: "FIRST", background: "white", initial: "white" },
-			{ title: "SECOND", background: "white", initial: "white" }],
-			message: null,
+			// demo: [{ title: "FIRST", background: "white", initial: "white" },
+			// { title: "SECOND", background: "white", initial: "white" }],
+			// message: null,
 			ideas: [],
 			news: [],
 			fromCurrency: "",
             toCurrency: "",
             amount: 0,
             conversionRate: 0,
-            convertedAmount: 0
+            convertedAmount: 0,
+
+			user: "",
+			isLoged: false
 		},
 		actions: {
 			exampleFunction: () => { getActions().changeColor(0, "green"); },
@@ -85,7 +88,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return;
 				}
 				const data = await response.json();
-				setStore({ news: data.news })
+				localStorage.setItem('token', data.access_token);
+				localStorage.setItem('user', JSON.stringify(data.results))
+				setStore({isLoged: true, name: data.results.email})
+			},
+			logout: () => {
+				setStore({isLoged: false, user: ""});
+				localStorage.removeItem('token')
+			},
+			isLogged: () => {
+				const token = localStorage.getItem('token')
+				if(token){
+					const userData = JSON.parse(localStorage.getItem('user'))
+					setStore({isLoged: true, user: userData.email})
+				}
 			},
 			signUp: async (dataToSend) => {
 				const uri = `${process.env.BACKEND_URL}/signup`;
@@ -133,6 +149,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 						 originalAmount: amount,
 						 conversionRate: data.results.conversion_rate,
 						 convertedAmount: data.results.conversion_result})
+			},
+			accessProtected: async () => {
+				const uri = `${process.env.BACKEND_URL}/protected`;
+				const token = localStorage.getItem('token');
+				const options = {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${token}`
+					}
+				};
+				const response = await fetch(uri, options);
+				if(!response.ok){
+					console.log(response.status);
+					return;
+				}
+				const data = await response.json()
 			}
 		}
 	};
