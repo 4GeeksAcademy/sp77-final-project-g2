@@ -6,7 +6,7 @@ from . import ideas_bp
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
-from api.models import db, Users, Ideas, FavoriteIdeas
+from api.models import db, Users, FavoriteIdeas
 from openai import OpenAI
 
 CORS(ideas_bp)
