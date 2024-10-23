@@ -29,7 +29,7 @@ export const Body = () => {
                         <div className="carousel-caption d-none d-md-block">
                             <h5>Do you have a project in mind?</h5>
                             <p>We will help you with our AI chat</p>
-                            <Link to="/LogIn">
+                            <Link to="/Login">
                                 <button type="button" className="btn btn-info btn-lg">Log In</button>
                             </Link>
                         </div>
@@ -39,7 +39,7 @@ export const Body = () => {
                         <div className="carousel-caption d-none d-md-block">
                             <h5>AI will give you the best ideas</h5>
                             <p>Choose a budget for your project, we will give you several ideas for your business</p>
-                            <Link to="/LogIn">
+                            <Link to="/Login">
                                 <button type="button" className="btn btn-info btn-lg">Log In</button>
                             </Link>
                         </div>
@@ -49,8 +49,8 @@ export const Body = () => {
                         <div className="carousel-caption d-none d-md-block">
                             <h5>The power of AI in your hands</h5>
                             <p>With AI and your answers we will customize the project that best suits you</p>
-                            <Link to="/LogIn">
-                                <button type="button" className="btn btn-info btn-lg">LogIn</button>
+                            <Link to="/Login">
+                                <button type="button" className="btn btn-info btn-lg">Log In</button>
                             </Link>
                         </div>
                     </div>
