@@ -11,6 +11,7 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 import requests
 
+CORS(user_bp)
 
 @user_bp.route('/hello', methods=['GET'])
 def handle_hello():
