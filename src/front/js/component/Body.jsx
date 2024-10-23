@@ -74,21 +74,21 @@ export const Body = () => {
                 </div>
                 <div className="row">
                     <div className="col-lg-4">
-                        <span id="info-img"><i class="fa-solid fa-users"></i></span>
+                        <span id="info-img"><i className="fa-solid fa-users"></i></span>
                         <h2 className="fw-normal text-center mt-0">About Us</h2>
                         <p>At our team, we believe that the best business ideas can come at any time, and we are here to help you bring them to life.</p>
                         <p><a className="btn btn-info btn-lg" href="#">View details »</a></p>
                     </div>
 
                     <div className="col-lg-4">
-                        <span id="info-img"><i class="fa-solid fa-building"></i></span>
+                        <span id="info-img"><i className="fa-solid fa-building"></i></span>
                         <h2 className="fw-normal text-center">Service</h2>
                         <p>We offer a variety of services tailored to specific project needs. Through our chat you can have ideas for ventures immediately.</p>
                         <p><a className="btn btn-info btn-lg" href="#">View details »</a></p>
                     </div>
 
                     <div className="col-lg-4">
-                        <span id="info-img"><i class="fa-solid fa-address-book"></i></span>
+                        <span id="info-img"><i className="fa-solid fa-address-book"></i></span>
                         <h2 className="fw-normal text-center">Contact</h2>
                         <p>Ready to take your project to the next level? Sign up and start using AI for free to get project ideas.</p>
                         <p><a className="btn btn-info btn-lg" href="#">View details »</a></p>

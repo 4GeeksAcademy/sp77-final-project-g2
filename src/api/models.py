@@ -26,26 +26,13 @@ class Users(db.Model):
                 'create_at': self.create_at}
 
 
-class Ideas(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    country = db.Column(db.String, unique=False, nullable=False)
-    area = db.Column(db.String, unique=False, nullable=False)
-    budget = db.Column(db.Integer, unique=False, nullable=False)
-    
-    def __repr__(self):
-        return f'Idea {self.id} - {self.budget}'
-    
-    def serialize(self):
-        return{'id': self.id,
-               'country': self.country,
-               'area': self.area,
-               'budget': self.budget}
-    
-
 class  FavoriteIdeas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, unique=False, nullable=False)
     description = db.Column(db.String, unique=False, nullable=False)
+    country = db.Column(db.String, unique=False, nullable=False)
+    area = db.Column(db.String, unique=False, nullable=False)
+    budget = db.Column(db.Integer, unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def __repr__(self):
@@ -55,11 +42,7 @@ class  FavoriteIdeas(db.Model):
         return{'id': self.id,
                'title': self.title,
                'description': self.description,
+               'country': self.country,
+               'area': self.area,
+               'budget': self.budget,
                'user_id': self.user_id}
-    
-
-""" class News(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, unique=False, nullable=False)
-    country = db.Column(db.String, unique=False, nullable=False)
-    category = db.Column(db.String, unique=False, nullable=False) """

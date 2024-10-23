@@ -13,7 +13,7 @@ const Login = () => {
         e.preventDefault();
         const dataToSend = {email, password};
         actions.logIn(dataToSend);
-        navigate('/');
+        navigate('/dashboard');
     }
 
     return (
