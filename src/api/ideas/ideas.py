@@ -7,6 +7,7 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from api.models import db, Users, FavoriteIdeas
+from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from openai import OpenAI
@@ -53,7 +54,7 @@ def advisor():
     response_body['ideas'] = ideas
     return response_body, 200
 
-@ideas_bp.route('/users/<int:id>/favorite-ideas', methods=['POST'])
+@ideas_bp.route('/favorite-ideas', methods=['POST'])
 @jwt_required()
 def add_favorite_idea():
     response_body = {}
@@ -91,5 +92,5 @@ def add_favorite_idea():
     response_body['message'] = "Idea favorita agregada exitosamente"
     response_body['favoriteIdea'] = new_favorite.serialize()
 
-    return jsonify(response_body), 201
+    return jsonify(response_body), 200
 
