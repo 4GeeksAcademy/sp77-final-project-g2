@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
+import '../../styles/news.css';
 
 const News = () => {
     const { store, actions } = useContext(Context);
@@ -18,22 +19,30 @@ const News = () => {
     return (
         <div className="container">
             <h1>Noticias Destacadas</h1>
-            <div className="row mb-3">
-                <div className="col-md-6">
-                    <select className="form-control" value={category} onChange={(e) => setCategory(e.target.value)}>
-                        <option value="">Selecciona una categoría</option>
-                        <option value="technology">Tecnología</option>
-                        <option value="sports">Deportes</option>
-                        <option value="business">Negocios</option>
-                        <option value="entertainment">Entretenimiento</option>
-                        <option value="health">Salud</option>
-                        <option value="science">Ciencia</option>
-                    </select>
-                </div>
-                <div className="col-md-4">
-                    <button className="btn btn-primary" onClick={handleSearch}>Buscar Noticias</button>
+            <p className="text-center">Selecciona una categoría de noticias</p>
+            <div className="row mb-3 justify-content-center">
+                <div className="col-md-8">
+                    <div className="input-group search-bar-container">
+                        <select
+                            className="form-control custom-select"
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}>
+                            <option value="">Selecciona una categoría</option>
+                            <option value="technology">Tecnología</option>
+                            <option value="sports">Deportes</option>
+                            <option value="business">Negocios</option>
+                            <option value="entertainment">Entretenimiento</option>
+                            <option value="health">Salud</option>
+                            <option value="science">Ciencia</option>
+                        </select>
+                        <button className="btn btn-search" onClick={handleSearch}>
+                            <i className="fas fa-search"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
+
+
 
             <div className="row">
                 {store.news.length === 0 ? (
@@ -56,7 +65,7 @@ const News = () => {
                     ))
                 )}
             </div>
-        </div>
+        </div >
     );
 };
 
