@@ -68,5 +68,14 @@ h2 {
 }
 
 #img-corporation {
-  margin-left: 150px;
+  margin-left: 100px;
+  width: 900px;
+}
+
+#corporate-section {
+  margin-left: 100px;
+}
+
+#Corporation {
+  background-color: #f8f9fa;
 }

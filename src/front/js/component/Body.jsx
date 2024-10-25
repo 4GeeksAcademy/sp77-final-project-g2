@@ -12,6 +12,7 @@ import Corporation from "../../img/Corporation.jpg"
 import ChatIA from "../../img/ChatIA.png";
 import "../../styles/Body.css";
 
+
 const testimonialsData = [
     {
         name: "John Doe",
@@ -23,7 +24,7 @@ const testimonialsData = [
         name: "Jane Smith",
         position: "Founder of Creative Solutions",
         testimonial: "The team was incredibly supportive and helped us generate innovative ideas.",
-        image: "https://randomuser.me/api/portraits/women/49.jpg",
+        image: "https://randomuser.me/api/portraits/women/26.jpg",
     },
     {
         name: "Michael Brown",
@@ -64,7 +65,7 @@ export const Body = () => {
                             </Link>
                         </div>
                     </div>
-                    <div className="carousel-item">cd
+                    <div className="carousel-item">
                         <img src={Slider3} className="d-block w-100" alt="..." />
                         <div className="carousel-caption d-none d-md-block">
                             <h5>The power of AI in your hands</h5>
@@ -88,7 +89,7 @@ export const Body = () => {
 
             {/*Info*/}
             <div className="container marketing" id="marketing">
-                <h5 className="text-center pt-5">Intro</h5>
+                <h6 className="text-center pt-5 pb-3">INTRO</h6>
                 <div className="text-center pb-3 pt-0">
                     <h1>We bring your projects and ideas to </h1>
                     <h1>life with artificial intelligence</h1>
@@ -120,17 +121,17 @@ export const Body = () => {
 
                 {/*Corporation*/}
                 <hr />
-                <div className="container d-flex justify-content-center">
-                    <div className="container d-flex justify-content-center" id="corporate-section">
+                <div id="Corporation">
+                    <div className="container justify-content-center py-5" id="corporate-section">
                         <div className="row align-items-center">
                             {/* Columna de texto */}
-                            <div className="col-md-4 py-5 d-flex flex-column justify-content-center mb-4">
-                                <h1 className="text-start fw-bold">The</h1>
-                                <h1 className="text-start fw-bold">Corporate</h1>
+                            <div className="col-md-4 d-flex flex-column mb-4">
+                                <h1 className="fw-bold">The</h1>
+                                <h1 className="fw-bold">Corporate</h1>
                                 <p className="mb-0">At INNOVAI, we believe in driving</p>
                                 <p className="mt-0">innovation and excellence.</p>
 
-                                {/* Acordeon Bootstrap */}
+                                {/* Acordeón Bootstrap */}
                                 <div className="accordion" id="accordionExample">
                                     {/* Misión */}
                                     <div className="accordion-item">
@@ -183,16 +184,18 @@ export const Body = () => {
 
                             {/* Columna de imagen */}
                             <div className="col-md-6">
-                                <img src={Corporation} alt="Corporation" className="img-fluid" id="img-corporation" />
+                                <img src={Corporation} alt="Corporation" className="img-fluid rounded" id="img-corporation"/>
                             </div>
                         </div>
                     </div>
                 </div>
 
+
                 {/*Sections*/}
                 <hr className="featurette-divider" />
 
-                <div className="row featurette">
+                <div className="row featurette py-4">
+                <h6 className="text-center py-3">FEATURES</h6>
                     <div className="col-md-7">
                         <h2 className="featurette-heading fw-normal">Latest News</h2>
                         <h4 className="featurette-heading fw-normal">Stay Informed with Our Relevant News</h4>
@@ -202,13 +205,13 @@ export const Body = () => {
                         </Link>
                     </div>
                     <div className="col-md-5">
-                        <img src={News} alt="" />
+                        <img src={News} className="rounded" alt="" />
                     </div>
                 </div>
 
                 <hr className="featurette-divider" />
 
-                <div className="row featurette">
+                <div className="row featurette py-4">
                     <div className="col-md-7 order-md-2">
                         <h2 className="featurette-heading fw-normal lh-1">Smart Conversations to Boost Your Ideas</h2>
                         <p className="lead">Our AI-powered chat tool is designed to give you personalized support in real-time. With just a few clicks, you can access innovative ideas, fast solutions, and expert advice tailored to your needs. Explore everything our AI has to offer!</p>
@@ -220,13 +223,13 @@ export const Body = () => {
                         </Link>
                     </div>
                     <div className="col-md-5">
-                        <img src={ChatIA} alt="" />
+                        <img src={ChatIA} className="rounded" alt="" />
                     </div>
                 </div>
 
                 <hr className="featurette-divider" />
 
-                <div className="row featurette">
+                <div className="row featurette py-4">
                     <div className="col-md-7">
                         <h2 className="featurette-heading fw-normal lh-1">Convert Currencies Quickly and Accurately</h2>
                         <p className="lead">Our online currency converter allows you to make instant conversions between the world's major currencies. Whether you're planning a trip, making international transactions or simply need to know the value of a currency, with our converter you can get updated real-time exchange rates in just seconds!</p>
@@ -237,7 +240,7 @@ export const Body = () => {
                         </Link>
                     </div>
                     <div className="col-md-5 order-md-1">
-                        <img src={Currency} alt="" />
+                        <img src={Currency} className="rounded" alt="" />
                     </div>
                 </div>
 
@@ -249,6 +252,7 @@ export const Body = () => {
             {/*Testimonials*/}
             <section className="testimonials-section py-3">
                 <div className="container">
+                <h6 className="text-center py-3">TESTIMONIALS</h6>
                     <h2 className="text-center fw-bold">What Our Clients Say</h2>
                     <div className="row mt-4">
                         {testimonialsData.map((testimonial, index) => (
@@ -262,7 +266,6 @@ export const Body = () => {
                     </div>
                 </div>
             </section>
-
 
         </main>
 
