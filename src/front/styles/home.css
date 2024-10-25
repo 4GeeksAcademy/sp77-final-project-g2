@@ -16,4 +16,5 @@ button, li {
 npm run :start
 .container {
   padding-top: 150px;
+  padding-bottom: 150px;
 }

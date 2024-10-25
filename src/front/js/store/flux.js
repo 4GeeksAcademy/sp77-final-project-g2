@@ -128,7 +128,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			
 				const data = await response.json();
-				setStore({ user: data.user });
+				setStore({ user: data.user, isLoged: true });
 				console.log('Registro completado');
 				
 				return true;
