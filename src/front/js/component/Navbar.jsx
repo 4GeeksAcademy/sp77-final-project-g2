@@ -4,8 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logoInnovAI from '../../img/logo-entero.png'
 
 export const Navbar = () => {
-	// const {store, actions} = useContext(Context);
-	// const navigate = useNavigate();
+	const {store, actions} = useContext(Context);
 
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -36,10 +35,16 @@ export const Navbar = () => {
 					</button>
 					<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
 						<li>
-							<Link className="dropdown-item" to="/login">Log In</Link>
+							<Link className="dropdown-item" to={store.isLoged ? '/dashboard' : '/login'}>
+								{store.isLoged ? 'Dashboard' : 'Log In'}
+							</Link>
 						</li>
 						<li>
-							<Link className="dropdown-item" to="/signup">Sign Up</Link>
+							{store.isLoged ? (
+								<span className="dropdown-item" onClick={() => actions.logOut()}>Log Out</span>
+							) : (
+								<Link className="dropdown-item" to="/signup">Sign Up</Link>
+							)}
 						</li>
 					</ul>
 				</div>

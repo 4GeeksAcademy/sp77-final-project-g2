@@ -13,7 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             conversionRate: 0,
             convertedAmount: 0,
 
-			user: "",
+			user: {},
 			isLoged: false
 		},
 		actions: {
@@ -93,7 +93,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.setItem('user', JSON.stringify(data.results))
 				setStore({isLoged: true, name: data.results.email})
 			},
-			logout: () => {
+			logOut: () => {
 				setStore({isLoged: false, user: ""});
 				localStorage.removeItem('token')
 			},
