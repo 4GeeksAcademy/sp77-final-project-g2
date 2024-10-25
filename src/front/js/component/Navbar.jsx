@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext.js";
 import { Link, useNavigate } from "react-router-dom";
-import logoInnovAI from '../../img/logo-entero.png'
+import logoInnovAI from '../../img/logo-entero.png';
+import '../../styles/navbar.css';
+
 
 export const Navbar = () => {
 	const {store, actions} = useContext(Context);
 
 	return (
-		<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+		<nav className="navbar navbar-expand-lg">
 			<div className="container d-flex justify-content-between">
 				{/* Logo a la izquierda */}
 				<div className="logo-container">
