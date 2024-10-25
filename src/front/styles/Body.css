@@ -31,3 +31,44 @@
 h2 {
   margin-top: 20px;
 }
+
+.corporate-section {
+  color: #f8f9fa; /* Color de texto secundario */
+}
+
+.corporate-section ul {
+  list-style-type: none; /* Eliminar los puntos de la lista */
+  padding: 0; /* Eliminar padding */
+}
+
+.corporate-section .btn {
+  margin-top: 10px;
+}
+
+.testimonials-section {
+  background-color: #f8f9fa; /* Fondo claro */
+}
+
+.testimonials-section h2 {
+  margin-bottom: 30px;
+  color: #343a40; /* Color de texto oscuro */
+}
+
+.testimonials-section img {
+  width: 100px; /* Ancho de las imágenes de los testimonios */
+  height: 100px; /* Alto de las imágenes de los testimonios */
+}
+
+.testimonials-section p {
+  font-style: italic; /* Estilo en cursiva para el testimonio */
+}
+
+.testimonials-section .lead {
+  color: #495057; /* Color del texto del testimonio */
+}
+
+.corporate-section img {
+  display: block;
+  font-size: 150px;
+  margin-bottom: 20px;
+}

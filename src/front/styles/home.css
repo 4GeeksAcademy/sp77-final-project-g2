@@ -13,3 +13,7 @@ button, li {
   font-family: 'Manrope', sans-serif;
   font-weight: 500;
 }
+
+.container {
+  padding-top: 150px;
+}

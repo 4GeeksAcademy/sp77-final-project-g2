@@ -26,7 +26,7 @@ const Converter = () => {
     };
 
     return (
-        <div className="converter-container">
+        <div className="converter-container container">
             <h1>Convertir Moneda</h1>
             <div className="input-container">
                 <label htmlFor="amount">Importe:</label>
