@@ -18,37 +18,39 @@ export const Navbar = () => {
 					</Link>
 				</div>
 				{/* Menu a la derecha */}
-				<div className="menu">
-					<ul className="navbar-nav d-flex flex-row">
-						<li className="nav-item px-3">
-							<Link className="nav-link" to="/advisor">ADVISOR</Link>
-						</li>
-						<li className="nav-item px-3">
-							<Link className="nav-link" to="/news">NEWS</Link>
-						</li>
-						<li className="nav-item px-3">
-							<Link className="nav-link" to="/converter">CONVERTER</Link>
-						</li>
-					</ul>
-				</div>
-				<div className="dropdown">
-					<button className="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-						<i className="fas fa-user"></i>
-					</button>
-					<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-						<li>
-							<Link className="dropdown-item" to={store.isLoged ? '/dashboard' : '/login'}>
-								{store.isLoged ? 'Dashboard' : 'Log In'}
-							</Link>
-						</li>
-						<li>
-							{store.isLoged ? (
-								<span className="dropdown-item" onClick={() => actions.logOut()}>Log Out</span>
-							) : (
-								<Link className="dropdown-item" to="/signup">Sign Up</Link>
-							)}
-						</li>
-					</ul>
+				<div className="d-flex align-items-center">
+					<div className="menu">
+						<ul className="navbar-nav d-flex flex-row">
+							<li className="nav-item px-3">
+								<Link className="nav-link" to="/advisor">ADVISOR</Link>
+							</li>
+							<li className="nav-item px-3">
+								<Link className="nav-link" to="/news">NEWS</Link>
+							</li>
+							<li className="nav-item px-3">
+								<Link className="nav-link" to="/converter">CONVERTER</Link>
+							</li>
+						</ul>
+					</div>
+					<div className="dropdown">
+						<button className="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+							<i className="fas fa-user"></i>
+						</button>
+						<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+							<li>
+								<Link className="dropdown-item" to={store.isLoged ? '/dashboard' : '/login'}>
+									{store.isLoged ? 'Dashboard' : 'Log In'}
+								</Link>
+							</li>
+							<li>
+								{store.isLoged ? (
+									<span className="dropdown-item" onClick={() => actions.logOut()}>Log Out</span>
+								) : (
+									<Link className="dropdown-item" to="/signup">Sign Up</Link>
+								)}
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</nav>
