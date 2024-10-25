@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import { Context } from "../store/appContext";
+import { Context } from "../store/appContext.js";
 
 const Dashboard = () => {
     const { store, actions } = useContext(Context);
@@ -13,7 +13,7 @@ const Dashboard = () => {
     }, [store.currentUser]);
 
     // Verificar si store.favorites está definido y no es null
-    if (!store.favorites || store.favorites.length === 0) {
+    if (!store.favoriteIdeas || store.favoriteIdeas.length === 0) {
         return <div>No tienes ideas favoritas guardadas.</div>;
     }
 
@@ -21,7 +21,7 @@ const Dashboard = () => {
         <div>
             <h2>Mis Ideas Favoritas</h2>
             <ul>
-                {store.favorites.map((idea) => (
+                {store.favoriteIdeas.map((idea) => (
                     <li key={idea.id}>
                         <h3>{idea.title}</h3>
                         <p>{idea.description}</p>
