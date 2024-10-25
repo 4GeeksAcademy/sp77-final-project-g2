@@ -18,7 +18,7 @@ ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = create_app()
 app.url_map.strict_slashes = False
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 # Database condiguration
 db_url = os.getenv("DATABASE_URL")
 if db_url is not None:

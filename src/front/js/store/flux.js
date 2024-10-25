@@ -13,7 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             conversionRate: 0,
             convertedAmount: 0,
 
-			user: "",
+			user: {},
 			isLoged: false
 		},
 		actions: {
@@ -91,17 +91,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				localStorage.setItem('token', data.access_token);
 				localStorage.setItem('user', JSON.stringify(data.results))
-				setStore({isLoged: true, name: data.results.email})
+				setStore({isLoged: true, user: data.results.email})
 			},
-			logout: () => {
-				setStore({isLoged: false, user: ""});
-				localStorage.removeItem('token')
+			logOut: () => {
+				setStore({isLoged: false, user: {}});
+				localStorage.removeItem('token');
+				localStorage.removeItem('user');
 			},
 			isLogged: () => {
 				const token = localStorage.getItem('token')
 				if(token){
 					const userData = JSON.parse(localStorage.getItem('user'))
-					setStore({isLoged: true, user: userData.email})
+					setStore({isLoged: true, user: userData})
 				}
 			},
 			signUp: async (dataToSend) => {
@@ -169,21 +170,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json()
 			},
 			addFavoriteIdea: async (newFavorite) => {
-				const duplicate = getStore().favorites.some(favorite => favorite.name === newFavorite.name)
-				if(!duplicate) {
-					setStore({favorites: [...getStore().favorites, newFavorite]});
+				const token = localStorage.getItem('token');
+				const uri = `${process.env.BACKEND_URL}/favorite-ideas`;  // Usamos el endpoint nuevo
+				const options = {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${token}`  // Incluye el token JWT
+					},
+					body: JSON.stringify(newFavorite)  // Pasa la idea favorita como JSON
+				};
+			
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.error("Error al guardar la idea favorita:", response.status);
+					return;
 				}
+			
+				const data = await response.json();
+				console.log("Idea favorita guardada:", data.favoriteIdea);
+			
+				// Actualiza el store con la nueva idea favorita si lo deseas
+				setStore({ favoriteIdeas: [...getStore().favoriteIdeas, data.favoriteIdea] });
 			},
-			getFavoriteIdeas: async (user_id) => {
-				const uri = `${process.env.BACKEND_URL}/users/${user_id}/favorite-ideas`;
+			getFavoriteIdeas: async () => {
+				const uri = `${process.env.BACKEND_URL}/favorite-ideas`;  // Ya no necesitas el user_id en la URL
 				const token = localStorage.getItem('token');
 				const options = {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
-						'Authorization': `Bearer ${token}`
+						'Authorization': `Bearer ${token}`  // El token JWT se usa para identificar al usuario
 					}
 				};
+				
 				const response = await fetch(uri, options);
 				if (!response.ok) {
 					if (response.status === 403) {
@@ -194,11 +214,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.error("Recurso no encontrado");
 						return;
 					}
-				const data = await response.json();
-				setStore({ favorites: data.results });
-        		return data.results;
 				}
-			}
+				
+				const data = await response.json();
+				setStore({ favoriteIdeas: data.results });  // Asegúrate de que "results" es la clave correcta
+				return data.results;
+			}			
 		}
 	};
 };
