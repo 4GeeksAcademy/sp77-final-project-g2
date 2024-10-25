@@ -13,7 +13,7 @@ export const Footer = () => {
                                 src={logo}
                                 alt="Logo"
                                 className="img-fluid"
-                                style={{ maxHeight: '80px' }}
+                                style={{ maxHeight: '125px' }}
                             />
                         </Link>
                     </div>
@@ -27,8 +27,10 @@ export const Footer = () => {
                     <div className="col text-end">
                         <div className="footer-links" style={{ padding: '0 15px' }}>
                             <Link to="/" className="text-light d-block mb-0 text-decoration-none footer-link">Home</Link>
-                            <Link to="/advisor" className="text-light d-block mb-0 text-decoration-none footer-link">ChatAI</Link>
+                            <Link to="/advisor" className="text-light d-block mb-0 text-decoration-none footer-link">Advisor</Link>
                             <Link to="/news" className="text-light d-block mb-0 text-decoration-none footer-link">News</Link>
+                            <Link to="/converter" className="text-light d-block mb-0 text-decoration-none footer-link">Converter</Link>
+                            <Link to="/login" className="text-light d-block mb-0 text-decoration-none footer-link">Log In</Link>
                         </div>
                     </div>
                 </div>
