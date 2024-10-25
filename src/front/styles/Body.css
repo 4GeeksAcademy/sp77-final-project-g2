@@ -33,16 +33,7 @@ h2 {
 }
 
 .corporate-section {
-  background-color: #f8f9fa; /* Un fondo claro para contrastar con el texto */
-}
-
-.corporate-section h2 {
-  margin-bottom: 20px;
-  color: #343a40; /* Color de texto oscuro */
-}
-
-.corporate-section p {
-  color: #6c757d; /* Color de texto secundario */
+  color: #f8f9fa; /* Color de texto secundario */
 }
 
 .corporate-section ul {
@@ -74,4 +65,10 @@ h2 {
 
 .testimonials-section .lead {
   color: #495057; /* Color del texto del testimonio */
+}
+
+.corporate-section img {
+  display: block;
+  font-size: 150px;
+  margin-bottom: 20px;
 }

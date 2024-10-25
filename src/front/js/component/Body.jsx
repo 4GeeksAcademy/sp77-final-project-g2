@@ -8,6 +8,7 @@ import Service from "../../img/Service.jpg";
 import Contact from "../../img/Contact.jpg";
 import News from "../../img/News.jpg";
 import Currency from "../../img/Currency.jpg";
+import Corporation from "../../img/Corporation.jpg"
 import ChatIA from "../../img/ChatIA.png";
 import "../../styles/Body.css";
 
@@ -16,19 +17,19 @@ const testimonialsData = [
         name: "John Doe",
         position: "CEO of ExampleCorp",
         testimonial: "This service transformed our business! The AI ideas provided were game-changers.",
-        image: "path/to/john-image.jpg", // Asegúrate de tener imágenes de los testimonios
+        image: "https://randomuser.me/api/portraits/men/78.jpg",
     },
     {
         name: "Jane Smith",
         position: "Founder of Creative Solutions",
         testimonial: "The team was incredibly supportive and helped us generate innovative ideas.",
-        image: "path/to/jane-image.jpg",
+        image: "https://randomuser.me/api/portraits/women/49.jpg",
     },
     {
         name: "Michael Brown",
         position: "Marketing Director at Tech Innovations",
         testimonial: "A fantastic experience! The AI chat feature is intuitive and useful.",
-        image: "path/to/michael-image.jpg",
+        image: "https://randomuser.me/api/portraits/men/24.jpg",
     },
 ];
 
@@ -118,37 +119,63 @@ export const Body = () => {
 
 
                 {/*Corporation*/}
-                <section className="corporate-section py-3">
-                    <div className="container">
-                        <h2 className="text-center fw-bold">The Corporate</h2>
-                        <p className="text-center lead">At INNOVAI, we believe in driving innovation and excellence.</p>
-
-                        <div className="row mt-4">
-                            <div className="col-md-4 text-center">
-                                <h3 className="fw-normal">Our Mission</h3>
-                                <p>To empower businesses through innovative AI solutions that enhance productivity and creativity.</p>
-                            </div>
-                            <div className="col-md-4 text-center">
-                                <h3 className="fw-normal">Our Vision</h3>
-                                <p>To be a global leader in AI-driven solutions, transforming ideas into reality for businesses worldwide.</p>
-                            </div>
-                            <div className="col-md-4 text-center">
-                                <h3 className="fw-normal">Our Values</h3>
-                                <ul className="list-unstyled">
-                                    <li>Integrity</li>
-                                    <li>Innovation</li>
-                                    <li>Customer Focus</li>
-                                    <li>Collaboration</li>
-                                </ul>
+                <hr />
+                <div className="container" id="corporate-section">
+                    <div className="row">
+                        <div className="col-4 py-5">
+                        <h1 className="text-start fw-bold">The</h1>
+                        <h1 className="text-start fw-bold"> Corporate</h1>
+                        <p className="mb-0">At INNOVAI, we believe in driving</p>
+                        <p className="mt-0">innovation and excellence.</p>
+                            <div className="accordion" id="accordionExample">
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header">
+                                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Our Mission
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                        <div className="accordion-body">
+                                            <p>To be a global leader in AI-driven solutions, transforming ideas into reality for businesses worldwide.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header">
+                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Our Values
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div className="accordion-body">
+                                            <ol className="list-group list-group-numbered">
+                                                <li>Integrity</li>
+                                                <li>Innovation</li>
+                                                <li>Customer Focus</li>
+                                                <li>Collaboration</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header">
+                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Join Us in Our Journey
+                                        </button>
+                                    </h2>
+                                    <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div className="accordion-body">
+                                        <p>We are always looking for talented individuals to join our team. If you share our passion for technology and innovation.</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div className="text-center mt-4">
-                            <h4>Join Us in Our Journey</h4>
-                            <p>We are always looking for talented individuals to join our team. If you share our passion for technology and innovation, <a href="/careers" className="btn btn-info">Explore Career Opportunities</a>.</p>
+                        <div className="col-6">
+                            <img src={Corporation} alt=""/>
                         </div>
                     </div>
-                </section>
+                </div>
 
 
                 {/*Sections*/}
@@ -209,7 +236,7 @@ export const Body = () => {
 
 
             {/*Testimonials*/}
-            <section className="testimonials-section py-5">
+            <section className="testimonials-section py-3">
                 <div className="container">
                     <h2 className="text-center fw-bold">What Our Clients Say</h2>
                     <div className="row mt-4">
