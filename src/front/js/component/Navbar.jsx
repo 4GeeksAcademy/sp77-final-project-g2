@@ -10,7 +10,7 @@ export const Navbar = () => {
 
 	return (
 		<nav className="navbar navbar-expand-lg">
-			<div className="container d-flex justify-content-between">
+			<div className="d-flex justify-content-between">
 				{/* Logo a la izquierda */}
 				<div className="logo-container">
 					<Link className="navbar-brand" to="/">

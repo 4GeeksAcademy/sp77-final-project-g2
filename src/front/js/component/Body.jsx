@@ -17,7 +17,7 @@ const testimonialsData = [
         name: "John Doe",
         position: "CEO of ExampleCorp",
         testimonial: "This service transformed our business! The AI ideas provided were game-changers.",
-        image: "https://randomuser.me/api/portraits/men/78.jpg",
+        image: "https://randomuser.me/api/portraits/men/25.jpg",
     },
     {
         name: "Jane Smith",
@@ -148,12 +148,12 @@ export const Body = () => {
                                     </h2>
                                     <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                         <div className="accordion-body">
-                                            <ol className="list-group list-group-numbered">
+                                            <ul className="list-group">
                                                 <li>Integrity</li>
                                                 <li>Innovation</li>
                                                 <li>Customer Focus</li>
                                                 <li>Collaboration</li>
-                                            </ol>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
