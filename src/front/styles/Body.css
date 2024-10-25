@@ -67,8 +67,6 @@ h2 {
   color: #495057; /* Color del texto del testimonio */
 }
 
-.corporate-section img {
-  display: block;
-  font-size: 150px;
-  margin-bottom: 20px;
+#img-corporation {
+  margin-left: 150px;
 }

@@ -120,63 +120,74 @@ export const Body = () => {
 
                 {/*Corporation*/}
                 <hr />
-                <div className="container" id="corporate-section">
-                    <div className="row">
-                        <div className="col-4 py-5">
-                        <h1 className="text-start fw-bold">The</h1>
-                        <h1 className="text-start fw-bold"> Corporate</h1>
-                        <p className="mb-0">At INNOVAI, we believe in driving</p>
-                        <p className="mt-0">innovation and excellence.</p>
-                            <div className="accordion" id="accordionExample">
-                                <div className="accordion-item">
-                                    <h2 className="accordion-header">
-                                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Our Mission
-                                        </button>
-                                    </h2>
-                                    <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                                        <div className="accordion-body">
-                                            <p>To be a global leader in AI-driven solutions, transforming ideas into reality for businesses worldwide.</p>
+                <div className="container d-flex justify-content-center">
+                    <div className="container d-flex justify-content-center" id="corporate-section">
+                        <div className="row align-items-center">
+                            {/* Columna de texto */}
+                            <div className="col-md-4 py-5 d-flex flex-column justify-content-center mb-4">
+                                <h1 className="text-start fw-bold">The</h1>
+                                <h1 className="text-start fw-bold">Corporate</h1>
+                                <p className="mb-0">At INNOVAI, we believe in driving</p>
+                                <p className="mt-0">innovation and excellence.</p>
+
+                                {/* Acordeon Bootstrap */}
+                                <div className="accordion" id="accordionExample">
+                                    {/* Misión */}
+                                    <div className="accordion-item">
+                                        <h2 className="accordion-header" id="headingOne">
+                                            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                Our Mission
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                            <div className="accordion-body">
+                                                <p>To be a global leader in AI-driven solutions, transforming ideas into reality for businesses worldwide.</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="accordion-item">
-                                    <h2 className="accordion-header">
-                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Our Values
-                                        </button>
-                                    </h2>
-                                    <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                        <div className="accordion-body">
-                                            <ul className="list-group">
-                                                <li>Integrity</li>
-                                                <li>Innovation</li>
-                                                <li>Customer Focus</li>
-                                                <li>Collaboration</li>
-                                            </ul>
+
+                                    {/* Valores */}
+                                    <div className="accordion-item">
+                                        <h2 className="accordion-header" id="headingTwo">
+                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                Our Values
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                            <div className="accordion-body">
+                                                <ul className="list-group">
+                                                    <li>Integrity</li>
+                                                    <li>Innovation</li>
+                                                    <li>Customer Focus</li>
+                                                    <li>Collaboration</li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="accordion-item">
-                                    <h2 className="accordion-header">
-                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Join Us in Our Journey
-                                        </button>
-                                    </h2>
-                                    <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                        <div className="accordion-body">
-                                        <p>We are always looking for talented individuals to join our team. If you share our passion for technology and innovation.</p>
+
+                                    {/* Únete a Nosotros */}
+                                    <div className="accordion-item">
+                                        <h2 className="accordion-header" id="headingThree">
+                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                Join Us in Our Journey
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                            <div className="accordion-body">
+                                                <p>We are always looking for talented individuals to join our team. If you share our passion for technology and innovation.</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-6">
-                            <img src={Corporation} alt=""/>
+
+                            {/* Columna de imagen */}
+                            <div className="col-md-6">
+                                <img src={Corporation} alt="Corporation" className="img-fluid" id="img-corporation" />
+                            </div>
                         </div>
                     </div>
                 </div>
-
 
                 {/*Sections*/}
                 <hr className="featurette-divider" />
