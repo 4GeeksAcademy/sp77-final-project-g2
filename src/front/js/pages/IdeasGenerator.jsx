@@ -14,8 +14,16 @@ const IdeasGenerator = () => {
     }
 
     const isFavoriteIdea = (item) => {
-        actions.saveFavoriteIdea(item);
-    }
+        // Envia la idea seleccionada al backend para guardarla como favorita
+        actions.addFavoriteIdea({
+            title: item.title,
+            description: item.description,
+            country: country,   // Asegúrate de que tienes esta información disponible
+            area: area,         // O usa las variables que corresponden a tu lógica
+            budget: budget      // Si son distintas
+        });
+    };
+    
 
     return (
         <div className="container">

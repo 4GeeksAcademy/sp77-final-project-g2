@@ -26,7 +26,7 @@ class Users(db.Model):
                 'create_at': self.create_at}
 
 
-class  FavoriteIdeas(db.Model):
+class FavoriteIdeas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, unique=False, nullable=False)
     description = db.Column(db.String, unique=False, nullable=False)
