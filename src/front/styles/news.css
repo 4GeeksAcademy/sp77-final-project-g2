@@ -1,11 +1,25 @@
+.news-container h1 {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Texto de instrucción */
+.news-container .text-center {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #666;
+}
+
 /* Centramos el select */
-.row {
+.news-container .row {
     display: flex;
     justify-content: center;
 }
 
 /* Para el select */
-select.form-control {
+.news-container select.form-control {
     font-size: 1rem;
     border-radius: 50px;
     padding: 10px;
@@ -13,20 +27,20 @@ select.form-control {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-select.form-control:focus {
+.news-container select.form-control:focus {
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 /* Barra de búsqueda */
-.input-group {
+.news-container .input-group {
     width: 100%;
     border-radius: 50px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.search-bar {
+.news-container .search-bar {
     border: none;
     padding: 15px;
     border-radius: 50px 0 0 50px;
@@ -36,7 +50,7 @@ select.form-control:focus {
     transition: all 0.3s ease;
 }
 
-.btn-search {
+.news-container .btn-search {
     background-color: #007bff;
     border: none;
     border-radius: 0 50px 50px 0;
@@ -50,10 +64,116 @@ select.form-control:focus {
     transition: background-color 0.3s ease;
 }
 
-.btn-search:hover {
+.news-container .btn-search:hover {
     background-color: #0056b3;
 }
 
-.btn-search i {
+.news-container .btn-search i {
     font-size: 1.2rem;
+}
+
+
+/* Texto centrado */
+.news-container .text-center {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+
+/* Contenedor de la tarjeta */
+.news-container .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+    text-align: left; /* Alineamos todo a la derecha */
+}
+
+.news-container .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagen de la tarjeta */
+.news-container .card-img-top {
+    border-radius: 10px 10px 0 0;
+    object-fit: cover;
+    width: 100%;
+    height: 180px;
+}
+
+/* Estilos del cuerpo de la tarjeta */
+.news-container .card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alineamos los elementos del cuerpo a la derecha */
+}
+
+/* Título */
+.news-container h5 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: left; /* Título alineado a la derecha */
+}
+
+/* Fecha */
+.news-container .card-body .date {
+    font-size: 0.6rem;
+    color: #888; /* Fecha en un color más suave */
+}
+
+/* Descripción */
+.news-container .card-body p {
+    /* font-size: 0.9rem; */
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Botón estilo 63 */
+.button-modern {
+    align-items: center;
+    background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+    border: 0;
+    border-radius: 15px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    max-width: 100%;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .button-modern:active,
+  .button-modern:hover {
+    outline: 0;
+    transform: translateY(-2px); /* Añade un pequeño efecto de elevación al hover */
+  }
+  
+/* Botón "Ver Más" */
+.news-container .btn {
+    background-color: #00B2B3;
+    border: none;
+    padding: 10px 15px;
+    font-family: 'Barlow', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.news-container .btn:hover {
+    background-color: #00A5CF;
+    color: #ffffff;
+}
+
+/* Texto de "No se encontraron noticias" */
+.news-container p {
+    /* text-align: center; */
+    color: #999;
+    /* font-size: 1.1rem; */
 }

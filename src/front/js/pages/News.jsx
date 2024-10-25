@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
 import '../../styles/news.css';
+import { useNavigate } from "react-router-dom";
 
 const News = () => {
     const { store, actions } = useContext(Context);
+    const navigate = useNavigate();
 
 
     const [category, setCategory] = useState("");
@@ -17,7 +19,7 @@ const News = () => {
     };
 
     return (
-        <div className="container">
+        <div className="container news-container">
             <h1>Noticias Destacadas</h1>
             <p className="text-center">Selecciona una categoría de noticias</p>
             <div className="row mb-3 justify-content-center">
@@ -41,9 +43,6 @@ const News = () => {
                     </div>
                 </div>
             </div>
-
-
-
             <div className="row">
                 {store.news.length === 0 ? (
                     <p>No se encontraron noticias.</p>
@@ -56,9 +55,14 @@ const News = () => {
                                 )}
                                 <div className="card-body">
                                     <h5>{item.title}</h5>
-                                    <p><strong>Fecha:</strong> {new Date(item.date).toLocaleDateString()}</p>
+                                    <p>{new Date(item.date).toLocaleDateString()}</p>
                                     <p>{item.description}</p>
-                                    <a href={item.url} className="btn btn-dark" target="_blank" rel="noopener noreferrer">Ver Más</a>
+                                    <button
+                                        className="button-modern"
+                                        onClick={() => handleNavigate(`/news/${item.id}`)}
+                                    >
+                                        Ver Más
+                                    </button>
                                 </div>
                             </div>
                         </div>
