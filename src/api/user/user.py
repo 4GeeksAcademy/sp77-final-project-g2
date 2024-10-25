@@ -65,7 +65,7 @@ def signup():
                 first_name = data.get('first_name'),
                 last_name = data.get('last_name'),
                 is_active = True,
-                create_at = datetime.now())
+                create_at = data.get('create_at'))
     db.session.add(row)
     db.session.commit()
 

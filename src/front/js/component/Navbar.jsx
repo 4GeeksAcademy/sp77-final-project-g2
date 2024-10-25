@@ -6,20 +6,21 @@ import '../../styles/navbar.css';
 
 
 export const Navbar = () => {
-	const {store, actions} = useContext(Context);
+	const { store, actions } = useContext(Context);
 
 	return (
-		<nav className="navbar navbar-expand-lg">
-			<div className="d-flex justify-content-between">
-				{/* Logo a la izquierda */}
+		<nav className="navbar navbar-expand-lg navbar-dark">
+			<div className="container-fluid">
 				<div className="logo-container">
 					<Link className="navbar-brand" to="/">
-						<img src={logoInnovAI} alt="InnovAI Logo" height="40"/>
+						<img src={logoInnovAI} alt="InnovAI Logo" height="40" />
 					</Link>
 				</div>
-				{/* Menu a la derecha */}
-				<div className="d-flex align-items-center">
-					<div className="menu">
+				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span className="navbar-toggler-icon"></span>
+				</button>
+				<div className="collapse navbar-collapse" id="navbarNav">
+					<div className="menu ms-auto">
 						<ul className="navbar-nav d-flex flex-row">
 							<li className="nav-item px-3">
 								<Link className="nav-link" to="/advisor">ADVISOR</Link>

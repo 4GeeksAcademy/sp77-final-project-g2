@@ -2,18 +2,19 @@
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(15px);
   border-radius: 12px;
-  padding: 10px 20px;
-  margin: 10px 20px;
+  padding: 10px 40px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   position: fixed;
   z-index: 10;
-  width: 90%;
+  margin-top: 20px;
+  width: 95%;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  justify-content: space-between; /* Distribuye los elementos entre ambos extremos */
+  justify-content: space-between;
   align-items: center;
 }
 
-/* Logo alineado a la izquierda */
 .logo-container {
   padding: 5px 10px;
   border-radius: 8px;
@@ -21,11 +22,10 @@
   align-items: center;
 }
 
-/* Secciones del menú y dropdown de usuario alineados a la derecha */
 .menu {
   display: flex;
   align-items: center;
-  gap: 20px; /* Espacio entre los elementos */
+  gap: 30px;
 }
 
 .navbar .nav-link {
@@ -48,7 +48,7 @@
 }
 
 .dropdown-menu {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(245, 245, 245, 0.904);
   backdrop-filter: blur(10px);
   border: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
