@@ -15,7 +15,9 @@
 /* Centramos el select */
 .news-container .row {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre cada tarjeta */
+    justify-content: center; /* Centramos las tarjetas */
 }
 
 /* Para el select */
@@ -82,80 +84,86 @@
 }
 
 
-/* Contenedor de la tarjeta */
-.news-container .card {
+.card {
+    background-color: #f9f9f9; /* Fondo sutil en la tarjeta */
     border-radius: 10px;
+    border: 1px solid #e0e0e0; /* Borde sutil */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 20px;
-    text-align: left; /* Alineamos todo a la derecha */
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 300px; /* Limitamos el ancho de las tarjetas para un mejor diseño */
 }
 
-.news-container .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.card:hover {
+    transform: translateY(-5px); /* Desplazamiento vertical al hacer hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra un poco más marcada */
 }
 
 /* Imagen de la tarjeta */
-.news-container .card-img-top {
+.card-img-top {
     border-radius: 10px 10px 0 0;
     object-fit: cover;
     width: 100%;
     height: 180px;
+    margin: 0;
+    padding: 0;
 }
 
 /* Estilos del cuerpo de la tarjeta */
-.news-container .card-body {
-    padding: 20px;
+.card-body {
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Alineamos los elementos del cuerpo a la derecha */
+    align-items: flex-start;
 }
 
-/* Título */
-.news-container h5 {
+/* Título alineado a la izquierda */
+h5 {
     font-family: 'Roboto Slab', serif;
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 10px;
-    text-align: left; /* Título alineado a la derecha */
+    text-align: left;
 }
 
-/* Fecha */
-.news-container .card-body .date {
-    font-size: 0.6rem;
-    color: #888; /* Fecha en un color más suave */
+/* Fecha estilizada en tamaño pequeño y color gris */
+.card-body .date {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 10px;
 }
 
-/* Descripción */
-.news-container .card-body p {
-    /* font-size: 0.9rem; */
+/* Descripción alineada a la izquierda */
+.card-body p {
+    font-size: 0.9rem;
     color: #666;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    text-align: left;
 }
 
-/* Botón estilo 63 */
+/* Botón con degradado */
 .button-modern {
-    align-items: center;
-    background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
-    border: 0;
-    border-radius: 15px;
-    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    display: flex;
-    font-size: 20px;
-    justify-content: center;
-    max-width: 100%;
+    background-image: linear-gradient(144deg, #00A5CF, #161616);
+    border: none;
     padding: 10px 20px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-.button-modern:active,
 .button-modern:hover {
-    outline: 0;
-    transform: translateY(-2px); /* Añade un pequeño efecto de elevación al hover */
+    transform: translateY(-3px); /* Efecto de elevación al hacer hover */
 }
+
 
 /* Botón "Ver Más" */
 .news-container .btn {
