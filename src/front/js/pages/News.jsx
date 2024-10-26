@@ -57,12 +57,7 @@ const News = () => {
                                     <h5>{item.title}</h5>
                                     <p>{new Date(item.date).toLocaleDateString()}</p>
                                     <p>{item.description}</p>
-                                    <button
-                                        className="button-modern"
-                                        onClick={() => handleNavigate(`/news/${item.id}`)}
-                                    >
-                                        Ver Más
-                                    </button>
+                                    <button className="button-modern" onClick={() => handleNavigate(`/news/${item.id}`)}>Leer Más</button>
                                 </div>
                             </div>
                         </div>

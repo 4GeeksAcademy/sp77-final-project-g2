@@ -149,14 +149,14 @@
     max-width: 100%;
     padding: 10px 20px;
     transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .button-modern:active,
-  .button-modern:hover {
+}
+
+.button-modern:active,
+.button-modern:hover {
     outline: 0;
     transform: translateY(-2px); /* Añade un pequeño efecto de elevación al hover */
-  }
-  
+}
+
 /* Botón "Ver Más" */
 .news-container .btn {
     background-color: #00B2B3;
