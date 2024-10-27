@@ -1,21 +1,23 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
 import '../../styles/news.css';
-import { useNavigate } from "react-router-dom";
 
 const News = () => {
     const { store, actions } = useContext(Context);
-    const navigate = useNavigate();
-
 
     const [category, setCategory] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleSearch = () => {
         if (!category) {
             alert("Por favor, selecciona una categoría.");
             return;
         }
+        setLoading(true);
         actions.getNews(category);
+        setTimeout(() => {
+            setLoading(false);
+        }, 1500); 
     };
 
     return (
@@ -43,27 +45,33 @@ const News = () => {
                     </div>
                 </div>
             </div>
-            <div className="row">
-                {store.news.length === 0 ? (
-                    <p>No se encontraron noticias.</p>
-                ) : (
-                    store.news.map((item, index) => (
-                        <div key={index} className="col-md-3">
-                            <div className="card">
-                                {item.image && (
-                                    <img src={item.image} className="card-img-top" alt={item.title} style={{ aspectRatio: '3 / 2', overflow: 'hidden' }}/>
-                                )}
-                                <div className="card-body">
-                                    <h5>{item.title}</h5>
-                                    <p>{new Date(item.date).toLocaleDateString()}</p>
-                                    <p>{item.description}</p>
-                                    <button className="button-modern" onClick={() => window.open(item.url, "_blank")}>Leer Más</button>
+            {loading ? (
+                <div className="loading-bar">
+                    <div className="progress-bar"></div>
+                </div>
+            ) : (
+                <div className="row">
+                    {store.news.length === 0 ? (
+                        <p>No se encontraron noticias.</p>
+                    ) : (
+                        store.news.map((item, index) => (
+                            <div key={index} className="col-md-3">
+                                <div className="card">
+                                    {item.image && (
+                                        <img src={item.image} className="card-img-top" alt={item.title} style={{ aspectRatio: '3 / 2', overflow: 'hidden' }} />
+                                    )}
+                                    <div className="card-body">
+                                        <h5>{item.title}</h5>
+                                        <p>{new Date(item.date).toLocaleDateString()}</p>
+                                        <p>{item.description}</p>
+                                        <button className="button-modern" onClick={() => window.open(item.url, "_blank")}>Leer Más</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))
-                )}
-            </div>
+                        ))
+                    )}
+                </div>
+            )}
         </div >
     );
 };
