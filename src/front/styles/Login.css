@@ -1,0 +1,123 @@
+.login-container{
+    display: flex;
+    flex-direction: row;
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.12);
+    width: 45%;
+    margin: 0 auto;
+}
+
+.login-left {
+    width: 220px;
+    background-image: url("https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-size: cover;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-right {
+    padding: 40px 30px;
+    background: #fefefe;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 300px;
+}
+
+.login-right h4 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #000;
+    opacity: 0.85;
+    margin-bottom: 20px;
+}
+
+.login-right p {
+    line-height: 1.5;
+    font-size: 14px;
+    color: #000;
+    opacity: 0.65;
+    margin-bottom: 40px;
+}
+
+/* Input y label flotante */
+.floating-label {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.floating-label input {
+    font-size: 16px;
+    padding: 20px 0 20px 44px;
+    width: calc(100% - 44px);
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s linear;
+    color: #000;
+    background: transparent;
+}
+
+.floating-label input:focus {
+    border-bottom: 1px solid var(--primary-color);
+    outline: none;
+}
+
+.floating-label label {
+    position: absolute;
+    top: 50%;
+    left: 44px;
+    transform: translateY(-50%);
+    font-size: 12.5px;
+    color: #000;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.floating-label input:focus + label,
+.floating-label input:not(:placeholder-shown) + label {
+    top: -10px;
+    opacity: 0.7;
+    font-size: 12px;
+}
+
+.floating-label .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 44px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.15);
+}
+
+/* Botón de inicio de sesión */
+button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 24px;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #a67cda;
+    transform: translateY(-3px);
+}
+
+button:active {
+    transform: scale(0.98);
+}
