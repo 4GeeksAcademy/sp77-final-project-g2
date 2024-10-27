@@ -22,21 +22,20 @@ const Login = () => {
         <div className="container">
             <div className="login-container">
                 <div className="login-left">
-                    {/* <img src={IconoInnovAI} alt="Icono InnovAI" /> */}
+                    <img src={IconoInnovAI} alt="Icono InnovAI" />
                 </div>
                 <form onSubmit={handleLogIn} className="login-right">
                     <h4>We are <span>INNOVAI</span></h4>
                     <p>Welcome back! Log in to your account to view your favorite ideas:</p>
                     <div className="floating-label">
-                        <input type="email" id="email" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required />
-                        {/* <label htmlFor="email">Email:</label> */}
                         <div className="icon"><i className="fa-solid fa-envelope"></i></div>
+                        <input type="email" id="email" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required />
                     </div>
                     <div className="floating-label">
-                        <input type="password" id="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
-                        {/* <label htmlFor="email">Password:</label> */}
                         <div className="icon"><i className="fa-solid fa-lock"></i></div>
+                        <input type="password" id="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
                     </div>
+                    <button type="submit" className="btn btn-primary">Log in</button>
                 </form>
             </div>
         </div>
