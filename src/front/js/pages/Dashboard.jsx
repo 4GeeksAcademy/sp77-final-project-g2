@@ -4,15 +4,13 @@ import { Context } from "../store/appContext.js";
 const Dashboard = () => {
     const { store, actions } = useContext(Context);
 
-    // Obtener las ideas favoritas del usuario al montar el componente
     useEffect(() => {
-        const userId = store.currentUser?.id;  // Asegúrate de tener el ID del usuario
+        const userId = store.currentUser?.id;
         if (userId) {
             actions.getFavoriteIdeas(userId);
         }
     }, [store.currentUser]);
 
-    // Verificar si store.favorites está definido y no es null
     if (!store.favoriteIdeas || store.favoriteIdeas.length === 0) {
         return <div>No tienes ideas favoritas guardadas.</div>;
     }
