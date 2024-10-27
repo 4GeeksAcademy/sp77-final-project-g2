@@ -83,3 +83,12 @@ def add_favorite_idea():
     response_body['favoriteIdea'] = new_favorite.serialize()
     return jsonify(response_body), 200
 
+@ideas_bp.route('/favorite-ideas', methods=['GET'])
+@jwt_required()
+def get_favorite_ideas():
+    current_user = get_jwt_identity()
+    favorite_ideas = FavoriteIdeas.query.filter_by(user_id=current_user['user_id']).all()
+
+    results = [idea.serialize() for idea in favorite_ideas]
+    return jsonify({"results": results}), 200
+

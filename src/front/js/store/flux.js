@@ -194,6 +194,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getFavoriteIdeas: async () => {
 				const uri = `${process.env.BACKEND_URL}/favorite-ideas`;
 				const token = localStorage.getItem('token');
+				if (!token) {
+					console.error("Token no encontrado.");
+					return;
+				}
 				const options = {
 					method: 'GET',
 					headers: {
@@ -201,23 +205,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 						'Authorization': `Bearer ${token}`
 					}
 				};
-				
+			
 				const response = await fetch(uri, options);
+				console.log("Status:", response.status);
+			
 				if (!response.ok) {
 					if (response.status === 403) {
-						console.error("Acceso denegado: Token inválido");
+						console.error("Acceso denegado: Token inválido o sesión expirada.");
 						return;
 					}
 					if (response.status === 404) {
 						console.error("Recurso no encontrado");
 						return;
 					}
+					console.error("Error al obtener ideas favoritas:", response.status);
+					return;
 				}
-				
+			
 				const data = await response.json();
 				setStore({ favoriteIdeas: data.results });
-				return data.results;
-			}			
+			}								
 		}
 	};
 };
