@@ -4,35 +4,37 @@ import { Context } from "../store/appContext.js";
 const Dashboard = () => {
     const { store, actions } = useContext(Context);
 
-    // Obtener las ideas favoritas del usuario al montar el componente
     useEffect(() => {
-        const userId = store.currentUser?.id;  // Asegúrate de tener el ID del usuario
-        if (userId) {
-            actions.getFavoriteIdeas(userId);
-        }
-    }, [store.currentUser]);
+        actions.getFavoriteIdeas();
+    }, []);
 
-    // Verificar si store.favorites está definido y no es null
     if (!store.favoriteIdeas || store.favoriteIdeas.length === 0) {
-        return <div>No tienes ideas favoritas guardadas.</div>;
+        return <div className="container mt-5 text-center">No tienes ideas favoritas guardadas.</div>;
     }
 
     return (
-        <div>
-            <h2>Mis Ideas Favoritas</h2>
-            <ul>
+        <div className="container mt-5">
+            <h2 className="text-center mb-4">Mis Ideas Favoritas</h2>
+            <div className="row">
                 {store.favoriteIdeas.map((idea) => (
-                    <li key={idea.id}>
-                        <h3>{idea.title}</h3>
-                        <p>{idea.description}</p>
-                        <p><strong>Presupuesto:</strong> {idea.budget}€</p>
-                        <p><strong>País:</strong> {idea.country}</p>
-                        <p><strong>Área:</strong> {idea.area}</p>
-                    </li>
+                    <div className="col-md-6 mb-4" key={idea.id}>
+                        <div className="card shadow-sm h-100">
+                            <div className="card-body">
+                                <h5 className="card-title">{idea.title}</h5>
+                                <p className="card-text">{idea.description}</p>
+                                <ul className="list-unstyled">
+                                    <li><strong>Presupuesto:</strong> {idea.budget}€</li>
+                                    <li><strong>País:</strong> {idea.country}</li>
+                                    <li><strong>Área:</strong> {idea.area}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };
 
 export default Dashboard;
+
