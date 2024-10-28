@@ -1,30 +1,132 @@
 .ideas-generator{
     height: 100vh;
-    overflow: hidden; /* Evita que la página completa tenga scroll */
+    overflow: hidden;
 }
 
 .left-column {
-    position: sticky;
-    height: 100vh;
-    padding: 2rem;
-    width: 35%; /* Ajusta el ancho según necesites */
-    background-color: #1F1F1F;
-    color: #FFFFFF;
-    border-right: 1px solid #333;
-    overflow: hidden; /* Permite el scroll independiente si hay mucho contenido */
+    overflow: hidden;
+    padding: 30px;
 }
 
 .right-column {
-    margin-left: 1%; /* Compensa el ancho de la columna izquierda */
-    width: 75%; /* Ocupa el resto del espacio */
-    height: 100vh;
-    overflow: scroll; /* Hace que solo esta columna sea desplazable */
-    padding: 2rem;
-    background-color: #2C2C2C;
+    overflow: scroll;
+    padding: 30px;
 }
 
-/* Estilo del título */
-.left-column h1, .right-column h2 {
-    font-family: 'Roboto Mono', monospace;
-    color: #00A5CF;
+
+.slider-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.budget-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #04AA6D;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+    border-radius: 10px;
+    position: relative;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #04AA6D;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #04AA6D;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Marcas de paso */
+.slider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 10px; /* Altura de las marcas */
+    background: repeating-linear-gradient(
+        to right,
+        transparent,
+        transparent calc((100% / 6)),
+        #000000 calc(100% / 6),
+        #000000 calc((100% / 6) + 1px)
+    );
+    transform: translateY(-50%);
+    border-radius: 10px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+
+.custom-input .input-group-text {
+    background-color: transparent;
+    border: none;
+}
+
+.custom-input .form-control {
+    border-radius: 10px;
+    padding: 10px 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.custom-input .form-control:focus {
+    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.2);
+    outline: none;
+}
+
+.generate-btn {
+    background: linear-gradient(135deg, #007bff, #00a5cf);
+    margin-top: 10px;
+    margin-right: auto;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    transition: background 0.3s, transform 0.2s;
+}
+
+.generate-btn:hover {
+    background: linear-gradient(135deg, #00a5cf, #007bff);
+    transform: translateY(-2px);
+}
+
+.generate-btn:focus {
+    outline: none;
+}
+
+.is-favorite {
+    color: yellow;
+    transition: color 0.3s ease;
 }
