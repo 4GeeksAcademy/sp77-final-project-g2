@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import logo from '../../img/innovai_logo_bg-blank-white-letters.png';
 
 export const Footer = () => {
+    const isDarkMode = true;
+
     return (
-        <footer className="bg-dark text-light mt-auto py-2">
+        <footer className={`bg-dark text-light mt-auto py-2 ${isDarkMode ? 'dark-mode' : ''}`}>
             <div className="container-fluid px-3">
                 <div className="row align-items-center">
                     <div className="col text-start">
