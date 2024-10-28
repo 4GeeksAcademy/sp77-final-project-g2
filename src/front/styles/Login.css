@@ -22,7 +22,7 @@
 }
 
 .login-right {
-    padding: 40px 30px;
+    padding: 60px 40px 60px 40px;
     background: #fefefe;
     display: flex;
     flex-direction: column;
@@ -64,24 +64,15 @@
     color: #000;
     background: transparent;
     font-size: 1rem;
+    width: 100%;
 }
 
 .floating-label input:focus {
-    border-bottom: 1px solid var(--primary-color);
+    border-bottom: 1px solid #00A5CF; /* Cambia el color del borde a cyan */
     outline: none;
+    box-shadow: 0 2px 6px -2px rgba(0, 255, 255, 0.5); /* Añade un resplandor cyan sutil */
 }
 
-/* .floating-label label {
-    position: absolute;
-    top: 50%;
-    left: 44px;
-    transform: translateY(-50%);
-    font-size: 12.5px;
-    color: #000;
-    opacity: 0.8;
-    transition: all 0.3s ease;
-    pointer-events: none;
-} */
 
 .floating-label input:focus + label,
 .floating-label input:not(:placeholder-shown) + label {
@@ -100,25 +91,18 @@
 }
 
 /* Botón de inicio de sesión */
-button {
-    width: 100%;
-    margin-top: 10px;
-    padding: 15px;
-    border-radius: 24px;
-    background-color: var(--primary-color);
-    color: #fff;
-    font-size: 14px;
-    font-weight: 500;
+.login-container .button-modern {
+    background-image: linear-gradient(144deg, #00A5CF, #161616);
     border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    padding: 10px 40px;
+    font-size: 0.9rem;
+    color: white;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    margin-left: auto;
+    margin-top: 10px;
 }
 
-button:hover {
-    background-color: #a67cda;
+.login-container .button-modern:hover {
     transform: translateY(-3px);
-}
-
-button:active {
-    transform: scale(0.98);
 }

@@ -10,12 +10,16 @@ const Login = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleLogIn = (e) => {
         e.preventDefault();
         const dataToSend = {email, password};
         actions.logIn(dataToSend);
         navigate('/dashboard');
+    }
+    const handlePassword = () => {
+        setShowPassword(!showPassword);
     }
 
     return (
@@ -33,9 +37,12 @@ const Login = () => {
                     </div>
                     <div className="floating-label">
                         <div className="icon"><i className="fa-solid fa-lock"></i></div>
-                        <input type="password" id="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
+                        <input type={showPassword ? "text" : "password"}  id="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
+                        <div className="icon-password" onClick={handlePassword}>
+                            <i className={showPassword ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}></i>
+                        </div>
                     </div>
-                    <button type="submit" className="btn btn-primary">Log in</button>
+                    <button type="submit" className="btn button-modern">Log In</button>
                 </form>
             </div>
         </div>
