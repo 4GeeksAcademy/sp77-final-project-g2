@@ -1,21 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
 import { Link, useNavigate } from "react-router-dom";
 import logoInnovAI from '../../img/logo-entero.png';
 import '../../styles/navbar.css';
 
-
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	const navigate = useNavigate();
 
+	const [darkMode, setDarkMode] = useState(false);
+
 	const handleLogIn = () => {
 		if (store.isLoged) {
-			actions.logOut()
-			navigate('/')
+			actions.logOut();
+			navigate('/');
 		} else {
-			navigate('/login')
+			navigate('/login');
 		}
+	}
+
+	const toggleDarkMode = () => {
+		setDarkMode(!darkMode);
+		document.body.classList.toggle('dark-mode');
 	}
 
 	return (
@@ -43,8 +49,8 @@ export const Navbar = () => {
 							</li>
 						</ul>
 					</div>
-					<div className="dropdown">
-						<button className="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+					<div className="dropdown d-flex align-items-center">
+						<button className="btn btn-outline-light dropdown-toggle me-2" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
 							<i className="fas fa-user"></i>
 						</button>
 						<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
@@ -61,6 +67,24 @@ export const Navbar = () => {
 								)}
 							</li>
 						</ul>
+
+						{/* Botón de modo oscuro como toggle */}
+						<div className="form-check form-switch">
+							<input
+								className="form-check-input"
+								type="checkbox"
+								id="darkModeToggle"
+								checked={darkMode}
+								onChange={toggleDarkMode}
+							/>
+							<label className="form-check-label" htmlFor="darkModeToggle">
+								{darkMode ? (
+									<i className="fas fa-sun"></i> // Icono de sol
+								) : (
+									<i className="fas fa-moon"></i> // Icono de luna
+								)}
+							</label>
+						</div>
 					</div>
 				</div>
 			</div>
