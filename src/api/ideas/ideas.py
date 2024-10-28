@@ -30,14 +30,14 @@ def advisor():
         model = "gpt-4o-mini",
         messages = [
             {"role": "system", 
-            "content": ("Eres un consultor de negocios que genera cuatro ideas de negocio en español. "
+            "content": ("Eres un consultor de negocios que genera ocho ideas de negocio en español. "
                         "Para cada idea, proporciona un título corto y una muy breve descripción. "
                         "No utilices números, listas, ni formato especial como negritas o asteriscos. "
                         "Usa 'Title:' seguido del nombre de la idea y 'Description:' seguido de la descripción de la idea.")},
             {"role": "user", "content": user_message}
         ],
         temperature = 0.7,
-        max_completion_tokens = 300,
+        max_completion_tokens = 500,
         n = 1)
 
     content = response.choices[0].message.content.strip()

@@ -1,0 +1,30 @@
+.ideas-generator{
+    height: 100vh;
+    overflow: hidden; /* Evita que la página completa tenga scroll */
+}
+
+.left-column {
+    position: sticky;
+    height: 100vh;
+    padding: 2rem;
+    width: 35%; /* Ajusta el ancho según necesites */
+    background-color: #1F1F1F;
+    color: #FFFFFF;
+    border-right: 1px solid #333;
+    overflow: hidden; /* Permite el scroll independiente si hay mucho contenido */
+}
+
+.right-column {
+    margin-left: 1%; /* Compensa el ancho de la columna izquierda */
+    width: 75%; /* Ocupa el resto del espacio */
+    height: 100vh;
+    overflow: scroll; /* Hace que solo esta columna sea desplazable */
+    padding: 2rem;
+    background-color: #2C2C2C;
+}
+
+/* Estilo del título */
+.left-column h1, .right-column h2 {
+    font-family: 'Roboto Mono', monospace;
+    color: #00A5CF;
+}
