@@ -7,6 +7,16 @@ import '../../styles/navbar.css';
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
+	const navigate = useNavigate();
+
+	const handleLogIn = () => {
+		if (store.isLoged) {
+			actions.logOut()
+			navigate('/')
+		} else {
+			navigate('/login')
+		}
+	}
 
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark">
@@ -45,7 +55,7 @@ export const Navbar = () => {
 							</li>
 							<li>
 								{store.isLoged ? (
-									<span className="dropdown-item" onClick={() => actions.logOut()}>Log Out</span>
+									<span className="dropdown-item" onClick={handleLogIn}>Log Out</span>
 								) : (
 									<Link className="dropdown-item" to="/signup">Sign Up</Link>
 								)}

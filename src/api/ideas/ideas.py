@@ -58,39 +58,37 @@ def advisor():
 @jwt_required()
 def add_favorite_idea():
     response_body = {}
-    
-    # Obtiene la identidad del usuario a través del token JWT
-    current_user = get_jwt_identity()  # Retorna un diccionario con los datos del usuario si es así como creaste el JWT
-    user_id = current_user['user_id']  # Accede al user_id del JWT
-
-    # Datos enviados desde el frontend
+    current_user = get_jwt_identity()
+    user_id = current_user['user_id']
     data = request.json
+
     title = data.get('title')
     description = data.get('description')
     country = data.get('country')
     area = data.get('area')
     budget = data.get('budget')
-
-    # Verifica si los datos necesarios están presentes
     if not title or not description or not country or not area or not budget:
         return jsonify({"message": "Todos los campos son requeridos"}), 400
 
-    # Crear una nueva idea favorita y asociarla al usuario
-    new_favorite = FavoriteIdeas(
-        title=title,
-        description=description,
-        country=country,
-        area=area,
-        budget=budget,
-        user_id=user_id  # Asociar la idea al usuario autenticado
-    )
-
-    # Guardar la nueva idea favorita en la base de datos
+    new_favorite = FavoriteIdeas(title=title,
+                                description=description,
+                                country=country,
+                                area=area,
+                                budget=budget,
+                                user_id=user_id)
     db.session.add(new_favorite)
     db.session.commit()
 
     response_body['message'] = "Idea favorita agregada exitosamente"
     response_body['favoriteIdea'] = new_favorite.serialize()
-
     return jsonify(response_body), 200
+
+@ideas_bp.route('/favorite-ideas', methods=['GET'])
+@jwt_required()
+def get_favorite_ideas():
+    current_user = get_jwt_identity()
+    favorite_ideas = FavoriteIdeas.query.filter_by(user_id=current_user['user_id']).all()
+
+    results = [idea.serialize() for idea in favorite_ideas]
+    return jsonify({"results": results}), 200
 

@@ -171,14 +171,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			addFavoriteIdea: async (newFavorite) => {
 				const token = localStorage.getItem('token');
-				const uri = `${process.env.BACKEND_URL}/favorite-ideas`;  // Usamos el endpoint nuevo
+				const uri = `${process.env.BACKEND_URL}/favorite-ideas`;
 				const options = {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
-						'Authorization': `Bearer ${token}`  // Incluye el token JWT
+						'Authorization': `Bearer ${token}`
 					},
-					body: JSON.stringify(newFavorite)  // Pasa la idea favorita como JSON
+					body: JSON.stringify(newFavorite)
 				};
 			
 				const response = await fetch(uri, options);
@@ -189,37 +189,42 @@ const getState = ({ getStore, getActions, setStore }) => {
 			
 				const data = await response.json();
 				console.log("Idea favorita guardada:", data.favoriteIdea);
-			
-				// Actualiza el store con la nueva idea favorita si lo deseas
 				setStore({ favoriteIdeas: [...getStore().favoriteIdeas, data.favoriteIdea] });
 			},
 			getFavoriteIdeas: async () => {
-				const uri = `${process.env.BACKEND_URL}/favorite-ideas`;  // Ya no necesitas el user_id en la URL
+				const uri = `${process.env.BACKEND_URL}/favorite-ideas`;
 				const token = localStorage.getItem('token');
+				if (!token) {
+					console.error("Token no encontrado.");
+					return;
+				}
 				const options = {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
-						'Authorization': `Bearer ${token}`  // El token JWT se usa para identificar al usuario
+						'Authorization': `Bearer ${token}`
 					}
 				};
-				
+			
 				const response = await fetch(uri, options);
+				console.log("Status:", response.status);
+			
 				if (!response.ok) {
 					if (response.status === 403) {
-						console.error("Acceso denegado: Token inválido");
+						console.error("Acceso denegado: Token inválido o sesión expirada.");
 						return;
 					}
 					if (response.status === 404) {
 						console.error("Recurso no encontrado");
 						return;
 					}
+					console.error("Error al obtener ideas favoritas:", response.status);
+					return;
 				}
-				
+			
 				const data = await response.json();
-				setStore({ favoriteIdeas: data.results });  // Asegúrate de que "results" es la clave correcta
-				return data.results;
-			}			
+				setStore({ favoriteIdeas: data.results });
+			}								
 		}
 	};
 };

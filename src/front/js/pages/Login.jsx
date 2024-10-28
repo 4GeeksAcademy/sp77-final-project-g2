@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
 import { useNavigate } from "react-router-dom";
+import '../../styles/Login.css';
+import IconoInnovAI from '../../img/icono-innovai.png';
 
 const Login = () => {
     const {actions} = useContext(Context);
@@ -8,6 +10,7 @@ const Login = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleLogIn = (e) => {
         e.preventDefault();
@@ -15,37 +18,35 @@ const Login = () => {
         actions.logIn(dataToSend);
         navigate('/dashboard');
     }
+    const handlePassword = () => {
+        setShowPassword(!showPassword);
+    }
 
     return (
-        <div className="container d-flex align-items-center justify-content-center">
-            <div className="row">
-                <div className="col-md-4">
-                    <img src="" alt="" />
+        <div className="container">
+            <div className="login-container">
+                <div className="login-left">
+                    <img src={IconoInnovAI} alt="Icono InnovAI" />
                 </div>
-                <div className="col-md-8 login-cont d-flex justify-content-center">
-                    <form onSubmit={handleLogIn}>
-                        <h3>We are <span>InnovAI</span></h3>
-                        <p>Welcome back! Log in to your account to view your ideas:</p>
-                        <div className="floating-label">
-                            <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                            <label htmlFor="email">Email</label>
-                            <div className="icon">
-                                <i className="fa-solid fa-envelope"></i>
-                            </div>
-                            <div className="floating-label">
-                                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                                <label htmlFor="password">Password</label>
-                                <div className="icon">
-                                    <i className="fa-solid fa-lock"></i>
-                                </div>
-                            </div>
-                            <button type="submit" className="btn btn-primary">Log In</button>
+                <form onSubmit={handleLogIn} className="login-right">
+                    <h4>We are <span>INNOVAI</span></h4>
+                    <p>Welcome back! Log in to your account to view your favorite ideas:</p>
+                    <div className="floating-label">
+                        <div className="icon"><i className="fa-solid fa-envelope"></i></div>
+                        <input type="email" id="email" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required />
+                    </div>
+                    <div className="floating-label">
+                        <div className="icon"><i className="fa-solid fa-lock"></i></div>
+                        <input type={showPassword ? "text" : "password"}  id="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
+                        <div className="icon-password" onClick={handlePassword}>
+                            <i className={showPassword ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}></i>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <button type="submit" className="btn button-modern">Log In</button>
+                </form>
             </div>
         </div>
     );
-}
+};
 
 export default Login;

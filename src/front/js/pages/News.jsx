@@ -1,62 +1,78 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
+import '../../styles/news.css';
 
 const News = () => {
     const { store, actions } = useContext(Context);
 
-
     const [category, setCategory] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleSearch = () => {
         if (!category) {
             alert("Por favor, selecciona una categoría.");
             return;
         }
+        setLoading(true);
         actions.getNews(category);
+        setTimeout(() => {
+            setLoading(false);
+        }, 1500); 
     };
 
     return (
-        <div className="container">
+        <div className="container news-container">
             <h1>Noticias Destacadas</h1>
-            <div className="row mb-3">
-                <div className="col-md-6">
-                    <select className="form-control" value={category} onChange={(e) => setCategory(e.target.value)}>
-                        <option value="">Selecciona una categoría</option>
-                        <option value="technology">Tecnología</option>
-                        <option value="sports">Deportes</option>
-                        <option value="business">Negocios</option>
-                        <option value="entertainment">Entretenimiento</option>
-                        <option value="health">Salud</option>
-                        <option value="science">Ciencia</option>
-                    </select>
-                </div>
-                <div className="col-md-4">
-                    <button className="btn btn-primary" onClick={handleSearch}>Buscar Noticias</button>
+            <p className="text-center">Selecciona una categoría de noticias</p>
+            <div className="row mb-3 justify-content-center">
+                <div className="col-md-8">
+                    <div className="input-group search-bar-container">
+                        <select
+                            className="form-control custom-select"
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}>
+                            <option value="">Selecciona una categoría</option>
+                            <option value="technology">Tecnología</option>
+                            <option value="sports">Deportes</option>
+                            <option value="business">Negocios</option>
+                            <option value="entertainment">Entretenimiento</option>
+                            <option value="health">Salud</option>
+                            <option value="science">Ciencia</option>
+                        </select>
+                        <button className="btn btn-search" onClick={handleSearch}>
+                            <i className="fas fa-search"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-
-            <div className="row">
-                {store.news.length === 0 ? (
-                    <p>No se encontraron noticias.</p>
-                ) : (
-                    store.news.map((item, index) => (
-                        <div key={index} className="col-md-3">
-                            <div className="card">
-                                {item.image && (
-                                    <img src={item.image} className="card-img-top" alt={item.title} style={{ aspectRatio: '3 / 2', overflow: 'hidden' }}/>
-                                )}
-                                <div className="card-body">
-                                    <h5>{item.title}</h5>
-                                    <p><strong>Fecha:</strong> {new Date(item.date).toLocaleDateString()}</p>
-                                    <p>{item.description}</p>
-                                    <a href={item.url} className="btn btn-dark" target="_blank" rel="noopener noreferrer">Ver Más</a>
+            {loading ? (
+                <div className="loading-bar">
+                    <div className="progress-bar"></div>
+                </div>
+            ) : (
+                <div className="row">
+                    {store.news.length === 0 ? (
+                        <p>No se encontraron noticias.</p>
+                    ) : (
+                        store.news.map((item, index) => (
+                            <div key={index} className="col-md-3">
+                                <div className="card">
+                                    {item.image && (
+                                        <img src={item.image} className="card-img-top" alt={item.title} style={{ aspectRatio: '3 / 2', overflow: 'hidden' }} />
+                                    )}
+                                    <div className="card-body">
+                                        <h5>{item.title}</h5>
+                                        <p>{new Date(item.date).toLocaleDateString()}</p>
+                                        <p>{item.description}</p>
+                                        <button className="button-modern" onClick={() => window.open(item.url, "_blank")}>Leer Más</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))
-                )}
-            </div>
-        </div>
+                        ))
+                    )}
+                </div>
+            )}
+        </div >
     );
 };
 
