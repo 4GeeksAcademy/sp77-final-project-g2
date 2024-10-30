@@ -181,7 +181,7 @@
 .idea-card-content {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 
 .idea-title {

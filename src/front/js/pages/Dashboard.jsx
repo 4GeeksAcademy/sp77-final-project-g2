@@ -16,8 +16,8 @@ const Dashboard = () => {
         <div className="container mt-5">
             <h2 className="text-center mb-4">Mis Ideas Favoritas</h2>
             <div className="row">
-                {store.favoriteIdeas.map((idea) => (
-                    <div className="col-md-6 mb-4" key={idea.id}>
+                {store.favoriteIdeas.map((idea, index) => (
+                    <div className="col-md-6 mb-4" key={index}>
                         <div className="card shadow-sm h-100">
                             <div className="card-body">
                                 <h5 className="card-title">{idea.title}</h5>

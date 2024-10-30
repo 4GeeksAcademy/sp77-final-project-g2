@@ -7,6 +7,8 @@ const IdeasGenerator = () => {
     const [country, setCountry] = useState('');
     const [budget, setBudget] = useState(1000);
     const [area, setArea] = useState('');
+    const [favoriteIdeas, setFavoriteIdeas] = useState([]);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,8 +16,17 @@ const IdeasGenerator = () => {
     };
 
     const handleFavorite = (item) => {
-        actions.addFavoriteIdea(item);
+        const newFavorite = {
+            title: item.title,
+            description: item.description,
+            area,
+            budget,
+            country
+        };
+        actions.addFavoriteIdea(newFavorite);
+        setFavoriteIdeas((prevFavorites) => [...prevFavorites, item.title]);
     };
+    
 
     return (
         <div className="ideas-generator container d-flex flex-column flex-md-row">
@@ -65,9 +76,14 @@ const IdeasGenerator = () => {
                                     <div className="idea-card-content">
                                         <h5 className="idea-title">{item.title}</h5>
                                         <p className="idea-description">{item.description}</p>
-                                        <button className="favorite-btn" onClick={() => actions.addFavoriteIdea(item)}>
+                                        <button
+                                            className="favorite-btn"
+                                            onClick={() => handleFavorite(item)}
+                                            style={{ color: favoriteIdeas.includes(item.title) ? "#ffd700" : "#ffffff" }} // Cambia el color si es favorito
+                                        >
                                             <i className="fas fa-lightbulb"></i>
                                         </button>
+
                                     </div>
                                 </div>
                             ))}
