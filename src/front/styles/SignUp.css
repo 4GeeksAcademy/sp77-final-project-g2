@@ -13,7 +13,8 @@
 
 .signup-left {
     width: 250px;
-    background-color: #0a192f;
+    background-image: url("https://res.cloudinary.com/dbrzmir9f/image/upload/v1730068547/s2spqzfxnsfgeynubdhp.jpg");
+    background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
