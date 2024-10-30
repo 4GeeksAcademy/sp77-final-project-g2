@@ -30,9 +30,9 @@ const IdeasGenerator = () => {
                     <label htmlFor="budget" className="floating-label-outside">Budget</label>
                         <div className="range-slider-container">
                             <div className="budget-display">
-                                <p className="budget-value">{budget} €</p>
+                                <p className="budget-value">{Number(budget).toLocaleString()} €</p>
                             </div>
-                            <input type="range" min="0" max="30000" step="5000" value={budget} onChange={handleSliderChange} className="range-slider"
+                            <input type="range" min="0" max="30000" step="2500" value={budget} onChange={handleSliderChange} className="range-slider"
                                 style={{
                                     background: `linear-gradient(90deg, #1e90ff ${(budget / 30000) * 100}%, #d3d3d3 ${(budget / 30000) * 100}%)`
                                 }}
@@ -43,30 +43,14 @@ const IdeasGenerator = () => {
                         <label htmlFor="country" className="floating-label-outside">Country</label>
                         <div className="text-input-container">
                             <span className="input-icon"><i className="fas fa-globe"></i></span>
-                            <input
-                                type="text"
-                                value={country}
-                                onChange={(e) => setCountry(e.target.value)}
-                                className="text-input"
-                                placeholder="Country"
-                                id="country"
-                                required
-                            />
+                            <input type="text" value={country} onChange={(e) => setCountry(e.target.value)} className="text-input" placeholder="Country" id="country" required/>
                         </div>
                     </div>
                     <div className="mb-4">
                     <label htmlFor="area" className="floating-label-outside">Area of Interest</label>
                         <div className="text-input-container">
                             <span className="input-icon"><i className="fas fa-briefcase"></i></span>
-                            <input
-                                type="text"
-                                value={area}
-                                onChange={(e) => setArea(e.target.value)}
-                                className="text-input"
-                                placeholder="Area of Interest"
-                                id="area"
-                                required
-                            />
+                            <input type="text" value={area} onChange={(e) => setArea(e.target.value)} className="text-input" placeholder="Area of Interest" id="area" required/>
                         </div>
                     </div>
                     <div className="button-container">
