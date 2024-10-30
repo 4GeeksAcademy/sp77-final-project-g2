@@ -170,6 +170,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json()
 			},
 			addFavoriteIdea: async (newFavorite) => {
+				console.log("Saving favorite idea:", newFavorite);
 				const token = localStorage.getItem('token');
 				const uri = `${process.env.BACKEND_URL}/favorite-ideas`;
 				const options = {
@@ -188,8 +189,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			
 				const data = await response.json();
-				console.log("Idea favorita guardada:", data.favoriteIdea);
-				setStore({ favoriteIdeas: [...getStore().favoriteIdeas, data.favoriteIdea] });
+				console.log("Idea favorita guardada:", data.favoriteIdeas);
+				setStore({ favoriteIdeas: [...getStore().favoriteIdeas, data.favoriteIdeas] });
 			},
 			getFavoriteIdeas: async () => {
 				const uri = `${process.env.BACKEND_URL}/favorite-ideas`;
@@ -223,6 +224,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			
 				const data = await response.json();
+				console.log("Datos de ideas favoritas:", data.results);
 				setStore({ favoriteIdeas: data.results });
 			}								
 		}
