@@ -17,22 +17,18 @@ const IdeasGenerator = () => {
         actions.addFavoriteIdea(item);
     };
 
-    const handleSliderChange = (e) => {
-        setBudget(e.target.value);
-    };
-
     return (
         <div className="ideas-generator container d-flex flex-column flex-md-row">
             <div className="left-column col-12 col-md-4">
                 <h1>Business Ideas Generator</h1>
                 <form onSubmit={handleSubmit}>
-                    <div className="mt-5 budget-display">
+                    <div className="mt-4 budget-display">
                     <label htmlFor="budget" className="floating-label">Budget</label>
                         <div className="range-slider-container">
                             <div className="budget-display">
                                 <p className="budget-value">{Number(budget).toLocaleString()} €</p>
                             </div>
-                            <input type="range" min="0" max="30000" step="2500" value={budget} onChange={handleSliderChange} className="range-slider"
+                            <input type="range" min="0" max="30000" step="2500" value={budget} onChange={(e) => setBudget(e.target.value)} className="range-slider"
                                 style={{
                                     background: `linear-gradient(90deg, #1e90ff ${(budget / 30000) * 100}%, #d3d3d3 ${(budget / 30000) * 100}%)`
                                 }}
@@ -40,14 +36,14 @@ const IdeasGenerator = () => {
                         </div>
                     </div>
                     <div className="my-4">
-                        <label htmlFor="country" className="floating-label-outside">Country</label>
+                        <label htmlFor="country" className="ideas-label">Country</label>
                         <div className="text-input-container">
                             <span className="input-icon"><i className="fas fa-globe"></i></span>
                             <input type="text" value={country} onChange={(e) => setCountry(e.target.value)} className="text-input" placeholder="Country" id="country" required/>
                         </div>
                     </div>
                     <div className="mb-4">
-                    <label htmlFor="area" className="floating-label-outside">Area of Interest</label>
+                    <label htmlFor="area" className="ideas-label">Area of Interest</label>
                         <div className="text-input-container">
                             <span className="input-icon"><i className="fas fa-briefcase"></i></span>
                             <input type="text" value={area} onChange={(e) => setArea(e.target.value)} className="text-input" placeholder="Area of Interest" id="area" required/>
@@ -63,18 +59,15 @@ const IdeasGenerator = () => {
                 {store.ideas.length > 0 && (
                     <div>
                         <h2>Ideas for You</h2>
-                        <div className="row">
+                        <div className="ideas-container">
                             {store.ideas.map((item, index) => (
-                                <div className="col-md-12" key={index}>
-                                    <div className="card mb-4">
-                                        <div className="card-body">
-                                            <h5>{item.title}</h5>
-                                            <p>{item.description}</p>
-                                            <button className="btn btn-light" onClick={() => actions.addFavoriteIdea(item)}>
-                                                {/* <i className="fas fa-lightbulb"></i> */}
-                                                <i className={`fas fa-lightbulb ${handleFavorite(item) ? 'is-favorite' : ''}`}></i>
-                                            </button>
-                                        </div>
+                                <div className="idea-card" key={index}>
+                                    <div className="idea-card-content">
+                                        <h5 className="idea-title">{item.title}</h5>
+                                        <p className="idea-description">{item.description}</p>
+                                        <button className="favorite-btn" onClick={() => actions.addFavoriteIdea(item)}>
+                                            <i className="fas fa-lightbulb"></i>
+                                        </button>
                                     </div>
                                 </div>
                             ))}
