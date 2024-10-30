@@ -1,18 +1,16 @@
-import React, { useState, useContext } from 'react';
-import { Context } from '../store/appContext.js';
+import React, { useState } from 'react';
+import "../../styles/SignUp.css";
+import IconoInnovAI from '../../img/icono-innovai.png';
 
 const SignUp = () => {
-    const { actions } = useContext(Context);
-
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
         email: '',
         password: ''
     });
-    
-    const [message, setMessage] = useState('');
-    const [messageType, setMessageType] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,91 +20,56 @@ const SignUp = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        
-        const response = await actions.signUp(formData);
-        
-        if (response) {
-            setMessage('Registrado/a correctamente');
-            setMessageType('success');
-            setFormData({
-                firstName: '',
-                lastName: '',
-                email: '',
-                password: ''
-            });
-        } else {
-            setMessage('Error en el registro. Inténtalo de nuevo.');
-            setMessageType('error');
+        const { password } = formData;
+
+        const passwordValid = /(?=.*[a-zA-Z])(?=.*[!@#$%^&*])/;
+
+        if (!passwordValid.test(password)) {
+            setErrorMessage('La contraseña debe contener al menos una letra y un signo especial.');
+            return;
         }
+
+        setErrorMessage('');
+        console.log("Form data submitted:", formData);
+        
+    };
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-            <div className="border p-4 rounded">
-                <h2>Register</h2>
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label>
-                            First Name:
-                            <input
-                                type="text"
-                                name="firstName"
-                                value={formData.firstName}
-                                onChange={handleChange}
-                                required
-                                className="form-control"
-                            />
-                        </label>
-                    </div>
-                    <div className="mb-3">
-                        <label>
-                            Last Name:
-                            <input
-                                type="text"
-                                name="lastName"
-                                value={formData.lastName}
-                                onChange={handleChange}
-                                required
-                                className="form-control"
-                            />
-                        </label>
-                    </div>
-                    <div className="mb-3">
-                        <label>
-                            Email:
-                            <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                                className="form-control"
-                            />
-                        </label>
-                    </div>
-                    <div className="mb-3">
-                        <label>
-                            Password:
-                            <input
-                                type="password"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                required
-                                className="form-control"
-                            />
-                        </label>
-                    </div>
-                    <button type="submit" className="btn btn-primary">Register</button>
-                </form>
-                {message && (
-                    <div className={`alert mt-3 ${messageType === 'success' ? 'alert-success' : 'alert-danger'}`}>
-                        {message}
-                    </div>
-                )}
+        <div className="signup-container">
+            <div className="signup-left">
+                <img src={IconoInnovAI} alt="Icono InnovAI" />
             </div>
+            <form onSubmit={handleSubmit} className="signup-right">
+                <h4>Register</h4>
+                <p>Create a new account to explore more features:</p>
+                <div className="floating-label">
+                    <div className="icon ms-1"><i className="fa-solid fa-font"></i></div>
+                    <input type="text" id="firstName" name="firstName" value={formData.firstName} placeholder="First Name" onChange={handleChange} required/>
+                </div>
+                <div className="floating-label">
+                    <div className="icon ms-1"><i className="fa-solid fa-b"></i></div>
+                    <input type="text" id="lastName" name="lastName" value={formData.lastName} placeholder="Last Name" onChange={handleChange} required/>
+                </div>
+                <div className="floating-label">
+                    <div className="icon ms-1"><i className="fa-solid fa-envelope"></i></div>
+                    <input type="email" id="email" name="email" value={formData.email} placeholder="Email" onChange={handleChange} required />
+                </div>
+                <div className="floating-label">
+                    <div className="icon ms-1"><i className="fa-solid fa-lock"></i></div>
+                    <input type={showPassword ? "text" : "password"} id="password" name="password" value={formData.password} placeholder="Password" onChange={handleChange} required />
+                    <button type="button" onClick={togglePasswordVisibility} className="eye-icon">
+                        <i className={`fa-solid fa-eye${showPassword ? '' : '-slash'}`}></i>
+                    </button>
+                </div>
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
+                <button type="submit" className="button-modern">Sign Up</button>
+            </form>
         </div>
     );
 };

@@ -10,7 +10,7 @@ const News = () => {
 
     const handleSearch = () => {
         if (!category) {
-            alert("Por favor, selecciona una categoría.");
+            alert("Please select a category.");
             return;
         }
         setLoading(true);
@@ -22,8 +22,8 @@ const News = () => {
 
     return (
         <div className="container news-container">
-            <h1>Noticias Destacadas</h1>
-            <p className="text-center">Selecciona una categoría de noticias</p>
+            <h1>Featured News</h1>
+            <p className="text-center">Select a news category</p>
             <div className="row mb-3 justify-content-center">
                 <div className="col-md-8">
                     <div className="input-group search-bar-container">
@@ -31,13 +31,13 @@ const News = () => {
                             className="form-control custom-select"
                             value={category}
                             onChange={(e) => setCategory(e.target.value)}>
-                            <option value="">Selecciona una categoría</option>
-                            <option value="technology">Tecnología</option>
-                            <option value="sports">Deportes</option>
-                            <option value="business">Negocios</option>
-                            <option value="entertainment">Entretenimiento</option>
-                            <option value="health">Salud</option>
-                            <option value="science">Ciencia</option>
+                            <option value="">Select a category</option>
+                            <option value="technology">Technology</option>
+                            <option value="sports">Sports</option>
+                            <option value="business">Business</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="health">Health</option>
+                            <option value="science">Science</option>
                         </select>
                         <button className="btn btn-search" onClick={handleSearch}>
                             <i className="fas fa-search"></i>
@@ -52,7 +52,7 @@ const News = () => {
             ) : (
                 <div className="row">
                     {store.news.length === 0 ? (
-                        <p>No se encontraron noticias.</p>
+                        <p>No news found.</p>
                     ) : (
                         store.news.map((item, index) => (
                             <div key={index} className="col-md-3">
@@ -64,7 +64,7 @@ const News = () => {
                                         <h5>{item.title}</h5>
                                         <p>{new Date(item.date).toLocaleDateString()}</p>
                                         <p>{item.description}</p>
-                                        <button className="button-modern" onClick={() => window.open(item.url, "_blank")}>Leer Más</button>
+                                        <button className="button-modern" onClick={() => window.open(item.url, "_blank")}>Read more »</button>
                                     </div>
                                 </div>
                             </div>
