@@ -26,8 +26,8 @@ const IdeasGenerator = () => {
             <div className="left-column col-12 col-md-4">
                 <h1>Business Ideas Generator</h1>
                 <form onSubmit={handleSubmit}>
-                    <div className="my-4 budget-display">
-                    <label htmlFor="budget" className="floating-label-outside">Budget</label>
+                    <div className="mt-5 budget-display">
+                    <label htmlFor="budget" className="floating-label">Budget</label>
                         <div className="range-slider-container">
                             <div className="budget-display">
                                 <p className="budget-value">{Number(budget).toLocaleString()} €</p>
@@ -39,7 +39,7 @@ const IdeasGenerator = () => {
                             />
                         </div>
                     </div>
-                    <div className="mb-4">
+                    <div className="my-4">
                         <label htmlFor="country" className="floating-label-outside">Country</label>
                         <div className="text-input-container">
                             <span className="input-icon"><i className="fas fa-globe"></i></span>

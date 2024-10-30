@@ -12,19 +12,15 @@
     overflow: scroll;
     padding: 30px;
 }
-/* Contenedor del slider */
+
 .range-slider-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.budget-display {
-    margin-bottom: 10px;
-}
-
 .budget-value {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
     color: #1e90ff;
     transition: color 0.3s ease;
@@ -93,7 +89,6 @@
     margin-left: 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 .text-input {
@@ -109,8 +104,7 @@
     color: #1e90ff;
 }
 
-/* Estilos para la etiqueta flotante en la esquina superior del input */
-.floating-label-outside {
+.floating-label {
     position: relative;
     font-size: 0.85rem;
     color: #161616;
@@ -119,8 +113,6 @@
     transition: color 0.3s ease;
 }
 
-
-/* Opcional: cambio de color de la etiqueta al hacer focus en el input */
 .text-input:focus + .floating-label-outside {
     color: #333;
 }
@@ -132,7 +124,6 @@
 .text-input:focus {
     color: #1e90ff;
 }
-
 
 .button-container {
     display: flex;
