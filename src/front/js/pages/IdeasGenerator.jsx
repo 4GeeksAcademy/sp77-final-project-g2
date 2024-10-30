@@ -54,7 +54,7 @@ const IdeasGenerator = () => {
                             />
                         </div>
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-4">
                     <label htmlFor="area" className="floating-label-outside">Area of Interest</label>
                         <div className="text-input-container">
                             <span className="input-icon"><i className="fas fa-briefcase"></i></span>
