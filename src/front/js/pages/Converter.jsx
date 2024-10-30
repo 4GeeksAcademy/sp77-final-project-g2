@@ -12,13 +12,14 @@ const Converter = () => {
     const currencyOptions = [
         { code: 'USD', country: 'US' },
         { code: 'EUR', country: 'EU' },
-        { code: 'RUB', country: 'RU' },
         { code: 'JPY', country: 'JP' },
         { code: 'GBP', country: 'GB' },
         { code: 'CHF', country: 'CH' },
-        { code: 'INR', country: 'IN' },
-        { code: 'MXN', country: 'MX' }
+        { code: 'ARS', country: 'AR' },
+        { code: 'AUD', country: 'AU' },
+        { code: 'CAD', country: 'CA' }
     ];
+
     const filteredToCurrencyOptions = currencyOptions.filter(currency => currency.code !== fromCurrency);
 
     const handleConvert = () => {
