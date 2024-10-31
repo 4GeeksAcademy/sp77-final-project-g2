@@ -5,8 +5,10 @@ const Dashboard = () => {
     const { store, actions } = useContext(Context);
 
     useEffect(() => {
-        actions.getFavoriteIdeas();
-    }, []);
+        if (store.isLoged) {
+            actions.getFavoriteIdeas();
+        }
+    }, [store.isLoged]);
 
     if (!store.favoriteIdeas || store.favoriteIdeas.length === 0) {
         return <div className="container mt-5 text-center">No tienes ideas favoritas guardadas.</div>;

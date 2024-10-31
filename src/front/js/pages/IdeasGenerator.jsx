@@ -29,7 +29,7 @@ const IdeasGenerator = () => {
     
 
     return (
-        <div className="ideas-generator container d-flex flex-column">
+        <div className="ideas-generator container d-flex flex-column flex-md-row">
             <div className="left-column col-12 col-md-4">
                 <h1>Business Ideas Generator</h1>
                 <form onSubmit={handleSubmit}>

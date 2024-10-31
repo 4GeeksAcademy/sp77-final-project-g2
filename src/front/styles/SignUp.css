@@ -53,12 +53,14 @@
 }
 
 .floating-label input {
+    padding: 10px 0 10px 30px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s linear;
+    color: #000;
+    background: transparent;
+    font-size: 1rem;
     width: 100%;
-    padding: 10px;
-    padding-left: 40px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
 }
 
 .signup-button {
