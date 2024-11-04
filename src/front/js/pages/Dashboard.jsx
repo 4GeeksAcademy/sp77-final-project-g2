@@ -1,11 +1,13 @@
-import React, { useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext.js";
 import '../../styles/Dashboard.css';
+import Checkout from './Checkout.jsx';
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
+    const [showCheckout, setShowCheckout] = useState(false);
 
     useEffect(() => {
         if (!store.isLoged) {
@@ -15,18 +17,18 @@ const Dashboard = () => {
         }
     }, [store.isLoged, navigate, actions]);
 
-    if (!store.favoriteIdeas || store.favoriteIdeas.length === 0) {
-        return <div className="container mt-5 text-center">No tienes ideas favoritas guardadas.</div>;
+    if (showCheckout) {
+        return <Checkout />;
     }
-    
 
     return (
         <div className="container dashboard-container">
             <h2 className="dashboard-title">Mis Ideas Favoritas</h2>
             <p className="dashboard-subtitle">Explora y administra las ideas de negocio que has guardado</p>
+            <button className="btn btn-primary" onClick={() => setShowCheckout(true)}>Become a Premium user</button>
             <div className="row">
                 {store.favoriteIdeas.map((idea, index) => (
-                    idea && idea.title ? ( // Verifica que 'idea' y 'idea.title' existen
+                    idea && idea.title ? (
                         <div className="col-md-6 mb-4" key={index}>
                             <div className="card shadow-sm h-100">
                                 <div className="card-body">
@@ -49,7 +51,6 @@ const Dashboard = () => {
                     ) : null
                 ))}
             </div>
-
         </div>
     );
 };

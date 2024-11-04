@@ -6,7 +6,10 @@ export const Footer = () => {
     const isDarkMode = true;
 
     return (
-        <footer className={`bg-dark text-light mt-auto py-2 ${isDarkMode ? 'dark-mode' : ''}`}>
+        <footer
+            className={`bg-dark text-light py-2 ${isDarkMode ? 'dark-mode' : ''}`}
+            style={{ marginTop: '60px' }}
+        >
             <div className="container-fluid px-3">
                 <div className="row align-items-center">
                     <div className="col text-start">
