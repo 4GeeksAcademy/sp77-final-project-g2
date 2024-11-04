@@ -12,11 +12,16 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleLogIn = (e) => {
+
+    const handleLogIn = async (e) => {
         e.preventDefault();
         const dataToSend = {email, password};
-        actions.logIn(dataToSend);
-        navigate('/dashboard');
+        const success = await actions.logIn(dataToSend);
+        if (success) {
+            navigate('/dashboard'); 
+        } else {
+            navigate('/login'); 
+        }
     }
     const handlePassword = () => {
         setShowPassword(!showPassword);
