@@ -97,3 +97,14 @@ h2 {
   text-align: justify;
 }
 
+.container-info  {
+  margin-top: 50px;
+  margin-left: 220px;
+  margin-right: 220px;
+}
+
+.container-testimonials{
+  margin-top: 50px;
+  margin-left: 220px;
+  margin-right: 220px;
+}

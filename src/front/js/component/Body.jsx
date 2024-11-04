@@ -23,13 +23,13 @@ const testimonialsData = [
     {
         name: "Jane Smith",
         position: "Founder of Creative Solutions",
-        testimonial: "The team was incredibly supportive and helped us generate innovative ideas.",
+        testimonial: "The team was incredibly supportive and helped us generate innovative ideas and solutions.",
         image: "https://randomuser.me/api/portraits/women/26.jpg",
     },
     {
         name: "Michael Brown",
         position: "Marketing Director at Tech Innovations",
-        testimonial: "A fantastic experience! The AI chat feature is intuitive and useful.",
+        testimonial: "An amazing and seamless experience! The AI chat feature is incredibly intuitive and helpful.",
         image: "https://randomuser.me/api/portraits/men/24.jpg",
     },
 ];
@@ -88,7 +88,7 @@ export const Body = () => {
 
 
             {/*Info*/}
-            <div className="container-intro">
+            <div className="container-info">
                 <h6 className="text-center pb-3">INTRO</h6>
                 <div className="text-center pb-3 pt-0">
                     <h1>We bring your projects and ideas to </h1>
@@ -251,8 +251,8 @@ export const Body = () => {
 
             {/*Testimonials*/}
             <section className="testimonials-section">
-                <div className="container">
-                <h6 className="text-center">TESTIMONIALS</h6>
+                <div className="container-testimonials">
+                <h6 className="text-center pt-5">TESTIMONIALS</h6>
                     <h2 className="text-center fw-bold">What Our Clients Say</h2>
                     <div className="row mt-4">
                         {testimonialsData.map((testimonial, index) => (
