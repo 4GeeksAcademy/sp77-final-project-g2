@@ -47,6 +47,8 @@ h2 {
 
 .testimonials-section {
   background-color: #f8f9fa; /* Fondo claro */
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .testimonials-section h2 {
@@ -104,7 +106,6 @@ h2 {
 }
 
 .container-testimonials{
-  margin-top: 50px;
   margin-left: 220px;
   margin-right: 220px;
 }
