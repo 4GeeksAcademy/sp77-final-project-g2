@@ -14,7 +14,12 @@ const getState = ({ getStore, getActions, setStore }) => {
             convertedAmount: 0,
 
 			user: {},
-			isLoged: false
+			isLoged: false,
+			alert: { 
+				message: "", 
+				type: ""
+			}
+
 		},
 		actions: {
 			exampleFunction: () => { getActions().changeColor(0, "green"); },
@@ -40,6 +45,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 	});
 			// 	setStore({ demo: demo });  // Reset the global store
 			// },
+			showAlert: (message, type = "success") => {
+				setStore({ alert: { message, type } });
+				setTimeout(() => setStore({ alert: { message: "", type: "" } }), 2000);
+			},
 			getIdeas: async (budget, country, area) => {
 				const uri = `${process.env.BACKEND_URL}/advisor`;
 				const options = {
@@ -85,18 +94,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				const response = await fetch(uri, options);
 				if (!response.ok) {
+					getActions().showAlert("Email o contraseña incorrectos", "danger");
 					console.log(response.status);
-					return;
+					return false;
 				}
 				const data = await response.json();
 				localStorage.setItem('token', data.access_token);
-				localStorage.setItem('user', JSON.stringify(data.results))
-				setStore({isLoged: true, user: data.results.email})
+				localStorage.setItem('user', JSON.stringify(data.results));
+				setStore({isLoged: true, user: data.results.email});
+				getActions().showAlert("Bienvenido de nuevo!", "success");
+				return true;
 			},
 			logOut: () => {
 				setStore({isLoged: false, user: {}});
 				localStorage.removeItem('token');
 				localStorage.removeItem('user');
+				getActions().showAlert("Hasta pronto!", "success");
 			},
 			isLogged: () => {
 				const token = localStorage.getItem('token')

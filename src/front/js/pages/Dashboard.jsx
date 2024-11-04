@@ -1,15 +1,19 @@
 import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext.js";
 import '../../styles/Dashboard.css';
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
     const { store, actions } = useContext(Context);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (store.isLoged) {
+        if (!store.isLoged) {
+            navigate("/login");
+        } else {
             actions.getFavoriteIdeas();
         }
-    }, [store.isLoged]);
+    }, [store.isLoged, navigate, actions]);
 
     if (!store.favoriteIdeas || store.favoriteIdeas.length === 0) {
         return <div className="container mt-5 text-center">No tienes ideas favoritas guardadas.</div>;
