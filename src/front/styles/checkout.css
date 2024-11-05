@@ -1,0 +1,129 @@
+.checkout-page .checkout-container {
+    display: flex;
+    flex-direction: row;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.6);
+    max-width: 700px;
+    margin: 120px auto;
+    overflow: hidden;
+}
+
+.checkout-page .checkout-left {
+    width: 250px;
+    background-image: url("https://res.cloudinary.com/dbrzmir9f/image/upload/v1730068547/s2spqzfxnsfgeynubdhp.jpg");
+    background-size: cover;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.checkout-page .checkout-price h2 {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.checkout-page .checkout-right {
+    padding: 60px 40px;
+    background: #fefefe;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    border-radius: 0px 15px 15px 0px;
+}
+
+.checkout-page .checkout-right h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #000;
+    opacity: 0.85;
+    margin-bottom: 20px;
+}
+
+/* Estilos para los inputs y el grupo de fecha */
+.checkout-page .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.checkout-page .input-group label {
+    margin-bottom: 6px;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 1rem;
+}
+
+.checkout-page .input-group input,
+.checkout-page .date-inputs select {
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.checkout-page .date-inputs {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Estilos para el botón del checkout */
+.checkout-page .button-modern {
+    background-image: linear-gradient(144deg, #00A5CF, #161616);
+    border: none;
+    padding: 10px 40px;
+    font-size: 0.9rem;
+    color: white;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.checkout-page .button-modern:hover {
+    transform: translateY(-3px);
+}
+
+/* Estilos para el modo oscuro */
+body.dark-mode .checkout-page .checkout-container {
+    background: #121212;
+    box-shadow: 0px 2px 6px -1px rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+}
+
+body.dark-mode .checkout-page .checkout-left {
+    background-image: url("https://res.cloudinary.com/dbrzmir9f/image/upload/v1730068547/s2spqzfxnsfgeynubdhp.jpg");
+}
+
+body.dark-mode .checkout-page .checkout-right {
+    background: #1f1f1f;
+}
+
+body.dark-mode .checkout-page .checkout-right h1,
+body.dark-mode .checkout-page .input-group label {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+body.dark-mode .checkout-page .input-group input,
+body.dark-mode .checkout-page .date-inputs select {
+    color: #fff;
+    background-color: #333;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .checkout-page .input-group input:focus,
+body.dark-mode .checkout-page .date-inputs select:focus {
+    border-color: #00A5CF;
+}
+
+body.dark-mode .checkout-page .button-modern {
+    background-image: linear-gradient(144deg, #00A5CF, #00A5CF);
+}
