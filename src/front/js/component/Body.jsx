@@ -23,13 +23,13 @@ const testimonialsData = [
     {
         name: "Jane Smith",
         position: "Founder of Creative Solutions",
-        testimonial: "The team was incredibly supportive and helped us generate innovative ideas.",
+        testimonial: "The team was incredibly supportive and helped us generate innovative ideas and solutions.",
         image: "https://randomuser.me/api/portraits/women/26.jpg",
     },
     {
         name: "Michael Brown",
         position: "Marketing Director at Tech Innovations",
-        testimonial: "A fantastic experience! The AI chat feature is intuitive and useful.",
+        testimonial: "An amazing and seamless experience! The AI chat feature is incredibly intuitive and helpful.",
         image: "https://randomuser.me/api/portraits/men/24.jpg",
     },
 ];
@@ -88,8 +88,8 @@ export const Body = () => {
 
 
             {/*Info*/}
-            <div className="container marketing" id="marketing">
-                <h6 className="text-center pt-5 pb-3">INTRO</h6>
+            <div className="container-info">
+                <h6 className="text-center pb-3">INTRO</h6>
                 <div className="text-center pb-3 pt-0">
                     <h1>We bring your projects and ideas to </h1>
                     <h1>life with artificial intelligence</h1>
@@ -98,21 +98,21 @@ export const Body = () => {
                     <div className="col-lg-4">
                         <span id="info-img" className="mb-0"><i className="fa-solid fa-users"></i></span>
                         <h2 className="fw-normal text-center mt-0">About Us</h2>
-                        <p>At our team, we believe that the best business ideas can come at any time, and we are here to help you bring them to life.</p>
+                        <p className="justified-text ms-3 me-3">At our team, we believe that the best business ideas can come at any time, and we are here to help you bring them to life.</p>
                         <p><a className="button-modern" href="#">View details »</a></p>
                     </div>
 
                     <div className="col-lg-4">
                         <span id="info-img" className="mb-0"><i className="fa-solid fa-building"></i></span>
                         <h2 className="fw-normal text-center mt-0">Service</h2>
-                        <p>We offer a variety of services tailored to specific project needs. Through our chat you can have ideas for ventures immediately.</p>
+                        <p className="justified-text ms-3 me-3">We offer a variety of services tailored to specific project needs. Through our chat you can have ideas for ventures immediately.</p>
                         <p><a className="button-modern" href="#">View details »</a></p>
                     </div>
 
                     <div className="col-lg-4">
                         <span id="info-img" className="mb-0"><i className="fa-solid fa-address-book"></i></span>
                         <h2 className="fw-normal text-center mt-0">Contact</h2>
-                        <p>Ready to take your project to the next level? Sign up and start using AI for free to get project ideas.</p>
+                        <p className="justified-text ms-3 me-3">Ready to elevate your project? Sign up now to start using AI for free, explore creative solutions, and unlock endless project ideas.</p>
                         <p><a className="button-modern" href="#">View details »</a></p>
                     </div>
 
@@ -142,7 +142,7 @@ export const Body = () => {
                                         </h2>
                                         <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                                             <div className="accordion-body">
-                                                <p>To be a global leader in AI-driven solutions, transforming ideas into reality for businesses worldwide.</p>
+                                                <p className="justified-text">To be a global leader in AI solutions, helping businesses everywhere turn ideas into real results.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -175,7 +175,7 @@ export const Body = () => {
                                         </h2>
                                         <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                             <div className="accordion-body">
-                                                <p>We are always looking for talented individuals to join our team. If you share our passion for technology and innovation.</p>
+                                                <p className="justified-text">We are always looking for talented individuals to join our team. If you share our passion for technology and innovation.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -194,17 +194,17 @@ export const Body = () => {
                 {/*Sections*/}
                 <hr className="featurette-divider" />
 
-                <div className="row featurette py-4">
+                <div className="row featurette">
                 <h6 className="text-center py-3">FEATURES</h6>
                     <div className="col-md-7">
                         <h2 className="featurette-heading fw-normal">Latest News</h2>
                         <h4 className="featurette-heading fw-normal">Stay Informed with Our Relevant News</h4>
-                        <p className="lead">In this section we bring you the latest news related to the world of artificial intelligence, technological innovation and the impact they have on the creation of business projects. Our team of experts makes sure to provide you with the latest and most valuable information so that you are always aware of the trends that can transform your ideas into successes.</p>
+                        <p className="lead justified-text me-3 pt-1">In this section we bring you the latest news related to the world of artificial intelligence, technological innovation and the impact they have on the creation of business projects. Our team of experts makes sure to provide you with the latest and most valuable information so that you are always aware of the trends that can transform your ideas into successes.</p>
                         <Link to="/news">
                             <button type="button" className="button-modern">News</button>
                         </Link>
                     </div>
-                    <div className="col-md-5">
+                    <div className="col-md-5 ps-5">
                         <img src={News} className="rounded" alt="" />
                     </div>
                 </div>
@@ -213,11 +213,11 @@ export const Body = () => {
 
                 <div className="row featurette py-4">
                     <div className="col-md-7 order-md-2">
-                        <h2 className="featurette-heading fw-normal lh-1">Smart Conversations to Boost Your Ideas</h2>
-                        <p className="lead">Our AI-powered chat tool is designed to give you personalized support in real-time. With just a few clicks, you can access innovative ideas, fast solutions, and expert advice tailored to your needs. Explore everything our AI has to offer!</p>
+                        <h2 className="featurette-heading fw-normal lh-1">Smart Conversions To Boost Your Ideas</h2>
+                        <p className="lead justified-text me-2 p-1">Our AI-powered chat tool is designed to give you personalized support in real-time. With just a few clicks, you can access innovative ideas, fast solutions, and expert advice tailored to your needs. Explore everything our AI has to offer!</p>
                         <br />
                         <h4 className="featurette-heading fw-normal lh-1">Ready to get started?</h4>
-                        <p>Talking to our AI is easy! Start a conversation now and find out how we can help you take your project to the next level.</p>
+                        <p className="lead justified-text me-2 p-1">Talking to our AI is easy! Start a conversation now and find out how we can help you take your project to the next level.</p>
                         <Link to="/advisor">
                             <button type="button" className="button-modern">Advisor</button>
                         </Link>
@@ -229,17 +229,17 @@ export const Body = () => {
 
                 <hr className="featurette-divider" />
 
-                <div className="row featurette py-4">
-                    <div className="col-md-7">
-                        <h2 className="featurette-heading fw-normal lh-1">Convert Currencies Quickly and Accurately</h2>
-                        <p className="lead">Our online currency converter allows you to make instant conversions between the world's major currencies. Whether you're planning a trip, making international transactions or simply need to know the value of a currency, with our converter you can get updated real-time exchange rates in just seconds!</p>
+                <div className="row featurette">
+                    <div className="col-md-7 pe-5">
+                        <h2 className="featurette-heading fw-normal lh-1">Convert Currencies Quickly</h2>
+                        <p className="lead justified-text me-2 p-1">Our online currency converter allows you to make instant conversions between the world's major currencies. Whether you're planning a trip, making international transactions or simply need to know the value of a currency, with our converter you can get updated real-time exchange rates in just seconds!</p>
                         <h4 className="featurette-heading fw-normal lh-1">Convert your Currencies Now</h4>
-                        <p>Start using our currency converter and get the most accurate and up-to-date exchange rates for all your international financial needs!</p>
+                        <p className="lead justified-text me-2 p-1">Start using our currency converter and get the most accurate and up-to-date exchange rates for all your international financial needs!</p>
                         <Link to="/converter">
                             <button type="button" className="button-modern">Converter</button>
                         </Link>
                     </div>
-                    <div className="col-md-5 order-md-1">
+                    <div className="col-md-5 order-md-1 ps-5">
                         <img src={Currency} className="rounded" alt="" />
                     </div>
                 </div>
@@ -250,9 +250,9 @@ export const Body = () => {
 
 
             {/*Testimonials*/}
-            <section className="testimonials-section py-3">
-                <div className="container">
-                <h6 className="text-center py-3">TESTIMONIALS</h6>
+            <section className="testimonials-section">
+                <div className="container-testimonials">
+                <h6 className="text-center pt-5">TESTIMONIALS</h6>
                     <h2 className="text-center fw-bold">What Our Clients Say</h2>
                     <div className="row mt-4">
                         {testimonialsData.map((testimonial, index) => (

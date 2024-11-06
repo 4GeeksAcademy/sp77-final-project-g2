@@ -18,6 +18,7 @@ import Converter from "./pages/Converter.jsx";
 import Login from "./pages/Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import Checkout from "./pages/Checkout.jsx";
 
 
 // Create your first component
@@ -43,6 +44,7 @@ const Layout = () => {
                         <Route element={<SignUp />} path="/signup" />
                         <Route element={<Dashboard />} path="/dashboard" />
                         <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<Checkout />} path="/checkout" />
                         <Route element={<h1>Not found!</h1>} path="*"/>
                     </Routes>
                     <Footer />
