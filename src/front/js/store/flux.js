@@ -119,40 +119,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			signUp: async (dataToSend) => {
-				try {
-					const uri = `${process.env.BACKEND_URL}/signup`;
-					const options = {
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/json'
-						},
-						body: JSON.stringify({
-							first_name: dataToSend.firstName,
-							last_name: dataToSend.lastName,
-							email: dataToSend.email,
-							password: dataToSend.password
-						})
-					};
-					
-					const response = await fetch(uri, options);
-					
-					if (!response.ok) {
-						const errorData = await response.json();  // Muestra los datos del error si el servidor los devuelve
-						console.log('Error en el registro:', response.status, errorData);
-						return false;
-					}
-					
-					const data = await response.json();
-					setStore({ user: data.results, isLoged: true });
-					localStorage.setItem('token', data.access_token);
-					console.log('Registro completado');
-					return true;
-				} catch (error) {
-					console.error("Error en la solicitud de registro:", error);
+				const uri = `${process.env.BACKEND_URL}/signup`;
+				const options = {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				};
+				const response = await fetch(uri, options);
+				if(!response.ok){
+					console.log(response.status);
 					return false;
 				}
-			},			
+				const data = await response.json();
 
+				localStorage.setItem('token', data.access_token);
+				localStorage.setItem('user', JSON.stringify(data.results));
+
+				setStore({ isLoged: true, user: data.results.email });
+				getActions().showAlert("Registro exitoso. Bienvenido/a!", "success");
+				return true;
+			},
 			getConvert: async (fromCurrency, toCurrency, amount) => {
 				const uri = `${process.env.BACKEND_URL}/converter?from_currency=${fromCurrency}&to_currency=${toCurrency}&amount=${amount}`;
 				const options = {
