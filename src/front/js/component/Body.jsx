@@ -204,7 +204,7 @@ export const Body = () => {
                             <button type="button" className="button-modern">News</button>
                         </Link>
                     </div>
-                    <div className="col-md-5">
+                    <div className="col-md-5 ps-5">
                         <img src={News} className="rounded" alt="" />
                     </div>
                 </div>
@@ -230,7 +230,7 @@ export const Body = () => {
                 <hr className="featurette-divider" />
 
                 <div className="row featurette">
-                    <div className="col-md-7">
+                    <div className="col-md-7 pe-5">
                         <h2 className="featurette-heading fw-normal lh-1">Convert Currencies Quickly</h2>
                         <p className="lead justified-text me-2 p-1">Our online currency converter allows you to make instant conversions between the world's major currencies. Whether you're planning a trip, making international transactions or simply need to know the value of a currency, with our converter you can get updated real-time exchange rates in just seconds!</p>
                         <h4 className="featurette-heading fw-normal lh-1">Convert your Currencies Now</h4>
@@ -239,7 +239,7 @@ export const Body = () => {
                             <button type="button" className="button-modern">Converter</button>
                         </Link>
                     </div>
-                    <div className="col-md-5 order-md-1">
+                    <div className="col-md-5 order-md-1 ps-5">
                         <img src={Currency} className="rounded" alt="" />
                     </div>
                 </div>
