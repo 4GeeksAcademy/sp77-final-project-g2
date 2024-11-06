@@ -4,8 +4,10 @@ from .ideas import ideas_bp
 from .news import news_bp
 from .converter import converter_bp
 
+
 def create_app():
     app = Flask(__name__)
+
 
     app.register_blueprint(user_bp)
     app.register_blueprint(ideas_bp)

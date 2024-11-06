@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import "../../styles/SignUp.css";
+import React, { useState, useContext } from 'react';
+import { Context } from "../store/appContext.js";
 import IconoInnovAI from '../../img/icono-innovai.png';
+import "../../styles/SignUp.css";
 
 const SignUp = () => {
+    const { actions } = useContext(Context);
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -20,20 +22,27 @@ const SignUp = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const { password } = formData;
-
+    
         const passwordValid = /(?=.*[a-zA-Z])(?=.*[!@#$%^&*])/;
-
+    
         if (!passwordValid.test(password)) {
             setErrorMessage('La contraseña debe contener al menos una letra y un signo especial.');
             return;
         }
-
+    
         setErrorMessage('');
-        console.log("Form data submitted:", formData);
         
+        // Llama a la función signUp desde flux
+        const success = await actions.signUp(formData);
+    
+        if (success) {
+            console.log("Registro completado");
+        } else {
+            setErrorMessage("Error en el registro");
+        }
     };
 
     const togglePasswordVisibility = () => {
