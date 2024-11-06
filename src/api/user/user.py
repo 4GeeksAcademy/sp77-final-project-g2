@@ -10,6 +10,8 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from werkzeug.security import generate_password_hash
+from flask import current_app
+from flask_mail import Message
 import requests
 import datetime
 
@@ -62,51 +64,86 @@ def protected():
 def signup():
     response_body = {}
     data = request.json
-    row = Users(email = data.get('email'),
-                password = data.get('password'),
-                first_name = data.get('first_name'),
-                last_name = data.get('last_name'),
-                is_active = True,
-                create_at = data.get('create_at'))
-    db.session.add(row)
-    db.session.commit()
+    
+    # Validación de campos requeridos
+    email = data.get('email')
+    password = data.get('password')
+    first_name = data.get('first_name')
+    last_name = data.get('last_name')
+    
+    if not all([email, password, first_name, last_name]):
+        return jsonify({"message": "Todos los campos son obligatorios."}), 400
 
-    response_body['message'] = f"Bienvenido/a a InnovAI"
-    response_body['results'] = {}
+    existing_user = db.session.execute(db.select(Users).where(Users.email == email)).scalar()
+    if existing_user:
+        return jsonify({"message": "El correo ya está registrado."}), 400
+
+    hashed_password = generate_password_hash(password)
+    
+    row = Users(
+        email=email,
+        password=hashed_password,
+        first_name=first_name,
+        last_name=last_name,
+        is_active=True,
+        create_at=data.get('create_at', datetime.datetime.utcnow())
+    )
+    try:
+        db.session.add(row)
+        db.session.commit()
+        print("Usuario guardado en la base de datos")
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error al guardar en la base de datos: {str(e)}")  # Mostrar el error en consola
+        return jsonify({"message": f"Error al guardar el usuario: {str(e)}"}), 500
+
+    # Generar token de acceso
+    access_token = create_access_token(identity={'email': row.email, 'user_id': row.id})
+
+    response_body['message'] = "Bienvenido/a a InnovAI"
+    response_body['access_token'] = access_token
+    response_body['results'] = row.serialize()  # Asumiendo que el método serialize existe en tu modelo
     return response_body, 200
+
+
 
 @user_bp.route('/request-password-reset', methods=['POST'])
 def request_password_reset():
-    response_body = {}
     data = request.json
     email = data.get('email')
     user = db.session.execute(db.select(Users).where(Users.email == email)).scalar()
+
     if not user:
-        response_body['message'] = "Si el correo está registrado, recibirás un enlace para restablecer tu contraseña."
-        return jsonify(response_body), 200
+        return jsonify({"message": "Si el correo está registrado, recibirás un enlace para restablecer tu contraseña."}), 200
 
+    # Generar el token de restablecimiento
     reset_token = create_access_token(identity=user.id, expires_delta=datetime.timedelta(minutes=15))
-    send_reset_email(user.email, reset_token)
+    send_reset_email(user.email, reset_token)  # Llamar a la función para enviar el correo
 
-    response_body['message'] = f"Se ha enviado un enlace para restablecer tu contraseña"
-    return jsonify(response_body), 200
-    
+    return jsonify({"message": "Se ha enviado un enlace para restablecer tu contraseña"}), 200
+
 def send_reset_email(email, token):
-    reset_url = f"https://tuapp.com/reset-password?token={token}"
-    # Implementa el envío de correo aquí (usando un servicio de correo)
-
+    # Construir el enlace de restablecimiento dinámicamente
+    reset_url = f"http://localhost:3000/reset-password?token={token}"
+    msg = Message(
+        subject="Restablecimiento de Contraseña",
+        recipients=[email],
+        body=f"Para restablecer tu contraseña, haz clic en el siguiente enlace: {reset_url}"
+    )
+    # Enviar el correo usando el contexto de la app
+    with current_app.app_context():
+        current_app.extensions['mail'].send(msg)
 
 @user_bp.route('/reset-password', methods=['POST'])
 @jwt_required()
 def reset_password():
-    response_body = {}
     data = request.json
     new_password = data.get('password')
     user_id = get_jwt_identity()
 
+    # Buscar el usuario y actualizar la contraseña
     user = db.session.execute(db.select(Users).where(Users.id == user_id)).scalar()
     user.password = generate_password_hash(new_password)
     db.session.commit()
 
-    response_body["message"] = f"Contraseña actualizada con éxito"
-    return jsonify(response_body), 200
+    return jsonify({"message": "Contraseña actualizada con éxito"}), 200

@@ -12,6 +12,7 @@ from api import create_app
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager
+from flask_mail import Mail
 
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
@@ -31,13 +32,21 @@ db.init_app(app)
 # Others configutations
 setup_admin(app)  # Add the admin
 setup_commands(app)  # Add the admin
-# app.register_blueprint(user_bp, url_prefix='/api')
-# app.register_blueprint(ideas_bp, url_prefix='/api')
-# app.register_blueprint(user_bp, url_prefix='/api')
-# app.register_blueprint(user_bp, url_prefix='/api')
+
 #  Setup the Flask-JWT.Extended extension
 app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
 jwt = JWTManager(app)
+
+# Configuración de Email
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'innovaibusines@gmail.com'  # Tu correo de Gmail
+app.config['MAIL_PASSWORD'] = 'lmawghmkmicpdbvd'  # Contraseña de aplicación
+app.config['MAIL_DEFAULT_SENDER'] = 'innovaibusines@gmail.com'  # Remitente por defecto
+
+# Inicializar mail
+mail = Mail(app)
 
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
