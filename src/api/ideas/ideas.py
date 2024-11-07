@@ -1,6 +1,3 @@
-"""
-This module takes care of starting the API Server, Loading the DB and Adding the endpoints
-"""
 import os
 from . import ideas_bp
 from flask import Flask, request, jsonify, url_for, Blueprint
@@ -88,6 +85,9 @@ def add_favorite_idea():
 def get_favorite_ideas():
     current_user = get_jwt_identity()
     favorite_ideas = FavoriteIdeas.query.filter_by(user_id=current_user['user_id']).all()
+    if not favorite_ideas:
+        return jsonify({"message": "No tienes ideas favoritas guardadas."}), 200
+
 
     results = [idea.serialize() for idea in favorite_ideas]
     return jsonify({"results": results}), 200
