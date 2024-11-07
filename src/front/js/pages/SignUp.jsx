@@ -1,86 +1,73 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
+import '../../styles/SignUp.css';
+import { useNavigate } from "react-router-dom";
 import IconoInnovAI from '../../img/icono-innovai.png';
-import "../../styles/SignUp.css";
 
 const SignUp = () => {
-    const { actions } = useContext(Context);
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: ''
-    });
-    const [errorMessage, setErrorMessage] = useState('');
+    const {store, actions} = useContext(Context);
+    const navigate = useNavigate();
+
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-    };
-
-    const handleSubmit = async (e) => {
+    const handleSignUp = async (e) => {
         e.preventDefault();
-        const { password } = formData;
-    
-        const passwordValid = /(?=.*[a-zA-Z])(?=.*[!@#$%^&*])/;
-    
-        if (!passwordValid.test(password)) {
-            setErrorMessage('La contraseña debe contener al menos una letra y un signo especial.');
-            return;
-        }
-    
-        setErrorMessage('');
+        const dataToSend = {
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            password: password,
+        };
         
-        // Llama a la función signUp desde flux
-        const success = await actions.signUp(formData);
-    
+        const success = await actions.signUp(dataToSend);
         if (success) {
-            console.log("Registro completado");
-        } else {
-            setErrorMessage("Error en el registro");
+            navigate('/dashboard');
         }
     };
 
-    const togglePasswordVisibility = () => {
+    const handlePassword = () => {
         setShowPassword(!showPassword);
-    };
+    }
 
     return (
-        <div className="signup-container">
-            <div className="signup-left">
-                <img src={IconoInnovAI} alt="Icono InnovAI" />
+        <div className="container">
+            <div className="signup-container">
+                <div className="signup-left">
+                    <img src={IconoInnovAI} alt="Icono InnovAI" />
+                </div>
+                <form onSubmit={handleSignUp} className="signup-right">
+                    <h4>We are <span>INNOVAI</span></h4>
+                    <p>Welcome back! Log in to your account to view your favorite ideas:</p>
+                    <div className="floating-label">
+                        <div className="icon"><i className="fa-solid fa-user"></i>
+                        </div>
+                        <input type="text" id="fistName" value={firstName} placeholder="First Name" onChange={(e) => setFirstName(e.target.value)} required />
+                    </div>
+                    <div className="floating-label">
+                        <div className="icon"><i className="fa-solid fa-address-card"></i></div>
+                        <input type="text" id="lastName" value={lastName} placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} required />
+                    </div>
+                    <div className="floating-label">
+                        <div className="icon"><i className="fa-solid fa-envelope"></i></div>
+                        <input type="email" id="email" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required />
+                    </div>
+                    <div className="floating-label">
+                        <div className="icon"><i className="fa-solid fa-lock"></i></div>
+                        <input type={showPassword ? "text" : "password"}  id="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
+                        <div className="icon-password" onClick={handlePassword}>
+                            <i className={showPassword ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}></i>
+                        </div>
+                    </div>
+                    <button type="submit" className="btn button-modern">Sign Up</button>
+                </form>
             </div>
-            <form onSubmit={handleSubmit} className="signup-right">
-                <h4>Register</h4>
-                <p>Create a new account to explore more features:</p>
-                <div className="floating-label">
-                    <div className="icon ms-1"><i className="fa-solid fa-font"></i></div>
-                    <input type="text" id="firstName" name="firstName" value={formData.firstName} placeholder="First Name" onChange={handleChange} required/>
-                </div>
-                <div className="floating-label">
-                    <div className="icon ms-1"><i className="fa-solid fa-b"></i></div>
-                    <input type="text" id="lastName" name="lastName" value={formData.lastName} placeholder="Last Name" onChange={handleChange} required/>
-                </div>
-                <div className="floating-label">
-                    <div className="icon ms-1"><i className="fa-solid fa-envelope"></i></div>
-                    <input type="email" id="email" name="email" value={formData.email} placeholder="Email" onChange={handleChange} required />
-                </div>
-                <div className="floating-label">
-                    <div className="icon ms-1"><i className="fa-solid fa-lock"></i></div>
-                    <input type={showPassword ? "text" : "password"} id="password" name="password" value={formData.password} placeholder="Password" onChange={handleChange} required />
-                    <button type="button" onClick={togglePasswordVisibility} className="eye-icon">
-                        <i className={`fa-solid fa-eye${showPassword ? '' : '-slash'}`}></i>
-                    </button>
-                </div>
-                {errorMessage && <p className="error-message">{errorMessage}</p>}
-                <button type="submit" className="button-modern">Sign Up</button>
-            </form>
         </div>
     );
-};
+
+}
 
 export default SignUp;
