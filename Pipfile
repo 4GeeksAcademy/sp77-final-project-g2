@@ -23,6 +23,7 @@ requests = "*"
 openai = "*"
 newsapi-python = "*"
 eventregistry = "*"
+flask-mail = "*"
 
 [requires]
 python_version = "3.10"

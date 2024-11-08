@@ -1,6 +1,3 @@
-"""
-This module takes care of starting the API Server, Loading the DB and Adding the endpoints
-"""
 from . import user_bp
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.utils import generate_sitemap, APIException
@@ -9,7 +6,11 @@ from api.models import db, Users, FavoriteIdeas
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
+from werkzeug.security import generate_password_hash
+from flask import current_app
+from flask_mail import Message
 import requests
+import datetime
 
 CORS(user_bp)
 
@@ -60,15 +61,54 @@ def protected():
 def signup():
     response_body = {}
     data = request.json
-    row = Users(email = data.get('email'),
-                password = data.get('password'),
-                first_name = data.get('first_name'),
-                last_name = data.get('last_name'),
-                is_active = True,
-                create_at = data.get('create_at'))
+    # hashed_password = generate_password_hash(data.get("password"))
+    row = Users(email = data.get("email"),
+                first_name = data.get("first_name"),
+                last_name = data.get("last_name"),
+                password = data.get("password"),
+                # hashed_password = generate_password_hash(data.get("password")),
+                is_active = True)
+    
     db.session.add(row)
     db.session.commit()
+    access_token = create_access_token(identity={'email': row.email, 'user_id': row.id})
 
-    response_body['message'] = f"Bienvenido/a a InnovAI"
+    response_body['message'] = f"Bienvenido a mi app"
     response_body['results'] = {}
     return response_body, 200
+
+@user_bp.route('/request-password-reset', methods=['POST'])
+def request_password_reset():
+    data = request.json
+    email = data.get('email')
+    user = db.session.execute(db.select(Users).where(Users.email == email)).scalar()
+    if not user:
+        return jsonify({"message": "Si el correo está registrado, recibirás un enlace para restablecer tu contraseña."}), 200
+
+    reset_token = create_access_token(identity=user.id, expires_delta=datetime.timedelta(minutes=15))
+    send_reset_email(user.email, reset_token)
+
+    return jsonify({"message": "Se ha enviado un enlace para restablecer tu contraseña"}), 200
+
+def send_reset_email(email, token):
+    reset_url = f"https://innovai.com/reset-password?token={token}"
+    msg = Message(
+        subject="Restablecimiento de Contraseña",
+        recipients=[email],
+        body=f"Para restablecer tu contraseña, haz clic en el siguiente enlace: {reset_url}"
+    )
+    with current_app.app_context():
+        current_app.extensions['mail'].send(msg)
+
+@user_bp.route('/reset-password', methods=['POST'])
+@jwt_required()
+def reset_password():
+    data = request.json
+    new_password = data.get('password')
+    user_id = get_jwt_identity()
+
+    user = db.session.execute(db.select(Users).where(Users.id == user_id)).scalar()
+    user.password = new_password
+    db.session.commit()
+
+    return jsonify({"message": "Contraseña actualizada con éxito"}), 200
