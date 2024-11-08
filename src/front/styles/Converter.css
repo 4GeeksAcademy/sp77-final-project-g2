@@ -1,6 +1,6 @@
 .converter-container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto 0 auto;
     padding: 20px;
     border-radius: 12px;
     background-color: #ffffff;
@@ -86,7 +86,7 @@
 }
 
 #container{
-    margin-top: 170px;
+    margin-top: 60px;
 }
 
 .button-modern {
