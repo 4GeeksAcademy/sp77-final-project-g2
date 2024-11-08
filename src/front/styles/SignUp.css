@@ -128,3 +128,43 @@
     top: 10px;
     color: #333;
 }
+
+/* Estilos para el modo oscuro */
+body.dark-mode .signup-container {
+    background: #121212;
+    box-shadow: 0px 2px 6px -1px rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .signup-left {
+    background-image: url("https://res.cloudinary.com/dbrzmir9f/image/upload/v1730068547/s2spqzfxnsfgeynubdhp.jpg");
+}
+
+body.dark-mode .signup-right {
+    background: #1f1f1f;
+}
+
+body.dark-mode .signup-right h4,
+body.dark-mode .signup-right p {
+    color: #fff;
+    opacity: 0.85;
+}
+
+body.dark-mode .floating-label input {
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+}
+
+body.dark-mode .floating-label input:focus {
+    border-bottom: 1px solid #00A5CF;
+    box-shadow: 0 2px 6px -2px rgba(0, 255, 255, 0.5);
+}
+
+body.dark-mode .signup-container .button-modern {
+    background-image: linear-gradient(144deg, #00A5CF, #00A5CF);
+    color: white;
+}
+
+body.dark-mode .floating-label .icon {
+    color: white;
+}

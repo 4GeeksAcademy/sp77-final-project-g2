@@ -1,9 +1,9 @@
-.ideas-generator{
+.ideas-generator {
     height: 100vh;
     overflow: hidden;
 }
 
-.ideas-generator h1{
+.ideas-generator h1 {
     font-weight: 700;
 }
 
@@ -59,7 +59,6 @@
     transform: scale(1.05);
 }
 
-/* Compatibilidad con Firefox */
 .range-slider::-moz-range-thumb {
     width: 18px;
     height: 18px;
@@ -82,7 +81,7 @@
     width: 100%;
     background-color: #f8f9fa;
     border-radius: 30px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .text-input-container:hover {
@@ -135,6 +134,7 @@
     justify-content: center;
     margin-top: 20px;
 }
+
 .generate-btn {
     background: linear-gradient(135deg, #007bff, #00a5cf);
     margin-top: 15px;
@@ -228,4 +228,71 @@
     .ideas-generator {
         flex-direction: row;
     }
+}
+
+/* Ideas Generator Dark Mode */
+.dark-mode .ideas-generator {
+    background-color: #121212; /* Fondo oscuro uniforme */
+    color: #fff;
+}
+
+.dark-mode .ideas-generator h1,
+.dark-mode .idea-title,
+.dark-mode .idea-description {
+    color: #fff;
+}
+
+.dark-mode .budget-value {
+    color: #1e90ff; /* Mantener el color azul brillante */
+}
+
+.dark-mode .text-input-container {
+    background-color: #1e1e1e; /* Fondo del input en un tono oscuro, más consistente */
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1); /* Sombras sutiles */
+}
+
+.dark-mode .input-icon {
+    color: #fff;
+}
+
+.dark-mode .text-input {
+    color: #fff;
+}
+
+.dark-mode .ideas-label {
+    color: #ccc;
+}
+
+.dark-mode .text-input::placeholder {
+    color: #999;
+}
+
+.dark-mode .generate-btn {
+    background: linear-gradient(135deg, #1e90ff, #007bff);
+}
+
+.dark-mode .idea-card {
+    background-color: #1e1e1e; /* Fondo oscuro uniforme para las tarjetas */
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1); /* Sombras sutiles */
+}
+
+.dark-mode .favorite-btn {
+    background: linear-gradient(135deg, #1e90ff, #007bff);
+}
+
+/* Ajuste para contenedor y tarjeta sin cambio de fondo */
+.ideas-generator,
+.idea-card {
+    border-radius: 20px; /* Bordes redondeados para mayor suavidad */
+    overflow: hidden; /* Para evitar desbordes y mantener el estilo limpio */
+}
+
+/* Estilo general para elementos oscuros y cohesivos */
+.dark-mode .range-slider {
+    background-color: #333;
+}
+
+.dark-mode .range-slider::-webkit-slider-thumb,
+.dark-mode .range-slider::-moz-range-thumb {
+    background-color: #1e90ff;
 }
