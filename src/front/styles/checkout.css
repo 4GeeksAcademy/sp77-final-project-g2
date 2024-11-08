@@ -114,8 +114,8 @@ body.dark-mode .checkout-page .input-group label {
 
 body.dark-mode .checkout-page .input-group input,
 body.dark-mode .checkout-page .date-inputs select {
-    color: #fff;
-    background-color: #333;
+    color: #ffffff;
+    background-color: #333333;
     border-color: rgba(255, 255, 255, 0.3);
 }
 
