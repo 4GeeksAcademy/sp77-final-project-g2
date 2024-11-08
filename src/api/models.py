@@ -23,7 +23,7 @@ class Users(db.Model):
                 'first_name': self.first_name,
                 'last_name': self.last_name,
                 'is_active': self.is_active,
-                'create_at': self.create_at}
+                'create_at': self.create_at.isoformat()}
 
 
 class FavoriteIdeas(db.Model):
