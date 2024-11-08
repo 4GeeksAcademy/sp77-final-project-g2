@@ -1,6 +1,3 @@
-"""
-This module takes care of starting the API Server, Loading the DB and Adding the endpoints
-"""
 import os
 from flask import Flask, request, jsonify, url_for, send_from_directory
 from flask_migrate import Migrate
@@ -20,6 +17,7 @@ static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../
 app = create_app()
 app.url_map.strict_slashes = False
 CORS(app, resources={r"/*": {"origins": "*"}})
+
 # Database condiguration
 db_url = os.getenv("DATABASE_URL")
 if db_url is not None:
@@ -29,6 +27,7 @@ else:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 MIGRATE = Migrate(app, db, compare_type=True)
 db.init_app(app)
+
 # Others configutations
 setup_admin(app)  # Add the admin
 setup_commands(app)  # Add the admin
@@ -41,11 +40,9 @@ jwt = JWTManager(app)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'innovaibusines@gmail.com'  # Tu correo de Gmail
-app.config['MAIL_PASSWORD'] = 'lmawghmkmicpdbvd'  # Contraseña de aplicación
-app.config['MAIL_DEFAULT_SENDER'] = 'innovaibusines@gmail.com'  # Remitente por defecto
-
-# Inicializar mail
+app.config['MAIL_USERNAME'] = 'innovaibusines@gmail.com'
+app.config['MAIL_PASSWORD'] = 'lmawghmkmicpdbvd'
+app.config['MAIL_DEFAULT_SENDER'] = 'innovaibusines@gmail.com'
 mail = Mail(app)
 
 # Handle/serialize errors like a JSON object
