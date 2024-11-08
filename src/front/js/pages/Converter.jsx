@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../store/appContext.js';
-import { FlagIcon } from 'react-flag-kit'; // Importar FlagIcon de react-flag-kit
+import { FlagIcon } from 'react-flag-kit';
 import "../../styles/Converter.css";
 
 const Converter = () => {
