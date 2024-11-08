@@ -15,7 +15,7 @@ const Payments = () => {
 
     const [email, setEmail] = useState('');
     const [cardName, setCardName] = useState('');
-    const [country, setCountry] = useState('');
+    const [country, setCountry] = useState('ES');
     const [postal, setPostal] = useState('');
 
     useEffect(() => {
@@ -74,8 +74,8 @@ const Payments = () => {
                             <div className="floating-label1 mb-3">
                                 <label>Country or region</label>
                                 <select className="form-control" value={country} onChange={(e) => setCountry(e.target.value)} required>
-                                    <option value="US">United States</option>
                                     <option value="ES">Spain</option>
+                                    <option value="US">United States</option>
                                 </select>
                                 <input type="text" className="form-control mt-2" value={postal} onChange={(e) => setPostal(e.target.value)} placeholder="ZIP" required/>
                             </div>
