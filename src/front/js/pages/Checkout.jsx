@@ -1,52 +1,56 @@
-import React from "react";
-import '../../styles/checkout.css';
+import React, { useEffect, useContext } from "react";
+import { Context } from "../store/appContext.js";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { useNavigate } from "react-router-dom";
 
-const Checkout = () => {
+const stripePromise = loadStripe("pk_test_51QIu6EFqOpeg6LLmE93py6jTJZmjVYRNxk8xTL8dgCw0ANpVMxlRQHDWDWAiNt9dT5Ed6uur2ny0n2Vv7R8tUtZS00ybM1kfdN");
+
+const Payments = () => {
+    const {store, actions} = useContext(Context);
+    const stripe = useStripe();
+    const elements = useElements();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        actions.checkoutPayment(10, "usd");
+    }, []);
+
+    const handlePayment = async (e) => {
+        e.preventDefault();
+        const cardElement = elements.getElement(CardElement);
+        const { error, paymentIntent } = await stripe.confirmCardPayment(store.clientSecret, {
+            payment_method: { card: cardElement }
+        });
+
+        if (error) {
+            console.log("Error en el pago:", error);
+        } else if (paymentIntent && paymentIntent.status === "succeeded") {
+            console.log("¡Pago realizado con éxito!");
+        }
+    }
+
     return (
-        <div className="checkout-page">
+        <div className="container">
             <div className="checkout-container">
-                <section className="checkout-left">
-                    <div className="checkout-price">
-                        <h2>Only 9.99€</h2>
+                <form onSubmit={handlePayment} className="checkout-form">
+                    <h4>Complete el Pago</h4>
+                    <div className="floating-label">
+                        <CardElement className="form-control" />
                     </div>
-                </section>
-                <section className="checkout-right">
-                    <h1>Purchase</h1>
-                    <form>
-                        <div className="input-group">
-                            <label htmlFor="cc-number">Card number:</label>
-                            <input id="cc-number" maxLength="19" placeholder="1111 2222 3333 4444" required />
-                        </div>
-
-                        <div className="input-group">
-                            <label htmlFor="expiry-date">Expire date:</label>
-                            <div className="date-inputs">
-                                <select id="expiry-month" required>
-                                    <option value="" defaultValue>Month</option>
-                                    {[...Array(12)].map((_, i) => (
-                                        <option key={i} value={i + 1}>{String(i + 1).padStart(2, '0')}</option>
-                                    ))}
-                                </select>
-                                <select id="expiry-year" required>
-                                    <option value="" defaultValue>Year</option>
-                                    {[...Array(20)].map((_, i) => (
-                                        <option key={i} value={2024 + i}>{2024 + i}</option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
-
-                        <div className="input-group">
-                            <label htmlFor="sec-code">Security code:</label>
-                            <input type="password" id="sec-code" maxLength="3" placeholder="123" required />
-                        </div>
-
-                        <button type="submit" className="button-modern">Purchase Premium</button>
-                    </form>
-                </section>
+                    <button type="submit" className="btn button-modern" disabled={!stripe}>
+                        Pagar
+                    </button>
+                </form>
             </div>
         </div>
     );
-};
+}
+
+const Checkout = () => (
+    <Elements stripe={stripePromise}>
+        <Payments />
+    </Elements>
+);
 
 export default Checkout;
