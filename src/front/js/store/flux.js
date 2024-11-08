@@ -15,7 +15,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			alert: { 
 				message: "", 
 				type: ""
-			}
+			},
+			clientSecret: null
 
 		},
 		actions: {
@@ -207,7 +208,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				console.log("Datos de ideas favoritas:", data.results);
 				setStore({ favoriteIdeas: data.results });
-			}								
+			},
+			checkoutPayment: async (amount, currency = "usd") => {
+				const uri = `${process.env.BACKEND_URL}/checkout`;
+				const options = {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						amount: amount,
+						currency: currency,
+					})
+				};
+				const response = await fetch(uri, options);
+				if(!response.ok) {
+					console.log(response.status);
+					return;
+				}
+
+				const data = await response.json();
+				setStore({ clientSecret: data.results.clientSecret });
+            	return data.results.clientSecret;
+			}
 		}
 	};
 };

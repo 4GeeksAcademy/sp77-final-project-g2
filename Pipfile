@@ -24,6 +24,7 @@ openai = "*"
 newsapi-python = "*"
 eventregistry = "*"
 flask-mail = "*"
+stripe = "*"
 
 [requires]
 python_version = "3.10"
