@@ -87,10 +87,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().showAlert("Hasta pronto!", "success");
 			},
 			isLogged: () => {
-				const token = localStorage.getItem('token')
-				if(token){
-					const userData = JSON.parse(localStorage.getItem('user'))
-					setStore({isLoged: true, user: userData})
+				const token = localStorage.getItem('token');
+				if (token) {
+					const userData = JSON.parse(localStorage.getItem('user'));
+					setStore({ isLoged: true, user: userData });
+					console.log("Usuario autenticado:", userData);
+				} else {
+					console.log("Usuario no autenticado");
 				}
 			},
 			signUp: async (dataToSend) => {

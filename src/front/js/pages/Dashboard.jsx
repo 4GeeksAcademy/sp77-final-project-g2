@@ -8,6 +8,7 @@ const Dashboard = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        actions.isLogged();
         if (!store.isLoged) {
             navigate("/login");
         } else {

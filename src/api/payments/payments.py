@@ -30,12 +30,10 @@ def create_checkout_session():
 
 @payments_bp.route('/webhook', methods=['POST'])
 def stripe_webhook():
-    # Obtiene el secreto del webhook desde las variables de entorno
     endpoint_secret = os.getenv("STRIPE_WEBHOOK_SECRET")
     stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 
     payload = request.get_data(as_text=True)
-    # Sig_header no es necesario para pruebas sin verificación de firma
     # sig_header = request.headers.get('Stripe-Signature')
 
     try:
@@ -44,18 +42,13 @@ def stripe_webhook():
         # event = stripe.Webhook.construct_event(
         #     payload, sig_header, endpoint_secret
         # )
-        event = json.loads(payload)  # Simplemente parseamos el payload a JSON
+        event = json.loads(payload)
     except ValueError as e:
-        # Payload inválido
         print("Invalid payload", e)
         return jsonify({'error': 'Invalid payload'}), 400
 
-    # Manejo de eventos específicos
     if event['type'] == 'checkout.session.completed':
         session = event['data']['object']
-        
-        # Acciones a tomar cuando se complete el pago
-        # Por ejemplo: buscar al usuario en la base de datos y actualizar su suscripción
         user_email = session['customer_details']['email']
         user = Users.query.filter_by(email=user_email).first()
         if user:
@@ -63,7 +56,6 @@ def stripe_webhook():
             db.session.commit()
             print(f"Usuario {user_email} actualizado a premium")
 
-    # Responder con un 200 para confirmar que recibimos el evento
     return jsonify({'status': 'success'}), 200
 
 
