@@ -19,7 +19,8 @@ const Dashboard = () => {
         <div className="container dashboard-container">
             <h2 className="dashboard-title">Mis Ideas Favoritas</h2>
             <p className="dashboard-subtitle">Explora y administra las ideas de negocio que has guardado</p>
-            <button className="btn btn-primary" onClick={() => navigate('/checkout')}>Become a Premium user</button>
+            <button className="btn btn-primary" onClick={() => actions.startCheckoutSession()}>Become a Premium user</button>
+
             <div className="row mt-4">
                 {store.favoriteIdeas && store.favoriteIdeas.length > 0 ? (
                     store.favoriteIdeas.map((idea, index) => (

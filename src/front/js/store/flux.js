@@ -209,27 +209,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("Datos de ideas favoritas:", data.results);
 				setStore({ favoriteIdeas: data.results });
 			},
-			checkoutPayment: async (amount, currency = "usd") => {
-				const uri = `${process.env.BACKEND_URL}/checkout`;
+			startCheckoutSession: async () => {
+				const uri = `${process.env.BACKEND_URL}/create-checkout-session`;
 				const options = {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						amount: amount,
-						currency: currency,
-					})
+					}
 				};
 				const response = await fetch(uri, options);
-				if(!response.ok) {
-					console.log(response.status);
+				if (!response.ok) {
+					console.log("Error al crear la sesión de Stripe:", response.status);
 					return;
-				}
-
+				};
 				const data = await response.json();
-				setStore({ clientSecret: data.results.clientSecret });
-            	return data.results.clientSecret;
+				window.location.href = data.url;
 			}
 		}
 	};
