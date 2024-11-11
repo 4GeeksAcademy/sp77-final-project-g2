@@ -36,6 +36,10 @@ const Dashboard = () => {
                                             <span className="detail-tag"><i className="fas fa-map-marker-alt"></i> {idea.country}</span>
                                             <span className="detail-tag"><i className="fas fa-briefcase"></i> {idea.area}</span>
                                         </div>
+                                        <div className="card-actions mt-3">
+                                            {/* <button className="btn btn-success btn-sm" onClick={() => actions.processIdea(idea)}>Empezar</button> */}
+                                            <button className="btn btn-danger btn-sm m-2" onClick={() => actions.removeFavoriteIdea(idea.id)}>Remove Idea</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

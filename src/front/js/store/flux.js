@@ -119,6 +119,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().showAlert("Registro exitoso. Bienvenido/a!", "success");
 				return true;
 			},
+			resetPassword: async (token, newPassword) => {
+				const uri = `${process.env.BACKEND_URL}/reset-password`;
+				const options = {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${token}`
+					},
+					body: JSON.stringify({ password: newPassword })
+				};
+				const response = await fetch(uri, options);
+				const data = await response.json();
+				
+				if (response.ok) {
+					getActions().showAlert("Contraseña actualizada con éxito", "success");
+				}
+				return { success: response.ok, message: data.message };
+			},
+			requestPasswordReset: async (email) => {
+				const uri = `${process.env.BACKEND_URL}/request-password-reset`;
+				const options = {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ email })
+				};
+				const response = await fetch(uri, options);
+				const data = await response.json();
+				
+				if (response.ok) {
+					getActions().showAlert("Revisa tu correo para el enlace de restablecimiento", "success");
+				}
+				return { success: response.ok, message: data.message };
+			},
 			getConvert: async (fromCurrency, toCurrency, amount) => {
 				const uri = `${process.env.BACKEND_URL}/converter?from_currency=${fromCurrency}&to_currency=${toCurrency}&amount=${amount}`;
 				const options = {
@@ -176,7 +211,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				console.log("Idea favorita guardada:", data.favoriteIdeas);
 				setStore({ favoriteIdeas: [...getStore().favoriteIdeas, data.favoriteIdea] });
+				getActions().showAlert("Nueva Idea guardada!", "success");
 			},
+			removeFavoriteIdea: async (ideaId) => {
+				const uri = `${process.env.BACKEND_URL}/favorite-ideas/${ideaId}`;
+				const token = localStorage.getItem('token');
+				const options = {
+					method: 'DELETE',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${token}`
+					}
+				};
+				
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.error("Error al eliminar la idea favorita:", response.status);
+					return;
+				}
+
+				setStore({ favoriteIdeas: getStore().favoriteIdeas.filter(idea => idea.id !== ideaId) });
+				getActions().showAlert("Idea favorita eliminada!", "success");
+			},			
 			getFavoriteIdeas: async () => {
 				const uri = `${process.env.BACKEND_URL}/favorite-ideas`;
 				const token = localStorage.getItem('token');
