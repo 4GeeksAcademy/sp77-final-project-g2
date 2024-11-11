@@ -1,3 +1,4 @@
+import os
 from . import user_bp
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.utils import generate_sitemap, APIException
@@ -67,7 +68,8 @@ def signup():
                 last_name = data.get("last_name"),
                 password = data.get("password"),
                 # hashed_password = generate_password_hash(data.get("password")),
-                is_active = True)
+                is_active = True,
+                is_premium = False)
     
     db.session.add(row)
     db.session.commit()
@@ -91,7 +93,7 @@ def request_password_reset():
     return jsonify({"message": "Se ha enviado un enlace para restablecer tu contraseña"}), 200
 
 def send_reset_email(email, token):
-    reset_url = f"https://innovai.com/reset-password?token={token}"
+    reset_url = f"https://musical-couscous-pjrg57666g7v37grg-3000.app.github.dev/reset-password?token={token}"
     msg = Message(
         subject="Restablecimiento de Contraseña",
         recipients=[email],

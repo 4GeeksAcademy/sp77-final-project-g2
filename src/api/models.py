@@ -12,6 +12,7 @@ class Users(db.Model):
     last_name = db.Column(db.String, unique =False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     create_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    is_premium = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
         return f'<User {self.id} - {self.email}>'
@@ -23,7 +24,8 @@ class Users(db.Model):
                 'first_name': self.first_name,
                 'last_name': self.last_name,
                 'is_active': self.is_active,
-                'create_at': self.create_at}
+                'create_at': self.create_at.isoformat(),
+                'is_premium': self.is_premium}
 
 
 class FavoriteIdeas(db.Model):

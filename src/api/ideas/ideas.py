@@ -83,12 +83,28 @@ def add_favorite_idea():
 @ideas_bp.route('/favorite-ideas', methods=['GET'])
 @jwt_required()
 def get_favorite_ideas():
+    response_body = {}
     current_user = get_jwt_identity()
     favorite_ideas = FavoriteIdeas.query.filter_by(user_id=current_user['user_id']).all()
     if not favorite_ideas:
         return jsonify({"message": "No tienes ideas favoritas guardadas."}), 200
-
-
+    
     results = [idea.serialize() for idea in favorite_ideas]
-    return jsonify({"results": results}), 200
 
+    response_body['message'] = f"Lista de ideas favoritas"
+    response_body['results'] = results
+    return jsonify(response_body), 200
+
+@ideas_bp.route('/favorite-ideas/<int:idea_id>', methods=['DELETE'])
+@jwt_required()
+def remove_favorite_idea(idea_id):
+    current_user = get_jwt_identity()
+    user_id = current_user['user_id']
+    favorite_idea = FavoriteIdeas.query.filter_by(id=idea_id, user_id=user_id).first()
+    
+    if not favorite_idea:
+        return jsonify({"message": "Idea favorita no encontrada o no pertenece al usuario"}), 404
+
+    db.session.delete(favorite_idea)
+    db.session.commit()
+    return jsonify({"message": "Idea favorita eliminada exitosamente"}), 200

@@ -1,49 +1,46 @@
-import React from "react";
-import '../../styles/checkout.css';
+import React, { useContext } from "react";
+import { Context } from "../store/appContext.js";
+import '../../styles/Checkout.css';
 
 const Checkout = () => {
+    const { actions } = useContext(Context);
+
+    const handlePayment = async (e) => {
+        e.preventDefault();
+        // Llamar a la acción checkoutPayment para iniciar el pago
+        await actions.checkoutPayment();
+    };
+
     return (
-        <div className="checkout-page">
-            <div className="checkout-container">
-                <section className="checkout-left">
-                    <div className="checkout-price">
-                        <h2>Only 9.99€</h2>
+        <div className="container my-3">
+            <div className="row justify-content-center container-payments">
+                <div className="subscription-details col-md-6">
+                    <div className="p-4">
+                        <h2>Subscribe to Starter</h2>
+                        <h1>12.00 € <span>per month</span></h1>
+                        <ul>
+                            <li>Starter Plan Subscription</li>
+                            <li>Billed Monthly</li>
+                        </ul>
+                        <div className="summary">
+                            <p><strong>Subtotal </strong><span>12.00 €</span></p>
+                            <p><strong>Tax </strong><span>21%</span></p>
+                            <p className="total"><strong>Total due today </strong><span>15.00 €</span></p>
+                        </div>
                     </div>
-                </section>
-                <section className="checkout-right">
-                    <h1>Purchase</h1>
-                    <form>
-                        <div className="input-group">
-                            <label htmlFor="cc-number">Card number:</label>
-                            <input id="cc-number" maxLength="19" placeholder="1111 2222 3333 4444" required />
-                        </div>
-
-                        <div className="input-group">
-                            <label htmlFor="expiry-date">Expire date:</label>
-                            <div className="date-inputs">
-                                <select id="expiry-month" required>
-                                    <option value="" defaultValue>Month</option>
-                                    {[...Array(12)].map((_, i) => (
-                                        <option key={i} value={i + 1}>{String(i + 1).padStart(2, '0')}</option>
-                                    ))}
-                                </select>
-                                <select id="expiry-year" required>
-                                    <option value="" defaultValue>Year</option>
-                                    {[...Array(20)].map((_, i) => (
-                                        <option key={i} value={2024 + i}>{2024 + i}</option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
-
-                        <div className="input-group">
-                            <label htmlFor="sec-code">Security code:</label>
-                            <input type="password" id="sec-code" maxLength="3" placeholder="123" required />
-                        </div>
-
-                        <button type="submit" className="button-modern">Purchase Premium</button>
-                    </form>
-                </section>
+                </div>
+                <div className="checkout-container col-md-6">
+                    <div className="p-4">
+                        <form onSubmit={handlePayment} className="checkout-form">
+                            <button type="submit" className="btn btn-primary w-100">
+                                Subscribe
+                            </button>
+                            <p className="text-muted mt-3">
+                                By confirming your subscription, you allow us to charge your card for this payment and future payments in accordance with the terms.
+                            </p>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import '../../styles/Login.css';
 import IconoInnovAI from '../../img/icono-innovai.png';
 
@@ -47,6 +47,7 @@ const Login = () => {
                             <i className={showPassword ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}></i>
                         </div>
                     </div>
+                    <Link to="/request-password" className="reset-password-link">¿Olvidaste tu contraseña?</Link>
                     <button type="submit" className="btn button-modern">Log In</button>
                 </form>
             </div>
