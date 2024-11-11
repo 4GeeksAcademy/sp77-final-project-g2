@@ -16,7 +16,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				message: "", 
 				type: ""
 			},
-			clientSecret: null
+			clientSecret: null,
+			tips: []
 
 		},
 		actions: {
@@ -268,6 +269,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("Datos de ideas favoritas:", data.results);
 				setStore({ favoriteIdeas: data.results });
 			},
+			getIdeaTips: async (ideaId) => {
+				const uri = `${process.env.BACKEND_URL}/favorite-ideas/${ideaId}/tips`;
+				const token = localStorage.getItem('token');
+			
+				const options = {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${token}`
+					}
+				};
+			
+				try {
+					const response = await fetch(uri, options);
+					if (!response.ok) {
+						console.error("Error al obtener los consejos:", response.status);
+						getActions().showAlert("No se pudieron cargar los consejos", "danger");
+						setStore({ tips: [] });
+						return null;
+					}
+			
+					const data = await response.json(); // Aseguramos que estamos recibiendo JSON
+					console.log("Consejos obtenidos:", data.tips);
+					setStore({ tips: data.tips });
+					return data.tips;
+				} catch (error) {
+					console.error("Error al procesar la respuesta:", error);
+					getActions().showAlert("Error al procesar la respuesta", "danger");
+					setStore({ tips: [] });
+					return null;
+				}
+			},								
 			startCheckoutSession: async () => {
 				const uri = `${process.env.BACKEND_URL}/create-checkout-session`;
 				const options = {

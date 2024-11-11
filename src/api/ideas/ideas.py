@@ -123,27 +123,43 @@ def get_idea_tips(idea_id):
     if not favorite_idea:
         return jsonify({"message": "Idea favorita no encontrada o no pertenece al usuario"}), 404
 
-    user_message = (f"Proporciona cinco consejos específicos para comenzar con la idea de negocio: "
+    user_message = (f"Proporciona tres consejos específicos, numerados y breves para comenzar con la idea de negocio: "
                     f"'{favorite_idea.title}' en el sector de {favorite_idea.area} en {favorite_idea.country} "
-                    f"con un presupuesto de {favorite_idea.budget} euros. Asegúrate de que los consejos sean "
-                    "específicos, prácticos y aborden los primeros pasos esenciales para empezar en este negocio.")
+                    f"con un presupuesto de {favorite_idea.budget} euros. "
+                    "Cada consejo debe tener un título breve seguido de una descripción. "
+                    "No incluyas formato especial como negritas, asteriscos, barras invertidas, ni introducciones. "
+                    "Usa 'Intro:' seguido del título y 'Tip:' seguido del consejo.")
 
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system",
-             "content": ("Eres un consultor de negocios que proporciona consejos específicos para ayudar a los "
-                         "emprendedores a iniciar sus proyectos de manera efectiva en diferentes sectores.")},
-            {"role": "user", "content": user_message}
-        ],
-        temperature=0.7,
-        max_completion_tokens=300,
-        n=1
-    )
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system",
+                 "content": ("Eres un consultor de negocios que proporciona consejos específicos para ayudar a los "
+                             "emprendedores a iniciar sus proyectos de manera efectiva en diferentes sectores.")},
+                {"role": "user", "content": user_message}
+            ],
+            temperature=0.5,
+            max_completion_tokens=250,
+            n=1
+        )
 
-    content = response.choices[0].message.content.strip()
-    tips = [tip.strip() for tip in content.split("\n") if tip]
+        content = response.choices[0].message.content.strip()
+        tips = []
+        for tip in content.split("Intro:")[1:]:
+            if "Tip:" in tip:
+                intro, tip_content = tip.split("Tip:")
+                intro = intro.replace("**", "").replace("\\", "").strip()
+                tip_content = tip_content.replace("**", "").replace("\\", "").strip()
+                tips.append({"intro": intro, "content": tip_content})
 
-    response_body['message'] = f"Consejos para iniciar la idea generados con éxito"
-    response_body['tips'] = tips
-    return jsonify(response_body), 200
+        response_body['message'] = "Consejos para iniciar la idea generados con éxito"
+        response_body['tips'] = tips
+        return jsonify(response_body), 200
+
+    except Exception as e:
+        print(f"Error al obtener consejos de OpenAI: {e}")
+        return jsonify({"message": "Error al obtener consejos para la idea"}), 500
+
+
+

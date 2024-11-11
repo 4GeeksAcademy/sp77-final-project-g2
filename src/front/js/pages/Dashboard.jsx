@@ -1,6 +1,7 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
 import { useNavigate } from "react-router-dom";
+import { Modal, Button } from 'react-bootstrap';
 import '../../styles/Dashboard.css';
 
 const Dashboard = () => {
@@ -17,6 +18,13 @@ const Dashboard = () => {
             actions.getFavoriteIdeas();
         }
     }, [store.isLoged]);
+
+    const handleStartIdea = async (idea) => {
+        const tips = await actions.getIdeaTips(idea.id);
+        if (tips) {
+            setShowModal(true);
+        }
+    };    
 
     return (
         <div className="container dashboard-container">
@@ -39,7 +47,7 @@ const Dashboard = () => {
                                             <span className="detail-tag"><i className="fas fa-briefcase"></i> {idea.area}</span>
                                         </div>
                                         <div className="card-actions mt-3">
-                                            <button className="btn btn-success btn-sm" onClick={() => actions.processIdea(idea)}>Empezar</button>
+                                            <button className="btn btn-success btn-sm" onClick={() => handleStartIdea(idea)}>Empezar</button>
                                             <button className="btn btn-danger btn-sm m-2" onClick={() => actions.removeFavoriteIdea(idea.id)}>Remove Idea</button>
                                         </div>
                                     </div>
@@ -57,10 +65,12 @@ const Dashboard = () => {
                     <Modal.Title>Consejos para empezar</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {tips.length > 0 ? (
+                    {store.tips.length > 0 ? (
                         <ul>
-                            {tips.map((tip, index) => (
-                                <li key={index}>{tip}</li>
+                            {store.tips.map((tip, index) => (
+                                <li key={index}>
+                                    <strong>{tip.intro}:</strong> {tip.content}
+                                </li>
                             ))}
                         </ul>
                     ) : (
@@ -68,7 +78,9 @@ const Dashboard = () => {
                     )}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowModal(false)}>Cerrar</Button>
+                    <Button variant="secondary" onClick={() => setShowModal(false)}>
+                        Cerrar
+                    </Button>
                 </Modal.Footer>
             </Modal>
         </div>
