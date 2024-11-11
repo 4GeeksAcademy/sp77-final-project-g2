@@ -108,3 +108,42 @@ def remove_favorite_idea(idea_id):
     db.session.delete(favorite_idea)
     db.session.commit()
     return jsonify({"message": "Idea favorita eliminada exitosamente"}), 200
+
+@ideas_bp.route('/favorite-ideas/<int:idea_id>/tips', methods=['GET'])
+@jwt_required()
+def get_idea_tips(idea_id):
+    response_body = {}
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"),
+                    organization=os.getenv("OPENAI_ORGANIZATION"),
+                    project=os.getenv("OPENAI_PROJECT"))
+
+    current_user = get_jwt_identity()
+    user_id = current_user['user_id']
+    favorite_idea = FavoriteIdeas.query.filter_by(id=idea_id, user_id=user_id).first()
+    if not favorite_idea:
+        return jsonify({"message": "Idea favorita no encontrada o no pertenece al usuario"}), 404
+
+    user_message = (f"Proporciona cinco consejos específicos para comenzar con la idea de negocio: "
+                    f"'{favorite_idea.title}' en el sector de {favorite_idea.area} en {favorite_idea.country} "
+                    f"con un presupuesto de {favorite_idea.budget} euros. Asegúrate de que los consejos sean "
+                    "específicos, prácticos y aborden los primeros pasos esenciales para empezar en este negocio.")
+
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system",
+             "content": ("Eres un consultor de negocios que proporciona consejos específicos para ayudar a los "
+                         "emprendedores a iniciar sus proyectos de manera efectiva en diferentes sectores.")},
+            {"role": "user", "content": user_message}
+        ],
+        temperature=0.7,
+        max_completion_tokens=300,
+        n=1
+    )
+
+    content = response.choices[0].message.content.strip()
+    tips = [tip.strip() for tip in content.split("\n") if tip]
+
+    response_body['message'] = f"Consejos para iniciar la idea generados con éxito"
+    response_body['tips'] = tips
+    return jsonify(response_body), 200

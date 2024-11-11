@@ -7,6 +7,8 @@ const Dashboard = () => {
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
 
+    const [showModal, setShowModal] = useState(false);
+
     useEffect(() => {
         actions.isLogged();
         if (!store.isLoged) {
@@ -37,7 +39,7 @@ const Dashboard = () => {
                                             <span className="detail-tag"><i className="fas fa-briefcase"></i> {idea.area}</span>
                                         </div>
                                         <div className="card-actions mt-3">
-                                            {/* <button className="btn btn-success btn-sm" onClick={() => actions.processIdea(idea)}>Empezar</button> */}
+                                            <button className="btn btn-success btn-sm" onClick={() => actions.processIdea(idea)}>Empezar</button>
                                             <button className="btn btn-danger btn-sm m-2" onClick={() => actions.removeFavoriteIdea(idea.id)}>Remove Idea</button>
                                         </div>
                                     </div>
@@ -49,6 +51,26 @@ const Dashboard = () => {
                     <p>No tienes ideas favoritas guardadas.</p>
                 )}
             </div>
+
+            <Modal show={showModal} onHide={() => setShowModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Consejos para empezar</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {tips.length > 0 ? (
+                        <ul>
+                            {tips.map((tip, index) => (
+                                <li key={index}>{tip}</li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>Cargando consejos...</p>
+                    )}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowModal(false)}>Cerrar</Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 };
