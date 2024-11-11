@@ -19,6 +19,8 @@ import Login from "./pages/Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Checkout from "./pages/Checkout.jsx";
+import ResetPassword from "./pages/ResetPassword.jsx";
+import RequestPassword from "./pages/RequestPassword.jsx";
 
 
 // Create your first component
@@ -45,6 +47,8 @@ const Layout = () => {
                         <Route element={<Dashboard />} path="/dashboard" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<Checkout />} path="/checkout" />
+                        <Route element={<ResetPassword />} path="/reset-password" />
+                        <Route element={<RequestPassword />} path="/request-password" />
                         <Route element={<h1>Not found!</h1>} path="*"/>
                     </Routes>
                     <Footer />
