@@ -64,7 +64,7 @@ body.dark-mode .dropdown-item:hover {
 
 /* Formularios */
 body.dark-mode .form-control {
-  background-color: black;
+  background-color: #161616;
   color: #ffffff;
   border: 1px solid #444;
 }
@@ -74,19 +74,19 @@ body.dark-mode .form-control::placeholder {
 }
 
 body.dark-mode .form-control:focus {
-  background-color: black;
+  background-color: #161616;
   border-color: var(--primary-color);
 }
 
 /* Tarjetas */
 body.dark-mode .card {
-  background-color: black;
+  background-color: #161616;
   color: white;
   border: none;
 }
 
 body.dark-mode .carousel {
-  background-color: black;
+  background-color: #161616;
   color: white;
   border: none;
 }
@@ -99,7 +99,7 @@ body.dark-mode .corporation {
 
 /* Carousel */
 body.dark-mode .carousel-item {
-  background-color: black;
+  background-color: #161616;
   color: white;
 }
 
@@ -132,13 +132,13 @@ body.dark-mode .lead {
 
 /* Accordion */
 body.dark-mode .accordion-button {
-  background-color: black;
+  background-color: #161616;
   color: #e0e0e0;
-  border: 1px solid black;
+  border: 1px solid #161616;
 }
 
 body.dark-mode .accordion-item {
-  background-color: black;
+  background-color: #161616;
   border: none;
 }
 
@@ -150,7 +150,7 @@ body.dark-mode .rounded {
 
 /* Testimoniales */
 body.dark-mode .testimonials-section {
-  background-color: black;
+  background-color: #161616;
 }
 
 body.dark-mode .testimonials-section h2, 
@@ -161,7 +161,7 @@ body.dark-mode .testimonials-section p {
 
 /* Corporation */
 body.dark-mode #Corporation {
-  background-color: black;
+  background-color: #161616;
   color: white;
 }
 
@@ -185,7 +185,7 @@ body.dark-mode .accordion-button:hover {
 }
 
 footer.dark-mode {
-  background-color: black;
+  background-color: #161616;
   color: white;
 }
 
