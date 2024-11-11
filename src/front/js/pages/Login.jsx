@@ -28,7 +28,7 @@ const Login = () => {
     }
 
     return (
-        <div className="container">
+        <div className="container d-flex flex-column min-vh-100" id="container">
             <div className="login-container">
                 <div className="login-left">
                     <img src={IconoInnovAI} alt="Icono InnovAI" />

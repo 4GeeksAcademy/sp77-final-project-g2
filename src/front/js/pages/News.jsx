@@ -21,7 +21,7 @@ const News = () => {
     };
 
     return (
-        <div className="container news-container">
+        <div className="container d-flex flex-column min-vh-100 news-container">
             <h1>Featured News</h1>
             <p className="text-center">Select a news category</p>
             <div className="row mb-3 justify-content-center">

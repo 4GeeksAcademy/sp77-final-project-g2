@@ -32,6 +32,8 @@ const Converter = () => {
     };
 
     return (
+        <div className="container d-flex flex-column min-vh-100">
+
         <div className="converter-container" id="container">
             <h2>Currency converter</h2>
             <p className="subtitle">Easily convert currencies from one country to another</p>
@@ -44,7 +46,7 @@ const Converter = () => {
 
                 <div className="currency-selector">
                     <div className="currency-option">
-                        <FlagIcon code={currencyOptions.find(c => c.code === fromCurrency).country} size={24} style={{ marginRight: '8px' }} id="flag" />
+                        <FlagIcon code={currencyOptions.find(c => c.code === fromCurrency).country} size={24} style={{ marginRight: '0px' }} id="flag" />
                         <select id="fromCurrency" value={fromCurrency} onChange={(e) => setFromCurrency(e.target.value)}>
                             {currencyOptions.map((currency, index) => (
                                 <option key={index} value={currency.code}>
@@ -54,7 +56,7 @@ const Converter = () => {
                         </select>
                     </div>
 
-                    <span onClick={swapCurrencies} style={{ cursor: 'pointer', fontSize: '1.5rem', color: '#007bff', fontWeight: 'bold' }}>⇄</span>
+                    <span onClick={swapCurrencies} style={{ cursor: 'pointer', fontSize: '1.5rem', color: '#007bff', fontWeight: 'bold', marginTop: '15px' }}>⇄</span>
 
                     <div className="currency-option">
                         <FlagIcon code={currencyOptions.find(c => c.code === toCurrency).country} size={24} style={{ marginRight: '8px' }} id="flag" />
@@ -68,7 +70,7 @@ const Converter = () => {
                     </div>
                 </div>
 
-                <button className="button-modern" onClick={handleConvert}>Convert</button>
+                <button className="button-modern" onClick={handleConvert} style={{ marginRight: '150px'}}>Convert</button>
             </div>
 
             {/* Mostrar Resultado de Conversión */}
@@ -78,6 +80,7 @@ const Converter = () => {
                     <p>Converted amount: <strong> {store.convertedAmount} {toCurrency}</strong></p>
                 </div>
             )}
+        </div>
         </div>
     );
 }

@@ -34,7 +34,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className="container">
+        <div className="container d-flex flex-column min-vh-100">
             <div className="signup-container">
                 <div className="signup-left">
                     <img src={IconoInnovAI} alt="Icono InnovAI" />

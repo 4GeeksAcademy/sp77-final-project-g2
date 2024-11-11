@@ -27,6 +27,7 @@ const Dashboard = () => {
     };    
 
     return (
+        <div className="container d-flex flex-column min-vh-100">
         <div className="container dashboard-container">
             <h2 className="dashboard-title">Mis Ideas Favoritas</h2>
             <p className="dashboard-subtitle">Explora y administra las ideas de negocio que has guardado</p>
@@ -83,6 +84,7 @@ const Dashboard = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+        </div>
         </div>
     );
 };
