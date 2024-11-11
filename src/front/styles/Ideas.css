@@ -232,7 +232,7 @@
 
 /* Ideas Generator Dark Mode */
 .dark-mode .ideas-generator {
-    background-color: #121212; /* Fondo oscuro uniforme */
+    background-color: #161616;
     color: #fff;
 }
 
@@ -243,12 +243,12 @@
 }
 
 .dark-mode .budget-value {
-    color: #1e90ff; /* Mantener el color azul brillante */
+    color: #1e90ff;
 }
 
 .dark-mode .text-input-container {
-    background-color: #1e1e1e; /* Fondo del input en un tono oscuro, más consistente */
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1); /* Sombras sutiles */
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
 
 .dark-mode .input-icon {
@@ -272,22 +272,20 @@
 }
 
 .dark-mode .idea-card {
-    background-color: #1e1e1e; /* Fondo oscuro uniforme para las tarjetas */
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1); /* Sombras sutiles */
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
 
 .dark-mode .favorite-btn {
     background: linear-gradient(135deg, #1e90ff, #007bff);
 }
 
-/* Ajuste para contenedor y tarjeta sin cambio de fondo */
 .ideas-generator,
 .idea-card {
-    border-radius: 20px; /* Bordes redondeados para mayor suavidad */
-    overflow: hidden; /* Para evitar desbordes y mantener el estilo limpio */
+    border-radius: 20px;
+    overflow: hidden;
 }
 
-/* Estilo general para elementos oscuros y cohesivos */
 .dark-mode .range-slider {
     background-color: #333;
 }

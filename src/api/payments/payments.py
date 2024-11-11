@@ -21,8 +21,8 @@ def create_checkout_session():
         "quantity": 1,
     }],
     mode="subscription",
-    success_url="https://musical-couscous-pjrg57666g7v37grg-3000.app.github.dev/dashboard",
-    cancel_url="https://musical-couscous-pjrg57666g7v37grg-3000.app.github.dev/")
+    success_url="https://verbose-parakeet-7vr9g45rp4r62r9v-3000.app.github.dev/dashboard",
+    cancel_url="https://verbose-parakeet-7vr9g45rp4r62r9v-3000.app.github.dev/")
 
     response_body['message'] = f"Pago exitoso"
     response_body['url'] = session.url

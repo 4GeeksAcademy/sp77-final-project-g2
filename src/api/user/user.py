@@ -93,7 +93,7 @@ def request_password_reset():
     return jsonify({"message": "Se ha enviado un enlace para restablecer tu contraseña"}), 200
 
 def send_reset_email(email, token):
-    reset_url = f"https://musical-couscous-pjrg57666g7v37grg-3000.app.github.dev/reset-password?token={token}"
+    reset_url = f"https://verbose-parakeet-7vr9g45rp4r62r9v-3000.app.github.dev/reset-password?token={token}"
     msg = Message(
         subject="Restablecimiento de Contraseña",
         recipients=[email],
@@ -114,3 +114,25 @@ def reset_password():
     db.session.commit()
 
     return jsonify({"message": "Contraseña actualizada con éxito"}), 200
+
+@user_bp.route('/admin/users/<int:user_id>', methods=['PUT'])
+@jwt_required()
+def update_user(user_id):
+    response_body = {}
+    data = request.json
+
+    # Obtener el usuario desde la base de datos
+    user = db.session.execute(db.select(Users).where(Users.id == user_id)).scalar()
+
+    if not user:
+        response_body['message'] = "Usuario no encontrado"
+        return response_body, 404
+
+    # Actualizar los campos del usuario
+    user.first_name = data.get('first_name', user.first_name)
+    user.last_name = data.get('last_name', user.last_name)
+    db.session.commit()
+
+    response_body['message'] = "Usuario actualizado con éxito"
+    response_body['results'] = user.serialize()
+    return response_body, 200
