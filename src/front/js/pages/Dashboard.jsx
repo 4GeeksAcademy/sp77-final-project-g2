@@ -8,6 +8,7 @@ const Dashboard = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        actions.isLogged();
         if (!store.isLoged) {
             navigate("/login");
         } else {
@@ -19,7 +20,8 @@ const Dashboard = () => {
         <div className="container dashboard-container">
             <h2 className="dashboard-title">Mis Ideas Favoritas</h2>
             <p className="dashboard-subtitle">Explora y administra las ideas de negocio que has guardado</p>
-            <button className="btn btn-primary" onClick={() => navigate('/checkout')}>Become a Premium user</button>
+            <button className="btn btn-primary" onClick={() => actions.startCheckoutSession()}>Become a Premium user</button>
+
             <div className="row mt-4">
                 {store.favoriteIdeas && store.favoriteIdeas.length > 0 ? (
                     store.favoriteIdeas.map((idea, index) => (
@@ -33,6 +35,10 @@ const Dashboard = () => {
                                             <span className="detail-tag"> <i className="fas fa-euro-sign"></i> {idea.budget}€</span>
                                             <span className="detail-tag"><i className="fas fa-map-marker-alt"></i> {idea.country}</span>
                                             <span className="detail-tag"><i className="fas fa-briefcase"></i> {idea.area}</span>
+                                        </div>
+                                        <div className="card-actions mt-3">
+                                            {/* <button className="btn btn-success btn-sm" onClick={() => actions.processIdea(idea)}>Empezar</button> */}
+                                            <button className="btn btn-danger btn-sm m-2" onClick={() => actions.removeFavoriteIdea(idea.id)}>Remove Idea</button>
                                         </div>
                                     </div>
                                 </div>

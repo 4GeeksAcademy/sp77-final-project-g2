@@ -93,7 +93,7 @@ def request_password_reset():
     return jsonify({"message": "Se ha enviado un enlace para restablecer tu contraseña"}), 200
 
 def send_reset_email(email, token):
-    reset_url = f"https://innovai.com/reset-password?token={token}"
+    reset_url = f"https://musical-couscous-pjrg57666g7v37grg-3000.app.github.dev/reset-password?token={token}"
     msg = Message(
         subject="Restablecimiento de Contraseña",
         recipients=[email],
