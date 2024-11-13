@@ -12,6 +12,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			user: {},
 			isLoged: false,
+			isPremium: false,
 			alert: { 
 				message: "", 
 				type: ""
@@ -77,7 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				localStorage.setItem('token', data.access_token);
 				localStorage.setItem('user', JSON.stringify(data.results));
-				setStore({isLoged: true, user: data.results.email});
+				setStore({isLoged: true, user: data.results.email, isPremium: data.results.is_premium});
 				getActions().showAlert("Bienvenido de nuevo!", "success");
 				return true;
 			},
@@ -91,7 +92,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const token = localStorage.getItem('token');
 				if (token) {
 					const userData = JSON.parse(localStorage.getItem('user'));
-					setStore({ isLoged: true, user: userData });
+					setStore({ isLoged: true, user: userData, isPremium: userData.is_premium });
 					console.log("Usuario autenticado:", userData);
 				} else {
 					console.log("Usuario no autenticado");
@@ -191,8 +192,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json()
 			},
 			addFavoriteIdea: async (newFavorite) => {
-				console.log("Saving favorite idea:", newFavorite);
 				const token = localStorage.getItem('token');
+				if (!token) {
+					console.error("Token no encontrado. El usuario no está autenticado.");
+					getActions().showAlert("Por favor, inicia sesión para agregar ideas a favoritos.", "warning");
+					return;
+				}
+			
 				const uri = `${process.env.BACKEND_URL}/favorite-ideas`;
 				const options = {
 					method: 'POST',
@@ -203,17 +209,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(newFavorite)
 				};
 			
-				const response = await fetch(uri, options);
-				if (!response.ok) {
-					console.error("Error al guardar la idea favorita:", response.status);
-					return;
-				}
+				try {
+					const response = await fetch(uri, options);
+					if (!response.ok) {
+						const errorData = await response.json();
+						console.error("Error al guardar la idea favorita:", errorData.message || response.status);
+						getActions().showAlert("Error al guardar la idea favorita: " + (errorData.message || "Inténtalo nuevamente"), "danger");
+						return;
+					}
 			
-				const data = await response.json();
-				console.log("Idea favorita guardada:", data.favoriteIdeas);
-				setStore({ favoriteIdeas: [...getStore().favoriteIdeas, data.favoriteIdea] });
-				getActions().showAlert("Nueva Idea guardada!", "success");
-			},
+					const data = await response.json();
+					console.log("Respuesta del backend:", data);
+			
+					// Verifica si 'favoriteIdea' existe en la respuesta
+					if (data.favoriteIdea) {
+						setStore({ favoriteIdeas: [...getStore().favoriteIdeas, data.favoriteIdea] });
+						getActions().showAlert("Nueva Idea guardada!", "success");
+					} else {
+						console.error("La respuesta no contiene 'favoriteIdea'.", data);
+						getActions().showAlert("Error al guardar la idea favorita. Respuesta inesperada del servidor.", "danger");
+					}
+				} catch (error) {
+					console.error("Error de red o de servidor:", error);
+					getActions().showAlert("Error de red. Inténtalo nuevamente.", "danger");
+				}
+			},			
 			removeFavoriteIdea: async (ideaId) => {
 				const uri = `${process.env.BACKEND_URL}/favorite-ideas/${ideaId}`;
 				const token = localStorage.getItem('token');
@@ -270,6 +290,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ favoriteIdeas: data.results });
 			},
 			getIdeaTips: async (ideaId) => {
+				if (!getStore().isPremium) {
+					getActions().showAlert("Necesitas ser un usuario premium para acceder a esta función.", "warning");
+					return null;
+				}
+
 				const uri = `${process.env.BACKEND_URL}/favorite-ideas/${ideaId}/tips`;
 				const token = localStorage.getItem('token');
 			
@@ -290,8 +315,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return null;
 					}
 			
-					const data = await response.json(); // Aseguramos que estamos recibiendo JSON
-					console.log("Consejos obtenidos:", data.tips);
+					const data = await response.json();
 					setStore({ tips: data.tips });
 					return data.tips;
 				} catch (error) {
@@ -316,7 +340,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				const data = await response.json();
 				window.location.href = data.url;
-			}
+			},
+			checkPremiumStatus: async () => {
+				const token = localStorage.getItem('token');
+				if (!token) {
+					console.error("Token no encontrado. El usuario no está autenticado.");
+					return;
+				}
+			
+				const uri = `${process.env.BACKEND_URL}/user-status`;
+				const options = {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${token}`
+					}
+				};
+			
+				try {
+					const response = await fetch(uri, options);
+					if (!response.ok) {
+						console.error("Error al verificar el estado de premium:", response.status);
+						return;
+					}
+			
+					const data = await response.json();
+					console.log("Estado de usuario actualizado:", data);
+					setStore({ isPremium: data.is_premium });
+				} catch (error) {
+					console.error("Error de red o de servidor al verificar el estado de premium:", error);
+				}
+			}			
 		}
 	};
 };

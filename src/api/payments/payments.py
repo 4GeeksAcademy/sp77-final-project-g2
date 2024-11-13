@@ -3,6 +3,9 @@ import json
 from . import payments_bp
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.utils import generate_sitemap, APIException
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
 from flask_cors import CORS
 from api.models import db, Users
 import stripe
@@ -21,8 +24,8 @@ def create_checkout_session():
         "quantity": 1,
     }],
     mode="subscription",
-    success_url="https://verbose-parakeet-7vr9g45rp4r62r9v-3000.app.github.dev/dashboard",
-    cancel_url="https://verbose-parakeet-7vr9g45rp4r62r9v-3000.app.github.dev/")
+    success_url="https://musical-couscous-pjrg57666g7v37grg-3000.app.github.dev/dashboard",
+    cancel_url="https://musical-couscous-pjrg57666g7v37grg-3000.app.github.dev/")
 
     response_body['message'] = f"Pago exitoso"
     response_body['url'] = session.url
@@ -58,4 +61,12 @@ def stripe_webhook():
 
     return jsonify({'status': 'success'}), 200
 
+@payments_bp.route('/user-status', methods=['GET'])
+@jwt_required()
+def user_status():
+    current_user = get_jwt_identity()
+    user = Users.query.filter_by(id=current_user['user_id']).first()
+    if not user:
+        return jsonify({"message": "Usuario no encontrado"}), 404
 
+    return jsonify({"is_premium": user.is_premium}), 200
