@@ -221,13 +221,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await response.json();
 					console.log("Respuesta del backend:", data);
 			
-					// Verifica si 'favoriteIdea' existe en la respuesta
 					if (data.favoriteIdea) {
 						setStore({ favoriteIdeas: [...getStore().favoriteIdeas, data.favoriteIdea] });
 						getActions().showAlert("Nueva Idea guardada!", "success");
 					} else {
 						console.error("La respuesta no contiene 'favoriteIdea'.", data);
-						getActions().showAlert("Error al guardar la idea favorita. Respuesta inesperada del servidor.", "danger");
+						getActions().showAlert("Suscribete para guardar la idea", "warning");
 					}
 				} catch (error) {
 					console.error("Error de red o de servidor:", error);
