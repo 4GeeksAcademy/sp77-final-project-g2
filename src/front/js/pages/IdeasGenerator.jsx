@@ -76,11 +76,7 @@ const IdeasGenerator = () => {
                                     <div className="idea-card-content">
                                         <h5 className="idea-title">{item.title}</h5>
                                         <p className="idea-description">{item.description}</p>
-                                        <button
-                                            className="favorite-btn"
-                                            onClick={() => handleFavorite(item)}
-                                            style={{ color: favoriteIdeas.includes(item.title) ? "#ffd700" : "#ffffff" }} // Cambia el color si es favorito
-                                        >
+                                        <button className="favorite-btn" onClick={() => handleFavorite(item)} style={{ color: favoriteIdeas.includes(item.title) ? "#ffd700" : "#ffffff" }}>
                                             <i className="fas fa-lightbulb"></i>
                                         </button>
 
