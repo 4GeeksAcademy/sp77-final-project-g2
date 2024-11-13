@@ -4,11 +4,10 @@ import '../../styles/Ideas.css';
 
 const IdeasGenerator = () => {
     const { store, actions } = useContext(Context);
+
     const [country, setCountry] = useState('');
     const [budget, setBudget] = useState(1000);
     const [area, setArea] = useState('');
-    const [favoriteIdeas, setFavoriteIdeas] = useState([]);
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,7 +23,6 @@ const IdeasGenerator = () => {
             country
         };
         actions.addFavoriteIdea(newFavorite);
-        setFavoriteIdeas((prevFavorites) => [...prevFavorites, item.title]);
     };
     
 
@@ -76,10 +74,9 @@ const IdeasGenerator = () => {
                                     <div className="idea-card-content">
                                         <h5 className="idea-title">{item.title}</h5>
                                         <p className="idea-description">{item.description}</p>
-                                        <button className="favorite-btn" onClick={() => handleFavorite(item)} style={{ color: favoriteIdeas.includes(item.title) ? "#ffd700" : "#ffffff" }}>
+                                        <button className="favorite-btn" onClick={() => handleFavorite(item)} style={{ color: store.favoriteIdeas.some(fav => fav.title === item.title) ? "#ffd700" : "#ffffff" }}>
                                             <i className="fas fa-lightbulb"></i>
                                         </button>
-
                                     </div>
                                 </div>
                             ))}
