@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Slider1 from "../../img/Slider1.jpg";
 import Slider2 from "../../img/Slider2.jpg";
 import Slider3 from "../../img/Slider3.jpg";
@@ -33,9 +33,10 @@ const testimonialsData = [
 ];
 
 export const Body = () => {
+    const navigate = useNavigate();
+
     return (
         <main>
-            {/*Carousel*/}
             <div id="carouselExampleCaptions" className="carousel slide">
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -48,9 +49,7 @@ export const Body = () => {
                         <div className="carousel-caption d-none d-md-block">
                             <h5>Do you have a project in mind?</h5>
                             <p>We will help you with our AI chat</p>
-                            <Link to="/Login">
-                                <button type="button" className="button-modern">NEWS</button>
-                            </Link>
+                            <button type="button" className="btn button-slider" onClick={() => navigate('/news')}>NEWS</button>
                         </div>
                     </div>
                     <div className="carousel-item">
@@ -58,9 +57,7 @@ export const Body = () => {
                         <div className="carousel-caption d-none d-md-block">
                             <h5>AI will give you the best ideas</h5>
                             <p>Choose a budget for your project, we will give you several ideas for your business</p>
-                            <Link to="/Login">
-                                <button type="button" className="button-modern">ADVISOR</button>
-                            </Link>
+                            <button type="button" className="button-slider" onClick={() => navigate('/advisor')}>ADVISOR</button>
                         </div>
                     </div>
                     <div className="carousel-item">
@@ -68,9 +65,7 @@ export const Body = () => {
                         <div className="carousel-caption d-none d-md-block">
                             <h5>The power of AI in your hands</h5>
                             <p>With AI and your answers we will customize the project that best suits you</p>
-                            <Link to="/Login">
-                                <button type="button" className="button-modern">LOG IN</button>
-                            </Link>
+                            <button type="button" className="button-slider" onClick={() => navigate('/login')}>LOG IN</button>
                         </div>
                     </div>
                 </div>
@@ -83,60 +78,41 @@ export const Body = () => {
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
-
-
-            {/*Info*/}
-            <div className="container-info">
-                <h6 className="text-center pb-3">INTRO</h6>
+            <div className="container-info my-5">
+                <h6 className="text-center pb-3">BUSINESS</h6>
                 <div className="text-center pb-3 pt-0">
-                    <h1>We bring your projects and ideas to </h1>
-                    <h1>life with artificial intelligence</h1>
+                    <h2>We bring your projects and ideas to <br />life with artificial intelligence</h2>
+                    <hr />
                 </div>
-                <div className="row">
-                    <div className="col-lg-4">
+                <div className="row services-cont">
+                    <div className="col-lg-4 service">
                         <lord-icon src="https://cdn.lordicon.com/akbjoiow.json" trigger="loop" colors="primary:#121331,secondary:#00A5CF" stroke="65" state="loop" style={{ width: "90px", height: "90px" }}></lord-icon>
-                        <h2 className="fw-normal text-center mt-0">About Us</h2>
-                        <p className="justified-text ms-3 me-3">At our team, we believe that the best business ideas can come at any time, and we are here to help you bring them to life.</p>
-                        <p><a className="button-modern" href="#">View details »</a></p>
+                        <h2>About Us</h2>
+                        <p className="justified-text">At our team, we believe that the best business ideas can come at any time, and we are here to help you bring them to life.</p>
                     </div>
-
-                    <div className="col-lg-4">
+                    <div className="col-lg-4 service">
                         <lord-icon src="https://cdn.lordicon.com/xajhwwxi.json" trigger="loop" delay="500" colors="primary:#3a3347,secondary:#646e78,tertiary:#00A5CF" style={{ width: "100px", height: "100px" }}></lord-icon>
-                        <h2 className="fw-normal text-center mt-0">Service</h2>
-                        <p className="justified-text ms-3 me-3">We offer a variety of services tailored to specific project needs. Through our chat you can have ideas for ventures immediately.</p>
-                        <p><a className="button-modern" href="#">View details »</a></p>
+                        <h2>Service</h2>
+                        <p className="justified-text">We offer a variety of services tailored to specific project needs. Through our chat you can have ideas for ventures immediately.</p>
                     </div>
-
-                    <div className="col-lg-4">
+                    <div className="col-lg-4 service">
                         <lord-icon src="https://cdn.lordicon.com/emnyyrrn.json" trigger="loop" delay="500" colors="primary:#121331,secondary:#646e78,tertiary:#00A5CF,quaternary:#ebe6ef" style={{ width: "120px", height: "120px" }}></lord-icon>
-                        <h2 className="fw-normal text-center mt-0">Contact</h2>
-                        <p className="justified-text ms-3 me-3">Ready to elevate your project? Sign up now to start using AI for free, explore creative solutions, and unlock endless project ideas.</p>
-                        <p><a className="button-modern" href="#">View details »</a></p>
+                        <h2>Contact</h2>
+                        <p className="justified-text">Ready to elevate your project? Sign up now to start using AI for free, explore creative solutions, and unlock endless project ideas.</p>
                     </div>
-
                 </div>
-
-
-                {/*Corporation*/}
-                <hr />
                 <div id="Corporation">
                     <div className="container justify-content-center py-5" id="corporate-section">
                         <div className="row align-items-center">
-                            {/* Columna de texto */}
                             <div className="col-md-4 d-flex flex-column mb-4">
                                 <h1 className="fw-bold">The</h1>
                                 <h1 className="fw-bold">Corporate</h1>
                                 <p className="mb-0">At INNOVAI, we believe in driving</p>
                                 <p className="mt-0">innovation and excellence.</p>
-
-                                {/* Acordeón Bootstrap */}
                                 <div className="accordion" id="accordionExample">
-                                    {/* Misión */}
                                     <div className="accordion-item">
                                         <h2 className="accordion-header" id="headingOne">
-                                            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                Our Mission
-                                            </button>
+                                            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Our Mission</button>
                                         </h2>
                                         <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                                             <div className="accordion-body">
@@ -144,13 +120,9 @@ export const Body = () => {
                                             </div>
                                         </div>
                                     </div>
-
-                                    {/* Valores */}
                                     <div className="accordion-item">
                                         <h2 className="accordion-header" id="headingTwo">
-                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                Our Values
-                                            </button>
+                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Our Values</button>
                                         </h2>
                                         <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                             <div className="accordion-body">
@@ -163,13 +135,9 @@ export const Body = () => {
                                             </div>
                                         </div>
                                     </div>
-
-                                    {/* Únete a Nosotros */}
                                     <div className="accordion-item">
                                         <h2 className="accordion-header" id="headingThree">
-                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                Join Us in Our Journey
-                                            </button>
+                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Join Us in Our Journey</button>
                                         </h2>
                                         <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                             <div className="accordion-body">
@@ -179,21 +147,13 @@ export const Body = () => {
                                     </div>
                                 </div>
                             </div>
-
-                            {/* Columna de imagen */}
                             <div className="col-md-6">
                                 <img src={Corporation} alt="Corporation" className="img-fluid rounded" id="img-corporation"/>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-                {/*Sections*/}
-                <hr className="featurette-divider" />
-
                 <div className="row featurette">
-                <h6 className="text-center py-3">FEATURES</h6>
                     <div className="col-md-7">
                         <h2 className="featurette-heading fw-normal">Latest News</h2>
                         <h4 className="featurette-heading fw-normal">Stay Informed with Our Relevant News</h4>

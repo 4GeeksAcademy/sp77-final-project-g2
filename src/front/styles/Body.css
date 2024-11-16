@@ -24,21 +24,38 @@
   margin-bottom: 20px;
 }
 
-.col-lg-4 {
-  text-align: center; /* Para centrar el ícono y el texto */
+hr {
+  border-bottom: 2px solid #000000;
+  border-radius: 5px;
+  text-align: center;
+  margin: 20px auto;
+  width: 7%;
 }
 
-h2 {
+.services-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0px auto;
+}
+
+.service {
+  padding: 30px;
+  max-width: 400px;
+}
+
+.service h2 {
   margin-top: 20px;
 }
 
 .corporate-section {
-  color: #f8f9fa; /* Color de texto secundario */
+  color: #f8f9fa;
 }
 
 .corporate-section ul {
-  list-style-type: none; /* Eliminar los puntos de la lista */
-  padding: 0; /* Eliminar padding */
+  list-style-type: none;
+  padding: 0;
 }
 
 .corporate-section .btn {
@@ -46,27 +63,27 @@ h2 {
 }
 
 .testimonials-section {
-  background-color: #f8f9fa; /* Fondo claro */
+  background-color: #f8f9fa;
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
 .testimonials-section h2 {
   margin-bottom: 30px;
-  color: #343a40; /* Color de texto oscuro */
+  color: #343a40;
 }
 
 .testimonials-section img {
-  width: 100px; /* Ancho de las imágenes de los testimonios */
-  height: 100px; /* Alto de las imágenes de los testimonios */
+  width: 100px;
+  height: 100px;
 }
 
 .testimonials-section p {
-  font-style: italic; /* Estilo en cursiva para el testimonio */
+  font-style: italic;
 }
 
 .testimonials-section .lead {
-  color: #495057; /* Color del texto del testimonio */
+  color: #495057;
 }
 
 #img-corporation {
@@ -82,17 +99,22 @@ h2 {
   background-color: #f8f9fa;
 }
 
-.button-modern {
-  background-image: linear-gradient(144deg, #00A5CF, #161616);
-  border: none;
-  padding: 10px 20px;
-  font-family: 'Barlow', sans-serif;
-  font-size: 1rem;
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+.button-slider {
+  background: linear-gradient(135deg, #007bff, #00a5cf);
+    margin-top: 15px;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    transition: background 0.3s, transform 0.2s;
+}
+
+.button-slider:hover {
+  background: linear-gradient(135deg, #00a5cf, #007bff);
+  transform: translateY(-2px);
+  color: #ffffff;
 }
 
 .justified-text {
