@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Slider1 from "../../img/Slider-1.jpg";
-import Slider2 from "../../img/Slider-2.jpg";
-import Slider3 from "../../img/Slider-3.jpg";
-import About from "../../img/About.jpg";
-import Service from "../../img/Service.jpg";
-import Contact from "../../img/Contact.jpg";
+import Slider1 from "../../img/Slider1.jpg";
+import Slider2 from "../../img/Slider2.jpg";
+import Slider3 from "../../img/Slider3.jpg";
+
 import News from "../../img/News.jpg";
 import Currency from "../../img/Currency.jpg";
 import Corporation from "../../img/Corporation.jpg"
@@ -51,7 +49,7 @@ export const Body = () => {
                             <h5>Do you have a project in mind?</h5>
                             <p>We will help you with our AI chat</p>
                             <Link to="/Login">
-                                <button type="button" className="button-modern">Log In</button>
+                                <button type="button" className="button-modern">NEWS</button>
                             </Link>
                         </div>
                     </div>
@@ -61,7 +59,7 @@ export const Body = () => {
                             <h5>AI will give you the best ideas</h5>
                             <p>Choose a budget for your project, we will give you several ideas for your business</p>
                             <Link to="/Login">
-                                <button type="button" className="button-modern">Log In</button>
+                                <button type="button" className="button-modern">ADVISOR</button>
                             </Link>
                         </div>
                     </div>
@@ -71,7 +69,7 @@ export const Body = () => {
                             <h5>The power of AI in your hands</h5>
                             <p>With AI and your answers we will customize the project that best suits you</p>
                             <Link to="/Login">
-                                <button type="button" className="button-modern">Log In</button>
+                                <button type="button" className="button-modern">LOG IN</button>
                             </Link>
                         </div>
                     </div>
@@ -96,21 +94,21 @@ export const Body = () => {
                 </div>
                 <div className="row">
                     <div className="col-lg-4">
-                        <span id="info-img" className="mb-0"><i className="fa-solid fa-users"></i></span>
+                        <lord-icon src="https://cdn.lordicon.com/akbjoiow.json" trigger="loop" colors="primary:#121331,secondary:#00A5CF" stroke="65" state="loop" style={{ width: "90px", height: "90px" }}></lord-icon>
                         <h2 className="fw-normal text-center mt-0">About Us</h2>
                         <p className="justified-text ms-3 me-3">At our team, we believe that the best business ideas can come at any time, and we are here to help you bring them to life.</p>
                         <p><a className="button-modern" href="#">View details »</a></p>
                     </div>
 
                     <div className="col-lg-4">
-                        <span id="info-img" className="mb-0"><i className="fa-solid fa-building"></i></span>
+                        <lord-icon src="https://cdn.lordicon.com/xajhwwxi.json" trigger="loop" delay="500" colors="primary:#3a3347,secondary:#646e78,tertiary:#00A5CF" style={{ width: "100px", height: "100px" }}></lord-icon>
                         <h2 className="fw-normal text-center mt-0">Service</h2>
                         <p className="justified-text ms-3 me-3">We offer a variety of services tailored to specific project needs. Through our chat you can have ideas for ventures immediately.</p>
                         <p><a className="button-modern" href="#">View details »</a></p>
                     </div>
 
                     <div className="col-lg-4">
-                        <span id="info-img" className="mb-0"><i className="fa-solid fa-address-book"></i></span>
+                        <lord-icon src="https://cdn.lordicon.com/emnyyrrn.json" trigger="loop" delay="500" colors="primary:#121331,secondary:#646e78,tertiary:#00A5CF,quaternary:#ebe6ef" style={{ width: "120px", height: "120px" }}></lord-icon>
                         <h2 className="fw-normal text-center mt-0">Contact</h2>
                         <p className="justified-text ms-3 me-3">Ready to elevate your project? Sign up now to start using AI for free, explore creative solutions, and unlock endless project ideas.</p>
                         <p><a className="button-modern" href="#">View details »</a></p>
