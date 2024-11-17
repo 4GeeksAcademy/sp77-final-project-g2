@@ -1,36 +1,13 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Slider1 from "../../img/Slider1.jpg";
 import Slider2 from "../../img/Slider2.jpg";
 import Slider3 from "../../img/Slider3.jpg";
 
 import News from "../../img/News.jpg";
 import Currency from "../../img/Currency.jpg";
-import Corporation from "../../img/Corporation.jpg"
 import ChatIA from "../../img/ChatIA.png";
 import "../../styles/Body.css";
-
-
-const testimonialsData = [
-    {
-        name: "John Doe",
-        position: "CEO of ExampleCorp",
-        testimonial: "This service transformed our business! The AI ideas provided were game-changers.",
-        image: "https://randomuser.me/api/portraits/men/25.jpg",
-    },
-    {
-        name: "Jane Smith",
-        position: "Founder of Creative Solutions",
-        testimonial: "The team was incredibly supportive and helped us generate innovative ideas and solutions.",
-        image: "https://randomuser.me/api/portraits/women/26.jpg",
-    },
-    {
-        name: "Michael Brown",
-        position: "Marketing Director at Tech Innovations",
-        testimonial: "An amazing and seamless experience! The AI chat feature is incredibly intuitive and helpful.",
-        image: "https://randomuser.me/api/portraits/men/24.jpg",
-    },
-];
 
 export const Body = () => {
     const navigate = useNavigate();
@@ -78,7 +55,7 @@ export const Body = () => {
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
-            <div className="container-info my-5">
+            <div className="container-services my-5">
                 <h6 className="text-center pb-3">BUSINESS</h6>
                 <div className="text-center pb-3 pt-0">
                     <h2>We bring your projects and ideas to <br />life with artificial intelligence</h2>
@@ -98,7 +75,7 @@ export const Body = () => {
                     <div className="col-lg-4 service">
                         <lord-icon src="https://cdn.lordicon.com/emnyyrrn.json" trigger="loop" delay="500" colors="primary:#121331,secondary:#646e78,tertiary:#00A5CF,quaternary:#ebe6ef" style={{ width: "120px", height: "120px" }}></lord-icon>
                         <h2>Contact</h2>
-                        <p className="justified-text">Ready to elevate your project? Sign up now to start using AI for free, explore creative solutions, and unlock endless project ideas.</p>
+                        <p className="justified-text">Ready to elevate your project? Sign up now to start using AI for free, explore creative solutions.</p>
                     </div>
                 </div>
             </div>
@@ -118,7 +95,7 @@ export const Body = () => {
                             <li>Genera ideas ilimitadas</li>
                             <li>Crea y administra tu cuenta</li>
                         </ul>
-                        <button className="pricing-button pricing-button-basic">Log In</button>
+                        <button type="button" className="btn pricing-button" onClick={() => navigate('/advisor')}>Advisor</button>
                     </div>
                     <div className="pricing-card pricing-premium">
                         <h2 className="pricing-title">Premium</h2>
@@ -129,7 +106,7 @@ export const Body = () => {
                             <li>Guarda tus ideas favoritas</li>
                             <li>Aprende cómo empezar</li>
                         </ul>
-                        <button className="pricing-button pricing-button-premium">Become Premium</button>
+                        <button type="button" className="btn pricing-button" onClick={() => navigate('/login')}>Become Premium</button>
                     </div>
                 </div>
             </div>

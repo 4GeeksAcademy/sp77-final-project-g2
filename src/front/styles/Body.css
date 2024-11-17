@@ -50,13 +50,19 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
   margin: 0px auto;
 }
 
 .service {
-  padding: 30px;
-  max-width: 400px;
+  padding: 20px;
+  margin: 10px;
+  max-width: 350px;
+  min-width: 350px;
+  max-height: 350px;
+  min-height: 350px;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .service h2 {
@@ -147,26 +153,21 @@ hr {
   font-weight: 300;
 }
 
-.pricing-features li::before {
-  color: #00a5cf;
-  margin-right: 0.8rem;
-}
-
 .pricing-button {
   background: linear-gradient(135deg, #007bff, #00a5cf);
   border: none;
-  color: white;
+  color: #ffffff;
   font-size: 1rem;
-  padding: 0.8rem 1.5rem;
+  padding: 0.6rem 2.1rem;
   border-radius: 30px;
   box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-  cursor: pointer;
   transition: transform 0.2s, background 0.3s ease;
 }
 
 .pricing-button:hover {
   background: linear-gradient(135deg, #00a5cf, #007bff);
   transform: translateY(-2px);
+  color: #ffffff;
 }
 
 @media (max-width: 768px) {
