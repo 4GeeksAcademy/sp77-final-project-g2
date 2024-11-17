@@ -103,53 +103,39 @@ export const Body = () => {
                 </div>
             </div>
 
-            <div className="intro-container">
-                <div className="corporate">
-                    <div className="row corporate">
-                        <div className="col-md-6 corporate-left">
-                            <h2>The<br /> Corporate</h2>
-                            <p>At INNOVAI, we believe in driving<br /> innovation and excellence.</p>
-                            <div className="accordion" id="accordionExample">
-                                <div className="accordion-item">
-                                    <h2 className="accordion-header" id="headingOne">
-                                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Our Mission</button>
-                                    </h2>
-                                    <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                                        <div className="accordion-body">
-                                            <p className="justified-text">To be a global leader in AI solutions, helping businesses everywhere turn ideas into real results.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="accordion-item">
-                                    <h2 className="accordion-header" id="headingTwo">
-                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Our Values</button>
-                                    </h2>
-                                    <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                        <div className="accordion-body">
-                                            <ul className="list-group">
-                                                <li>Integrity</li>
-                                                <li>Innovation</li>
-                                                <li>Customer Focus</li>
-                                                <li>Collaboration</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="accordion-item">
-                                    <h2 className="accordion-header" id="headingThree">
-                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Join Us in Our Journey</button>
-                                    </h2>
-                                    <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                        <div className="accordion-body">
-                                            <p className="justified-text">We are always looking for talented individuals to join our team. If you share our passion for technology and innovation.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 corporate-right">
-                            <img src={Corporation} alt="Corporation" className="img-fluid rounded"/>
-                        </div>
+            <div className="pricing-container d-flex flex-column flex-md-row">
+                <div className="pricing-card free-plan">
+                    <div className="pricing-card-header">
+                        <h3>Plan Gratuito</h3>
+                    </div>
+                    <div className="pricing-card-body">
+                        <p className="plan-description">Empieza de forma gratuita.</p>
+                        <ul className="feature-list">
+                            <li>✔️ Genera ideas ilimitadas</li>
+                            <li>✔️ Crea y administra tu cuenta</li>
+                        </ul>
+                        <p className="price">0.00 €/mes</p>
+                    </div>
+                    <div className="pricing-card-footer">
+                        <button className="btn-free">Empieza Gratis</button>
+                    </div>
+                </div>
+
+                <div className="pricing-card premium-plan">
+                    <div className="pricing-card-header">
+                        <h3>Plan Premium</h3>
+                    </div>
+                    <div className="pricing-card-body">
+                        <p className="plan-description">Desbloquea todo el potencial.</p>
+                        <ul className="feature-list">
+                            <li>✔️ Genera ideas ilimitadas</li>
+                            <li>✔️ Guarda tus ideas favoritas</li>
+                            <li>✔️ Aprende cómo empezar</li>
+                        </ul>
+                        <p className="price">12.00 €/mes</p>
+                    </div>
+                    <div className="pricing-card-footer">
+                        <button className="btn-premium">Hazte Premium</button>
                     </div>
                 </div>
             </div>
@@ -194,24 +180,6 @@ export const Body = () => {
                     </div>
                 </div>
             </div>
-
-            <section className="testimonials-section">
-                <div className="container-testimonials">
-                <h6 className="text-center pt-5">TESTIMONIALS</h6>
-                    <h2 className="text-center fw-bold">What Our Clients Say</h2>
-                    <div className="row mt-4">
-                        {testimonialsData.map((testimonial, index) => (
-                            <div className="col-md-4 text-center mb-4" key={index}>
-                                <img src={testimonial.image} alt={testimonial.name} className="img-fluid rounded-circle mb-3" />
-                                <h5>{testimonial.name}</h5>
-                                <h6 className="text-muted">{testimonial.position}</h6>
-                                <p className="lead">{`"${testimonial.testimonial}"`}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
         </main>
-
     );
 };

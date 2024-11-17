@@ -63,24 +63,126 @@ hr {
   margin-top: 20px;
 }
 
-/*---CORPORATE---*/
-.corporate-section {
-  color: #f8f9fa;
+/*---PRICING---*/
+/* Contenedor principal */
+.pricing-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
 }
 
-.corporate-section ul {
-  list-style-type: none;
+/* Tarjetas */
+.pricing-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  max-width: 350px;
+  width: 100%;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Header */
+.pricing-card-header {
+  background: linear-gradient(135deg, #007bff, #00a5cf);
+  color: #ffffff;
+  padding: 15px;
+  border-radius: 12px 12px 0 0;
+  font-size: 1.5rem;
+}
+
+.premium-plan .pricing-card-header {
+  background: linear-gradient(135deg, #003a70, #0056b3);
+}
+
+/* Cuerpo */
+.pricing-card-body {
+  padding: 1rem 0;
+}
+
+.plan-description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.feature-list {
+  list-style: none;
   padding: 0;
+  margin: 0;
+  text-align: left;
+  color: #333;
 }
 
-.corporate-section .btn {
-  margin-top: 10px;
+.feature-list li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
 }
 
-.corporate-right img{
-  max-width: 60%;
+/* Precio */
+.price {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  color: #007bff;
 }
 
+.premium-plan .price {
+  color: #003a70;
+}
+
+/* Footer */
+.pricing-card-footer {
+  margin-top: 1rem;
+}
+
+.btn-free,
+.btn-premium {
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-free {
+  background-color: #f8f9fa;
+  color: #007bff;
+}
+
+.btn-free:hover {
+  background-color: #007bff;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-premium {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.btn-premium:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Responsivo */
+@media (max-width: 767px) {
+  .pricing-container {
+      flex-direction: column;
+  }
+}
+
+/*---RESUME---*/
 .resume{
   display: flex;
   align-items: center;
@@ -98,34 +200,4 @@ hr {
 .resume img {
   border-radius: 20px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-}
-
-/*---TESTIMONIALS---*/
-.testimonials-section {
-  background-color: #f8f9fa;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.testimonials-section h2 {
-  margin-bottom: 30px;
-  color: #343a40;
-}
-
-.testimonials-section img {
-  width: 100px;
-  height: 100px;
-}
-
-.testimonials-section p {
-  font-style: italic;
-}
-
-.testimonials-section .lead {
-  color: #495057;
-}
-
-.container-testimonials{
-  margin-left: 220px;
-  margin-right: 220px;
 }
