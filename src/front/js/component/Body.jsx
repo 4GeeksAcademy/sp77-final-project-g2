@@ -103,39 +103,33 @@ export const Body = () => {
                 </div>
             </div>
 
-            <div className="pricing-container d-flex flex-column flex-md-row">
-                <div className="pricing-card free-plan">
-                    <div className="pricing-card-header">
-                        <h3>Plan Gratuito</h3>
-                    </div>
-                    <div className="pricing-card-body">
-                        <p className="plan-description">Empieza de forma gratuita.</p>
-                        <ul className="feature-list">
-                            <li>✔️ Genera ideas ilimitadas</li>
-                            <li>✔️ Crea y administra tu cuenta</li>
-                        </ul>
-                        <p className="price">0.00 €/mes</p>
-                    </div>
-                    <div className="pricing-card-footer">
-                        <button className="btn-free">Empieza Gratis</button>
-                    </div>
+            <div className="price-container">
+                <h6 className="pb-3">PRICING</h6>
+                <div className=" pb-3 pt-0">
+                    <h2>We bring your projects and ideas to <br />life with artificial intelligence</h2>
+                    <hr />
                 </div>
-
-                <div className="pricing-card premium-plan">
-                    <div className="pricing-card-header">
-                        <h3>Plan Premium</h3>
-                    </div>
-                    <div className="pricing-card-body">
-                        <p className="plan-description">Desbloquea todo el potencial.</p>
-                        <ul className="feature-list">
-                            <li>✔️ Genera ideas ilimitadas</li>
-                            <li>✔️ Guarda tus ideas favoritas</li>
-                            <li>✔️ Aprende cómo empezar</li>
+                <div className="pricing-container pricing-flex">
+                    <div className="pricing-card pricing-basic">
+                        <h2 className="pricing-title">Básico</h2>
+                        <h4 className="pricing-price">Gratis</h4>
+                        <span className="pricing-subtitle">Genera ideas ilimitadas</span>
+                        <ul className="pricing-features">
+                            <li>Genera ideas ilimitadas</li>
+                            <li>Crea y administra tu cuenta</li>
                         </ul>
-                        <p className="price">12.00 €/mes</p>
+                        <button className="pricing-button pricing-button-basic">Log In</button>
                     </div>
-                    <div className="pricing-card-footer">
-                        <button className="btn-premium">Hazte Premium</button>
+                    <div className="pricing-card pricing-premium">
+                        <h2 className="pricing-title">Premium</h2>
+                        <h4 className="pricing-price">12.00 € / mes</h4>
+                        <span className="pricing-subtitle">Acceso completo</span>
+                        <ul className="pricing-features">
+                            <li>Genera ideas ilimitadas</li>
+                            <li>Guarda tus ideas favoritas</li>
+                            <li>Aprende cómo empezar</li>
+                        </ul>
+                        <button className="pricing-button pricing-button-premium">Become Premium</button>
                     </div>
                 </div>
             </div>
