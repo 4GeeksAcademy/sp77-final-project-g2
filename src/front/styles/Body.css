@@ -1,3 +1,4 @@
+/*---CAROUSEL---*/
 .carousel-inner, .carousel-item {
   height: 100vh;
 }
@@ -18,12 +19,25 @@
   transform: scale(1);
 }
 
-#info-img {
-  display: block;
-  font-size: 150px;
-  margin-bottom: 20px;
+.button-slider {
+  background: linear-gradient(135deg, #007bff, #00a5cf);
+  margin-top: 15px;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 10px 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  transition: background 0.3s, transform 0.2s;
 }
 
+.button-slider:hover {
+  background: linear-gradient(135deg, #00a5cf, #007bff);
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+/*---BUSINESS---*/
 hr {
   border-bottom: 2px solid #000000;
   border-radius: 5px;
@@ -49,6 +63,7 @@ hr {
   margin-top: 20px;
 }
 
+/*---CORPORATE---*/
 .corporate-section {
   color: #f8f9fa;
 }
@@ -62,6 +77,30 @@ hr {
   margin-top: 10px;
 }
 
+.corporate-right img{
+  max-width: 60%;
+}
+
+.resume{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resume div {
+  padding: 20px 30px;
+}
+
+.resume .info{
+  text-align: justify;
+}
+
+.resume img {
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+/*---TESTIMONIALS---*/
 .testimonials-section {
   background-color: #f8f9fa;
   padding-top: 20px;
@@ -84,47 +123,6 @@ hr {
 
 .testimonials-section .lead {
   color: #495057;
-}
-
-#img-corporation {
-  margin-left: 100px;
-  width: 900px;
-}
-
-#corporate-section {
-  margin-left: 100px;
-}
-
-#Corporation {
-  background-color: #f8f9fa;
-}
-
-.button-slider {
-  background: linear-gradient(135deg, #007bff, #00a5cf);
-    margin-top: 15px;
-    border: none;
-    color: white;
-    font-size: 1rem;
-    padding: 10px 30px;
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-    transition: background 0.3s, transform 0.2s;
-}
-
-.button-slider:hover {
-  background: linear-gradient(135deg, #00a5cf, #007bff);
-  transform: translateY(-2px);
-  color: #ffffff;
-}
-
-.justified-text {
-  text-align: justify;
-}
-
-.container-info  {
-  margin-top: 50px;
-  margin-left: 220px;
-  margin-right: 220px;
 }
 
 .container-testimonials{

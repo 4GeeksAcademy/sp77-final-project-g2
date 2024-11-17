@@ -36,7 +36,7 @@ export const Body = () => {
     const navigate = useNavigate();
 
     return (
-        <main>
+        <main className="container">
             <div id="carouselExampleCaptions" className="carousel slide">
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -101,113 +101,100 @@ export const Body = () => {
                         <p className="justified-text">Ready to elevate your project? Sign up now to start using AI for free, explore creative solutions, and unlock endless project ideas.</p>
                     </div>
                 </div>
-                <div id="Corporation">
-                    <div className="container justify-content-center py-5" id="corporate-section">
-                        <div className="row align-items-center">
-                            <div className="col-md-4 d-flex flex-column mb-4">
-                                <h1 className="fw-bold">The</h1>
-                                <h1 className="fw-bold">Corporate</h1>
-                                <p className="mb-0">At INNOVAI, we believe in driving</p>
-                                <p className="mt-0">innovation and excellence.</p>
-                                <div className="accordion" id="accordionExample">
-                                    <div className="accordion-item">
-                                        <h2 className="accordion-header" id="headingOne">
-                                            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Our Mission</button>
-                                        </h2>
-                                        <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                                            <div className="accordion-body">
-                                                <p className="justified-text">To be a global leader in AI solutions, helping businesses everywhere turn ideas into real results.</p>
-                                            </div>
+            </div>
+
+            <div className="intro-container">
+                <div className="corporate">
+                    <div className="row corporate">
+                        <div className="col-md-6 corporate-left">
+                            <h2>The<br /> Corporate</h2>
+                            <p>At INNOVAI, we believe in driving<br /> innovation and excellence.</p>
+                            <div className="accordion" id="accordionExample">
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header" id="headingOne">
+                                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Our Mission</button>
+                                    </h2>
+                                    <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                        <div className="accordion-body">
+                                            <p className="justified-text">To be a global leader in AI solutions, helping businesses everywhere turn ideas into real results.</p>
                                         </div>
                                     </div>
-                                    <div className="accordion-item">
-                                        <h2 className="accordion-header" id="headingTwo">
-                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Our Values</button>
-                                        </h2>
-                                        <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                            <div className="accordion-body">
-                                                <ul className="list-group">
-                                                    <li>Integrity</li>
-                                                    <li>Innovation</li>
-                                                    <li>Customer Focus</li>
-                                                    <li>Collaboration</li>
-                                                </ul>
-                                            </div>
+                                </div>
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header" id="headingTwo">
+                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Our Values</button>
+                                    </h2>
+                                    <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div className="accordion-body">
+                                            <ul className="list-group">
+                                                <li>Integrity</li>
+                                                <li>Innovation</li>
+                                                <li>Customer Focus</li>
+                                                <li>Collaboration</li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <div className="accordion-item">
-                                        <h2 className="accordion-header" id="headingThree">
-                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Join Us in Our Journey</button>
-                                        </h2>
-                                        <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                            <div className="accordion-body">
-                                                <p className="justified-text">We are always looking for talented individuals to join our team. If you share our passion for technology and innovation.</p>
-                                            </div>
+                                </div>
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header" id="headingThree">
+                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Join Us in Our Journey</button>
+                                    </h2>
+                                    <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div className="accordion-body">
+                                            <p className="justified-text">We are always looking for talented individuals to join our team. If you share our passion for technology and innovation.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6">
-                                <img src={Corporation} alt="Corporation" className="img-fluid rounded" id="img-corporation"/>
-                            </div>
+                        </div>
+                        <div className="col-md-6 corporate-right">
+                            <img src={Corporation} alt="Corporation" className="img-fluid rounded"/>
                         </div>
                     </div>
                 </div>
-                <div className="row featurette">
-                    <div className="col-md-7">
-                        <h2 className="featurette-heading fw-normal">Latest News</h2>
-                        <h4 className="featurette-heading fw-normal">Stay Informed with Our Relevant News</h4>
-                        <p className="lead justified-text me-3 pt-1">In this section we bring you the latest news related to the world of artificial intelligence, technological innovation and the impact they have on the creation of business projects. Our team of experts makes sure to provide you with the latest and most valuable information so that you are always aware of the trends that can transform your ideas into successes.</p>
-                        <Link to="/news">
-                            <button type="button" className="button-modern">News</button>
-                        </Link>
-                    </div>
-                    <div className="col-md-5 ps-5">
-                        <img src={News} className="rounded" alt="" />
-                    </div>
-                </div>
-
-                <hr className="featurette-divider" />
-
-                <div className="row featurette py-4">
-                    <div className="col-md-7 order-md-2">
-                        <h2 className="featurette-heading fw-normal lh-1">Smart Conversions To Boost Your Ideas</h2>
-                        <p className="lead justified-text me-2 p-1">Our AI-powered chat tool is designed to give you personalized support in real-time. With just a few clicks, you can access innovative ideas, fast solutions, and expert advice tailored to your needs. Explore everything our AI has to offer!</p>
-                        <br />
-                        <h4 className="featurette-heading fw-normal lh-1">Ready to get started?</h4>
-                        <p className="lead justified-text me-2 p-1">Talking to our AI is easy! Start a conversation now and find out how we can help you take your project to the next level.</p>
-                        <Link to="/advisor">
-                            <button type="button" className="button-modern">Advisor</button>
-                        </Link>
-                    </div>
-                    <div className="col-md-5">
-                        <img src={ChatIA} className="rounded" alt="" />
-                    </div>
-                </div>
-
-                <hr className="featurette-divider" />
-
-                <div className="row featurette">
-                    <div className="col-md-7 pe-5">
-                        <h2 className="featurette-heading fw-normal lh-1">Convert Currencies Quickly</h2>
-                        <p className="lead justified-text me-2 p-1">Our online currency converter allows you to make instant conversions between the world's major currencies. Whether you're planning a trip, making international transactions or simply need to know the value of a currency, with our converter you can get updated real-time exchange rates in just seconds!</p>
-                        <h4 className="featurette-heading fw-normal lh-1">Convert your Currencies Now</h4>
-                        <p className="lead justified-text me-2 p-1">Start using our currency converter and get the most accurate and up-to-date exchange rates for all your international financial needs!</p>
-                        <Link to="/converter">
-                            <button type="button" className="button-modern">Converter</button>
-                        </Link>
-                    </div>
-                    <div className="col-md-5 order-md-1 ps-5">
-                        <img src={Currency} className="rounded" alt="" />
-                    </div>
-                </div>
-
-                <hr className="featurette-divider" />
-
             </div>
 
+            <div className="resume-container">
+                <div className="row resume">
+                    <div className="col-md-7 info">
+                        <h2 className="">Latest News</h2>
+                        <p className="">In this section we bring you the latest news related to the world of artificial intelligence, technological innovation and the impact they have on the creation of business projects. Our team of experts makes sure to provide you with the latest and most valuable information so that you are always aware of the trends that can transform your ideas into successes.</p>
+                        <button type="button" className="button-slider" onClick={() => navigate('/news')}>News</button>
+                    </div>
+                    <div className="col-md-5">
+                        <img src={News} />
+                    </div>
+                </div>
 
-            {/*Testimonials*/}
+                <div className="row resume">
+                    <div className="col-md-5">
+                        <img src={ChatIA} />
+                    </div>
+                    <div className="col-md-7 info">
+                        <h2 className="">Smart Conversions To Boost Your Ideas</h2>
+                        <p className="">
+                            Our AI-powered chat tool is designed to give you personalized support in real-time. With just a few clicks, you can access innovative ideas, fast solutions, and expert advice tailored to your needs. Explore everything our AI has to offer!
+                            Talking to our AI is easy! Start a conversation now and find out how we can help you take your project to the next level.
+                        </p>
+                        <button type="button" className="button-slider" onClick={() => navigate('/advisor')}>Advisor</button>
+                    </div>
+                </div>
+
+                <div className="row resume">
+                    <div className="col-md-7 info">
+                        <h2 className="">Convert Currencies Quickly</h2>
+                        <p className="">
+                            Our online currency converter allows you to make instant conversions between the world's major currencies. Whether you're planning a trip, making international transactions or simply need to know the value of a currency, with our converter you can get updated real-time exchange rates in just seconds!
+                            Start using our currency converter and get the most accurate and up-to-date exchange rates for all your international financial needs!
+                        </p>
+                        <button type="button" className="button-slider" onClick={() => navigate('/converter')}>Converter</button>
+                    </div>
+                    <div className="col-md-5">
+                        <img src={Currency} />
+                    </div>
+                </div>
+            </div>
+
             <section className="testimonials-section">
                 <div className="container-testimonials">
                 <h6 className="text-center pt-5">TESTIMONIALS</h6>
@@ -224,7 +211,6 @@ export const Body = () => {
                     </div>
                 </div>
             </section>
-
         </main>
 
     );
