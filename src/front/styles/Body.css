@@ -38,6 +38,9 @@
 }
 
 /*---BUSINESS---*/
+.container-home{
+  padding-top: 30px !important;
+}
 hr {
   border-bottom: 2px solid #000000;
   border-radius: 5px;
