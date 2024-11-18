@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
 import '../../styles/Converter.css';
 
-const CurrencyConverter = () => {
+const Converter = () => {
     const { store, actions } = useContext(Context);
     const [fromCurrency, setFromCurrency] = useState("EUR");
     const [toCurrency, setToCurrency] = useState("USD");
@@ -88,4 +88,4 @@ const CurrencyConverter = () => {
     );
 };
 
-export default CurrencyConverter;
+export default Converter;
