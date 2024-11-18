@@ -35,7 +35,7 @@ class FavoriteIdeas(db.Model):
     country = db.Column(db.String, unique=False, nullable=False)
     area = db.Column(db.String, unique=False, nullable=False)
     budget = db.Column(db.Integer, unique=False, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'))
 
     def __repr__(self):
         return f'FavoriteIdea {self.id} - {self.title}'
