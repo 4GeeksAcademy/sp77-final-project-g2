@@ -33,6 +33,9 @@ const CurrencyConverter = () => {
 
     return (
         <div className="container">
+            <h1>Currency Converter</h1>
+            <p className="text-center">Select a news category</p>
+            <hr />
             <div className="currency-converter">
                 <form onSubmit={handleConvert} className="converter-form">
                     <div className="input-row">
