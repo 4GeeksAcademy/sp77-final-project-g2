@@ -268,25 +268,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				};
 			
-				const response = await fetch(uri, options);
-				console.log("Status:", response.status);
+				try {
+					const response = await fetch(uri, options);
+					console.log("Status:", response.status);
 			
-				if (!response.ok) {
-					if (response.status === 403) {
-						console.error("Acceso denegado: Token inválido o sesión expirada.");
+					if (!response.ok) {
+						console.error("Error al obtener ideas favoritas:", response.status);
 						return;
 					}
-					if (response.status === 404) {
-						console.error("Recurso no encontrado");
-						return;
+			
+					const data = await response.json();
+					console.log("Datos de ideas favoritas:", data.results);
+					
+					if (Array.isArray(data.results)) {
+						setStore({ favoriteIdeas: data.results });
+						console.log("favoriteIdeas actualizado en el estado:", getStore().favoriteIdeas);
+					} else {
+						console.error("La respuesta no contiene un array de resultados.");
+						setStore({ favoriteIdeas: [] });
 					}
-					console.error("Error al obtener ideas favoritas:", response.status);
-					return;
+				} catch (error) {
+					console.error("Error al obtener las ideas favoritas:", error);
 				}
-			
-				const data = await response.json();
-				console.log("Datos de ideas favoritas:", data.results);
-				setStore({ favoriteIdeas: data.results });
 			},
 			getIdeaTips: async (ideaId) => {
 				if (!getStore().isPremium) {
