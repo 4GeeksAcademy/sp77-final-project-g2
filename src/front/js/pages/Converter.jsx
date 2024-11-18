@@ -1,88 +1,91 @@
-import React, { useState, useContext } from 'react';
-import { Context } from '../store/appContext.js';
-import { FlagIcon } from 'react-flag-kit';
-import "../../styles/Converter.css";
+import React, { useContext, useState } from "react";
+import { Context } from "../store/appContext.js";
+import '../../styles/Converter.css';
 
 const Converter = () => {
     const { store, actions } = useContext(Context);
-    const [fromCurrency, setFromCurrency] = useState('USD');
-    const [toCurrency, setToCurrency] = useState('EUR');
-    const [amount, setAmount] = useState(0);
+    const [fromCurrency, setFromCurrency] = useState("EUR");
+    const [toCurrency, setToCurrency] = useState("USD");
+    const [amount, setAmount] = useState("");
 
-    const currencyOptions = [
-        { code: 'USD', country: 'US' },
-        { code: 'EUR', country: 'EU' },
-        { code: 'JPY', country: 'JP' },
-        { code: 'GBP', country: 'GB' },
-        { code: 'CHF', country: 'CH' },
-        { code: 'ARS', country: 'AR' },
-        { code: 'AUD', country: 'AU' },
-        { code: 'CAD', country: 'CA' }
-    ];
-
-    const filteredToCurrencyOptions = currencyOptions.filter(currency => currency.code !== fromCurrency);
-
-    const handleConvert = () => {
-        actions.getConvert(fromCurrency, toCurrency, amount);
+    const handleConvert = async (e) => {
+        e.preventDefault();
+        if (fromCurrency && toCurrency && amount) {
+            await actions.getConvert(fromCurrency, toCurrency, amount);
+        } else {
+            actions.showAlert("Por favor, completa todos los campos", "danger");
+        }
     };
 
     const swapCurrencies = () => {
+        const temp = fromCurrency;
         setFromCurrency(toCurrency);
-        setToCurrency(fromCurrency);
+        setToCurrency(temp);
     };
 
+    const currencies = [
+        { code: "EUR", name: "Euro", flag: "https://flagcdn.com/w40/eu.png" },
+        { code: "USD", name: "Dólar Estadounidense", flag: "https://flagcdn.com/w40/us.png" },
+        { code: "GBP", name: "Libra Esterlina", flag: "https://flagcdn.com/w40/gb.png" },
+        { code: "JPY", name: "Yen Japonés", flag: "https://flagcdn.com/w40/jp.png" },
+        { code: "AUD", name: "Dólar Australiano", flag: "https://flagcdn.com/w40/au.png" },
+    ];
+
     return (
-        <div className="container d-flex flex-column min-vh-100">
-
-        <div className="converter-container" id="container">
-            <h2>Currency converter</h2>
-            <p className="subtitle">Easily convert currencies from one country to another</p>
-
-            <div className="conversion-box">
-                <div className="amount-input">
-                    <label htmlFor="amount">Amount:</label>
-                    <input type="number" id="amount" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="1.00" required />
-                </div>
-
-                <div className="currency-selector">
-                    <div className="currency-option">
-                        <FlagIcon code={currencyOptions.find(c => c.code === fromCurrency).country} size={24} style={{ marginRight: '0px' }} id="flag" />
-                        <select id="fromCurrency" value={fromCurrency} onChange={(e) => setFromCurrency(e.target.value)}>
-                            {currencyOptions.map((currency, index) => (
-                                <option key={index} value={currency.code}>
-                                    {currency.code}
-                                </option>
-                            ))}
-                        </select>
+        <div className="container">
+            <h1 className="text-center">Currency Converter</h1>
+            <p className="text-center">Make a new currency convertion now!</p>
+            <hr />
+            <div className="currency-converter">
+                <form onSubmit={handleConvert} className="converter-form">
+                    <div className="input-row">
+                        <div className="form-group">
+                            <label htmlFor="amount">Importe</label>
+                            <input type="number" id="amount" className="input-amount" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Cantidad" required />
+                        </div>
+                        <div className="form-group with-flag">
+                            <label htmlFor="fromCurrency">De</label>
+                            <div className="select-container">
+                                <img src={currencies.find((cur) => cur.code === fromCurrency)?.flag} alt={fromCurrency} className="currency-flag-left" />
+                                <select id="fromCurrency" value={fromCurrency} onChange={(e) => setFromCurrency(e.target.value)} className="currency-select">
+                                    {currencies.map((currency) => (
+                                        <option key={currency.code} value={currency.code}>
+                                            {currency.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" className="swap-btn" onClick={swapCurrencies} aria-label="Intercambiar monedas"><i class="fas fa-exchange-alt"></i></button>
+                        <div className="form-group with-flag">
+                            <label htmlFor="toCurrency">A</label>
+                            <div className="select-container">
+                                <img src={currencies.find((cur) => cur.code === toCurrency)?.flag} alt={toCurrency} className="currency-flag-left" />
+                                <select id="toCurrency" value={toCurrency} onChange={(e) => setToCurrency(e.target.value)} className="currency-select">
+                                    {currencies.map((currency) => (
+                                        <option key={currency.code} value={currency.code}>
+                                            {currency.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
                     </div>
-
-                    <span onClick={swapCurrencies} style={{ cursor: 'pointer', fontSize: '1.5rem', color: '#007bff', fontWeight: 'bold', marginTop: '15px' }}>⇄</span>
-
-                    <div className="currency-option">
-                        <FlagIcon code={currencyOptions.find(c => c.code === toCurrency).country} size={24} style={{ marginRight: '8px' }} id="flag" />
-                        <select id="toCurrency" value={toCurrency} onChange={(e) => setToCurrency(e.target.value)}>
-                            {filteredToCurrencyOptions.map((currency, index) => (
-                                <option key={index} value={currency.code}>
-                                    {currency.code}
-                                </option>
-                            ))}
-                        </select>
+                    <div className="result-and-button">
+                        <div className="conversion-result">
+                            <div className="conversion-line">
+                                <h3>{amount} {fromCurrency}</h3>
+                                <p>→</p>
+                                <h3>{store.convertedAmount} {toCurrency}</h3>
+                            </div>
+                            <p className="rate">Tasa: {store.conversionRate}</p>
+                        </div>
+                        <button type="submit" className="convert-btn">Convertir</button>
                     </div>
-                </div>
-
-                <button className="button-modern" onClick={handleConvert} style={{ marginRight: '150px'}}>Convert</button>
+                </form>
             </div>
-
-            {/* Mostrar Resultado de Conversión */}
-            {store.convertedAmount !== 0 && (
-                <div className="conversion-result">
-                    <p>Conversion rate: {store.conversionRate}</p>
-                    <p>Converted amount: <strong> {store.convertedAmount} {toCurrency}</strong></p>
-                </div>
-            )}
-        </div>
         </div>
     );
-}
+};
 
 export default Converter;
