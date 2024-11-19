@@ -160,6 +160,3 @@ def get_idea_tips(idea_id):
     except Exception as e:
         print(f"Error al obtener consejos de OpenAI: {e}")
         return jsonify({"message": "Error al obtener consejos para la idea"}), 500
-
-
-

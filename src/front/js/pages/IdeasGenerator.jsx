@@ -74,7 +74,7 @@ const IdeasGenerator = () => {
                                     <div className="idea-card-content">
                                         <h5 className="idea-title">{item.title}</h5>
                                         <p className="idea-description">{item.description}</p>
-                                        <button className="favorite-btn" onClick={() => handleFavorite(item)} style={{ color: store.favoriteIdeas.some(fav => fav.title === item.title) ? "#ffd700" : "#ffffff" }}>
+                                        <button type="button" className="favorite-btn" onClick={() => handleFavorite(item)} style={{ color: store.favoriteIdeas && Array.isArray(store.favoriteIdeas) && store.favoriteIdeas.some(fav => fav.title === item.title) ? "#ffd700" : "#ffffff" }}>
                                             <i className="fas fa-lightbulb"></i>
                                         </button>
                                     </div>

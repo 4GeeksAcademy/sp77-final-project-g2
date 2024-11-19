@@ -32,6 +32,20 @@ def users():
     response_body['results'] = results
     return response_body, 200
 
+@user_bp.route('/admin/users/<int:user_id>', methods=['DELETE'])
+@jwt_required()
+def delete_user(user_id):
+    response_body = {}
+    user = db.session.execute(db.select(Users).where(Users.id == user_id)).scalar()
+    if not user:
+        response_body['message'] = "Usuario no encontrado"
+        return response_body, 404
+    db.session.delete(user)
+    db.session.commit()
+
+    response_body['message'] = "Usuario eliminado con éxito"
+    return response_body, 200
+
 
 @user_bp.route('/login', methods=['POST'])
 def login():
@@ -76,7 +90,8 @@ def signup():
     access_token = create_access_token(identity={'email': row.email, 'user_id': row.id})
 
     response_body['message'] = f"Bienvenido a mi app"
-    response_body['results'] = {}
+    response_body['access_token'] = access_token
+    response_body['results'] = row.serialize()
     return response_body, 200
 
 @user_bp.route('/request-password-reset', methods=['POST'])
@@ -121,14 +136,12 @@ def update_user(user_id):
     response_body = {}
     data = request.json
 
-    # Obtener el usuario desde la base de datos
     user = db.session.execute(db.select(Users).where(Users.id == user_id)).scalar()
 
     if not user:
         response_body['message'] = "Usuario no encontrado"
         return response_body, 404
 
-    # Actualizar los campos del usuario
     user.first_name = data.get('first_name', user.first_name)
     user.last_name = data.get('last_name', user.last_name)
     db.session.commit()
