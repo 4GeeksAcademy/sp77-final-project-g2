@@ -15,12 +15,6 @@ import datetime
 
 CORS(user_bp)
 
-@user_bp.route('/hello', methods=['GET'])
-def handle_hello():
-    response_body = {}
-    response_body["message"]= "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    return response_body, 200
-
 
 @user_bp.route('/users', methods=['GET'])
 def users():
@@ -76,12 +70,10 @@ def protected():
 def signup():
     response_body = {}
     data = request.json
-    # hashed_password = generate_password_hash(data.get("password"))
     row = Users(email = data.get("email"),
                 first_name = data.get("first_name"),
                 last_name = data.get("last_name"),
                 password = data.get("password"),
-                # hashed_password = generate_password_hash(data.get("password")),
                 is_active = True,
                 is_premium = False)
     
@@ -108,7 +100,7 @@ def request_password_reset():
     return jsonify({"message": "Se ha enviado un enlace para restablecer tu contraseña"}), 200
 
 def send_reset_email(email, token):
-    reset_url = f"https://verbose-parakeet-7vr9g45rp4r62r9v-3000.app.github.dev/reset-password?token={token}"
+    reset_url = f"https://sample-service-name-m09y.onrender.com/reset-password?token={token}"
     msg = Message(
         subject="Restablecimiento de Contraseña",
         recipients=[email],
