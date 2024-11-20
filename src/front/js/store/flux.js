@@ -48,7 +48,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				setStore({ ideas: data.ideas });
 			},
-
+			clearIdeas: () => {
+				if (getStore().ideas.length > 0) {
+					setStore({ ideas: [] });
+					console.log("Ideas generadas eliminadas");
+				}
+			},
 			getNews: async (category) => {
 				const uri = `${process.env.BACKEND_URL}/news?category=${category}`;
 				const options = {
@@ -374,7 +379,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return null;
 				}
 			},
-
 			startCheckoutSession: async () => {
 				const uri = `${process.env.BACKEND_URL}/create-checkout-session`;
 				const options = {

@@ -53,7 +53,6 @@ const Dashboard = () => {
     const handleCancelDelete = () => {
         setShowConfirmModal(false);
     };
-
     return (
         <div className="container">
             <div className="container dashboard-container">
@@ -64,10 +63,6 @@ const Dashboard = () => {
                         Become a Premium user
                     </button>
                 )}
-                <button className="delete-user" onClick={handleShowConfirmModal}>
-                    Eliminar cuenta
-                </button>
-
                 <div className="row mt-4">
                     {store.favoriteIdeas && store.favoriteIdeas.length > 0 ? (
                         store.favoriteIdeas.map((idea, index) => (
@@ -95,7 +90,11 @@ const Dashboard = () => {
                         <p>No tienes ideas favoritas guardadas.</p>
                     )}
                 </div>
-
+                <div className="delete-account-container">
+                    <button className="delete-user" onClick={handleShowConfirmModal}>
+                        Delete my account
+                    </button>
+                </div>
                 <Modal show={showConfirmModal} onHide={handleCancelDelete}>
                     <Modal.Header closeButton>
                         <Modal.Title>Confirmar eliminación</Modal.Title>

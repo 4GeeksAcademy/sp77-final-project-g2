@@ -54,6 +54,7 @@ hr {
   justify-content: center;
   align-items: center;
   margin: 0px auto;
+  text-align: justify;
 }
 
 .service {
@@ -79,7 +80,7 @@ hr {
   color: #f8f9fa;
   border-radius: 20px;
   margin: 3rem auto;
-  padding: 5rem 6rem;
+  padding: 5rem 3rem;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -155,7 +156,6 @@ hr {
   font-size: 1rem;
   font-weight: 300;
 }
-
 .pricing-button {
   background: linear-gradient(135deg, #007bff, #00a5cf);
   border: none;
@@ -172,7 +172,6 @@ hr {
   transform: translateY(-2px);
   color: #ffffff;
 }
-
 @media (max-width: 768px) {
   .pricing-flex {
     flex-direction: column;
@@ -180,20 +179,38 @@ hr {
   }
 }
 
-
-/*---RESUME---*/
-.resume{
+.resume {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
-.resume div {
-  padding: 20px 30px;
-}
-
-.resume .info{
+.resume .info {
   text-align: justify;
+}
+
+.resume img {
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .resume {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .resume .info {
+    text-align: center;
+  }
+
+  .resume img {
+    max-width: 90%;
+    margin-top: 20px;
+  }
 }
 
 .resume img {

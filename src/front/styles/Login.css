@@ -72,9 +72,9 @@
 }
 
 .floating-label input:focus {
-    border-bottom: 1px solid #00A5CF; /* Cambia el color del borde a cyan */
+    border-bottom: 1px solid #00A5CF;
     outline: none;
-    box-shadow: 0 2px 6px -2px rgba(0, 255, 255, 0.5); /* Añade un resplandor cyan sutil */
+    box-shadow: 0 2px 6px -2px rgba(0, 255, 255, 0.5);
 }
 
 
@@ -94,7 +94,6 @@
     font-size: 1.1rem;
 }
 
-/* Botón de inicio de sesión */
 .login-container .button-modern {
     background-image: linear-gradient(144deg, #00A5CF, #161616);
     border: none;
@@ -149,4 +148,68 @@ body.dark-mode .login-container .button-modern {
 
 body.dark-mode .floating-label .icon {
     color: white;
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    .login-left {
+        width: 100%;
+        height: 150px;
+        background-size: cover;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .login-right {
+        padding: 30px 20px; 
+        border-radius: 0 0 15px 15px;
+    }
+
+    .login-right h4 {
+        font-size: 18px;
+    }
+
+    .login-right p {
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+
+    .floating-label input {
+        font-size: 0.9rem;
+    }
+
+    .login-container .button-modern {
+        font-size: 0.8rem;
+        padding: 8px 20px;
+        margin-top: 20px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-left {
+        height: 120px;
+    }
+
+    .login-right h4 {
+        font-size: 16px;
+    }
+
+    .login-right p {
+        font-size: 11px;
+    }
+
+    .floating-label input {
+        font-size: 0.8rem;
+    }
+
+    .login-container .button-modern {
+        padding: 6px 15px;
+        width: 100%;
+    }
 }
