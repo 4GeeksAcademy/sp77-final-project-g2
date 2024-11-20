@@ -18,6 +18,28 @@
     padding: 20px;
 }
 
+.ideas-generator .loading-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    margin-top: 20px;
+}
+
+.ideas-generator .progress-bar {
+    width: 50%;
+    height: 8px;
+    background: linear-gradient(90deg, #00A5CF, #161616);
+    animation: loading 1.5s infinite;
+    border-radius: 5px;
+}
+
+@keyframes loading {
+    0% { width: 0; }
+    50% { width: 50%; }
+    100% { width: 100%; }
+}
+
 .range-slider-container {
     display: flex;
     flex-direction: column;
