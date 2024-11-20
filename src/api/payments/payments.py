@@ -24,8 +24,8 @@ def create_checkout_session():
         "quantity": 1,
     }],
     mode="subscription",
-    success_url="https://sample-service-name-m09y.onrender.com/dashboard",
-    cancel_url="https://sample-service-name-m09y.onrender.com/")
+    success_url="https://sample-service-name-qbku.onrender.com/dashboard",
+    cancel_url="https://sample-service-name-qbku.onrender.com/")
 
     response_body['message'] = f"Pago exitoso"
     response_body['url'] = session.url
