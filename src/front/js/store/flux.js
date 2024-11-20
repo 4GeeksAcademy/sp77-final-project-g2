@@ -395,6 +395,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				window.location.href = data.url;
 			},
+
 			checkPremiumStatus: async () => {
 				const token = localStorage.getItem('token');
 				if (!token) {

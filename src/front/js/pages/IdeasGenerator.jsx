@@ -75,6 +75,7 @@ const IdeasGenerator = () => {
             </div>
 
             <div className="right-column col-12 col-md-8">
+
                 {loading ? (
                     <div className="loading-bar">
                         <div className="progress-bar"></div>

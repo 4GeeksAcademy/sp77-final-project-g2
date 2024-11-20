@@ -53,8 +53,6 @@ const Dashboard = () => {
     const handleCancelDelete = () => {
         setShowConfirmModal(false);
     };
-    
-
     return (
         <div className="container">
             <div className="container dashboard-container">
@@ -97,7 +95,6 @@ const Dashboard = () => {
                         Delete my account
                     </button>
                 </div>
-
                 <Modal show={showConfirmModal} onHide={handleCancelDelete}>
                     <Modal.Header closeButton>
                         <Modal.Title>Confirmar eliminación</Modal.Title>

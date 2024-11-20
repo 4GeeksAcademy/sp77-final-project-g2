@@ -156,7 +156,6 @@ hr {
   font-size: 1rem;
   font-weight: 300;
 }
-
 .pricing-button {
   background: linear-gradient(135deg, #007bff, #00a5cf);
   border: none;
@@ -173,7 +172,6 @@ hr {
   transform: translateY(-2px);
   color: #ffffff;
 }
-
 @media (max-width: 768px) {
   .pricing-flex {
     flex-direction: column;
@@ -213,4 +211,9 @@ hr {
     max-width: 90%;
     margin-top: 20px;
   }
+}
+
+.resume img {
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 }

@@ -80,7 +80,6 @@ export const Body = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className="price-container">
                     <h6 className="pb-3">PRICING</h6>
                     <div className=" pb-3 pt-0">
