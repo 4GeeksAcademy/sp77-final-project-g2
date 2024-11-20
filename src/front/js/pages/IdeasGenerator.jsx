@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Context } from "../store/appContext.js";
 import '../../styles/Ideas.css';
 
@@ -8,10 +8,13 @@ const IdeasGenerator = () => {
     const [country, setCountry] = useState('');
     const [budget, setBudget] = useState(1000);
     const [area, setArea] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        actions.getIdeas(budget, country, area);
+        setLoading(true);
+        await actions.getIdeas(budget, country, area);
+        setLoading(false); 
     };
 
     const handleFavorite = (item) => {
@@ -24,6 +27,13 @@ const IdeasGenerator = () => {
         };
         actions.addFavoriteIdea(newFavorite);
     };
+
+    useEffect(() => {
+        return () => {
+            actions.clearIdeas();
+        };
+    }, []);
+    
     
 
     return (
@@ -65,23 +75,42 @@ const IdeasGenerator = () => {
             </div>
 
             <div className="right-column col-12 col-md-8">
-                {store.ideas.length > 0 && (
-                    <div>
-                        <h2>Ideas for You</h2>
-                        <div className="ideas-container">
-                            {store.ideas.map((item, index) => (
-                                <div className="idea-card" key={index}>
-                                    <div className="idea-card-content">
-                                        <h5 className="idea-title">{item.title}</h5>
-                                        <p className="idea-description">{item.description}</p>
-                                        <button type="button" className="favorite-btn" onClick={() => handleFavorite(item)} style={{ color: store.favoriteIdeas && Array.isArray(store.favoriteIdeas) && store.favoriteIdeas.some(fav => fav.title === item.title) ? "#ffd700" : "#ffffff" }}>
-                                            <i className="fas fa-lightbulb"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                {loading ? (
+                    <div className="loading-bar">
+                        <div className="progress-bar"></div>
                     </div>
+                ) : (
+                    <>
+                        {store.ideas.length > 0 && (
+                            <div>
+                                <h2>Ideas for You</h2>
+                                <div className="ideas-container">
+                                    {store.ideas.map((item, index) => (
+                                        <div className="idea-card" key={index}>
+                                            <div className="idea-card-content">
+                                                <h5 className="idea-title">{item.title}</h5>
+                                                <p className="idea-description">{item.description}</p>
+                                                <button
+                                                    type="button"
+                                                    className="favorite-btn"
+                                                    onClick={() => handleFavorite(item)}
+                                                    style={{
+                                                        color: store.favoriteIdeas &&
+                                                            Array.isArray(store.favoriteIdeas) &&
+                                                            store.favoriteIdeas.some((fav) => fav.title === item.title)
+                                                            ? "#ffd700"
+                                                            : "#ffffff",
+                                                    }}
+                                                >
+                                                    <i className="fas fa-lightbulb"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
         </div>

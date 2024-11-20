@@ -8,7 +8,7 @@ import requests
 
 CORS(converter_bp)
 
-@converter_bp.route('/converter', methods=['GET'])  # Método GET
+@converter_bp.route('/converter', methods=['GET'])
 def converter():
     response_body = {}
     api_key = os.getenv("CONVERTER_API_KEY")

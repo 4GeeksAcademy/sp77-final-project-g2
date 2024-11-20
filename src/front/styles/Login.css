@@ -72,9 +72,9 @@
 }
 
 .floating-label input:focus {
-    border-bottom: 1px solid #00A5CF; /* Cambia el color del borde a cyan */
+    border-bottom: 1px solid #00A5CF;
     outline: none;
-    box-shadow: 0 2px 6px -2px rgba(0, 255, 255, 0.5); /* Añade un resplandor cyan sutil */
+    box-shadow: 0 2px 6px -2px rgba(0, 255, 255, 0.5);
 }
 
 
@@ -94,7 +94,6 @@
     font-size: 1.1rem;
 }
 
-/* Botón de inicio de sesión */
 .login-container .button-modern {
     background-image: linear-gradient(144deg, #00A5CF, #161616);
     border: none;
@@ -153,14 +152,12 @@ body.dark-mode .floating-label .icon {
 
 /* Estilos responsive */
 @media (max-width: 768px) {
-    /* Contenedor general */
     .login-container {
         flex-direction: column;
         width: 90%;
         margin: 20px auto;
     }
 
-    /* Imagen en la sección izquierda */
     .login-left {
         width: 100%;
         height: 150px;
@@ -168,7 +165,6 @@ body.dark-mode .floating-label .icon {
         border-radius: 15px 15px 0 0;
     }
 
-    /* Sección derecha del formulario */
     .login-right {
         padding: 30px 20px; 
         border-radius: 0 0 15px 15px;
@@ -183,7 +179,6 @@ body.dark-mode .floating-label .icon {
         margin-bottom: 20px;
     }
 
-    /* Inputs y botón */
     .floating-label input {
         font-size: 0.9rem;
     }
@@ -192,11 +187,11 @@ body.dark-mode .floating-label .icon {
         font-size: 0.8rem;
         padding: 8px 20px;
         margin-top: 20px;
+        width: 100%;
     }
 }
 
 @media (max-width: 480px) {
-    /* Para pantallas aún más pequeñas */
     .login-left {
         height: 120px;
     }
@@ -214,7 +209,7 @@ body.dark-mode .floating-label .icon {
     }
 
     .login-container .button-modern {
-        font-size: 0.7rem;
         padding: 6px 15px;
+        width: 100%;
     }
 }

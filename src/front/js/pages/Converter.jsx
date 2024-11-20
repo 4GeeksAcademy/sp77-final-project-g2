@@ -32,9 +32,8 @@ const Converter = () => {
     ];
 
     return (
-        
-        <div className="container d-flex flex-column min-vh-100">
-            <h1 className="text-center">Currency Converter</h1>
+        <div className="container convert-container d-flex flex-column min-vh-100">
+            <h1>Currency Converter</h1>
             <p className="text-center">Make a new currency convertion now!</p>
             <hr />
             <div className="currency-converter">

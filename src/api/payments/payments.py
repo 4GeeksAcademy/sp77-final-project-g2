@@ -24,8 +24,8 @@ def create_checkout_session():
         "quantity": 1,
     }],
     mode="subscription",
-    success_url="https://musical-couscous-pjrg57666g7v37grg-3000.app.github.dev/dashboard",
-    cancel_url="https://musical-couscous-pjrg57666g7v37grg-3000.app.github.dev/")
+    success_url="https://sample-service-name-m09y.onrender.com/dashboard",
+    cancel_url="https://sample-service-name-m09y.onrender.com/")
 
     response_body['message'] = f"Pago exitoso"
     response_body['url'] = session.url
@@ -35,16 +35,9 @@ def create_checkout_session():
 def stripe_webhook():
     endpoint_secret = os.getenv("STRIPE_WEBHOOK_SECRET")
     stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
-
     payload = request.get_data(as_text=True)
-    # sig_header = request.headers.get('Stripe-Signature')
 
     try:
-        # Saltar la verificación de la firma temporalmente para pruebas
-        # Verificación de la firma del webhook
-        # event = stripe.Webhook.construct_event(
-        #     payload, sig_header, endpoint_secret
-        # )
         event = json.loads(payload)
     except ValueError as e:
         print("Invalid payload", e)
