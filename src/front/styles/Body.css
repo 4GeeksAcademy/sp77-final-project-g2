@@ -181,23 +181,37 @@ hr {
   }
 }
 
-
-/*---RESUME---*/
-.resume{
+/* Resumen: */
+.resume {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap; /* Permite que los elementos se acomoden en filas si es necesario */
 }
 
-.resume div {
-  padding: 20px 30px;
-}
-
-.resume .info{
+.resume .info {
   text-align: justify;
 }
 
 .resume img {
   border-radius: 20px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  max-width: 100%; /* Asegura que las imágenes no excedan el tamaño del contenedor */
+}
+
+@media (max-width: 768px) {
+  .resume {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .resume .info {
+    text-align: center;
+  }
+
+  .resume img {
+    max-width: 90%; /* Ajusta el tamaño de las imágenes para que no sean demasiado grandes */
+    margin-top: 20px;
+  }
 }
