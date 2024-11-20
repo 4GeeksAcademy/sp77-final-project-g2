@@ -96,6 +96,10 @@
         padding: 30px 20px;
         border-radius: 0 0 15px 15px;
     }
+
+    .signup-container .button-modern{
+        width: 100%;
+    }
 }
 
 .floating-label .icon {

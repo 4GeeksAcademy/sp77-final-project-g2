@@ -8,16 +8,14 @@ const News = () => {
     const [category, setCategory] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
         if (!category) {
             alert("Please select a category.");
             return;
         }
         setLoading(true);
-        actions.getNews(category);
-        setTimeout(() => {
-            setLoading(false);
-        }, 1500); 
+        await actions.getNews(category);
+        setLoading(false); 
     };
 
     return (

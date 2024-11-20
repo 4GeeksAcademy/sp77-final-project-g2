@@ -80,7 +80,7 @@ hr {
   color: #f8f9fa;
   border-radius: 20px;
   margin: 3rem auto;
-  padding: 5rem 6rem;
+  padding: 5rem 3rem;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -181,12 +181,11 @@ hr {
   }
 }
 
-/* Resumen: */
 .resume {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap; /* Permite que los elementos se acomoden en filas si es necesario */
+  flex-wrap: wrap;
 }
 
 .resume .info {
@@ -196,7 +195,7 @@ hr {
 .resume img {
   border-radius: 20px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-  max-width: 100%; /* Asegura que las imágenes no excedan el tamaño del contenedor */
+  max-width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -211,7 +210,7 @@ hr {
   }
 
   .resume img {
-    max-width: 90%; /* Ajusta el tamaño de las imágenes para que no sean demasiado grandes */
+    max-width: 90%;
     margin-top: 20px;
   }
 }
