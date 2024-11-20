@@ -199,3 +199,41 @@ label {
         flex-wrap: wrap;
     }
 }
+
+/* Darkmode */
+.dark-mode .currency-converter {
+    background: #2c2c2c;
+    color: #f1f1f1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .input-amount,
+.dark-mode .currency-select {
+    background: #3c3c3c;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+.dark-mode .swap-btn {
+    background: #444;
+    color: #fff;
+}
+
+.dark-mode .swap-btn:hover {
+    background: #666;
+}
+
+.dark-mode .conversion-result {
+    background: #444;
+    color: #fff;
+    border: 1px solid #666;
+}
+
+.dark-mode .convert-btn {
+    background: #10a37f;
+    color: #fff;
+}
+
+.dark-mode .convert-btn:hover {
+    background: #0e7f63;
+}

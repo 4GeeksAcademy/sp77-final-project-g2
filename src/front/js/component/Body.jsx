@@ -63,20 +63,20 @@ export const Body = () => {
                         <hr />
                     </div>
                     <div className="row services-cont">
-                        <div className="col-lg-4 service">
+                        <div className="col-lg-4 service pt-1">
                             <lord-icon src="https://cdn.lordicon.com/akbjoiow.json" trigger="loop" colors="primary:#121331,secondary:#00A5CF" stroke="65" state="loop" style={{ width: "90px", height: "90px" }}></lord-icon>
                             <h2>About Us</h2>
-                            <p className="justified-text">At our team, we believe that the best business ideas can come at any time, and we are here to help you bring them to life.</p>
+                            <p className="justified-text pe-1">At our team, we believe that the best business ideas can come at any time, and we are here to help you bring them to life.</p>
                         </div>
-                        <div className="col-lg-4 service">
+                        <div className="col-lg-4 service pt-1">
                             <lord-icon src="https://cdn.lordicon.com/xajhwwxi.json" trigger="loop" delay="500" colors="primary:#3a3347,secondary:#646e78,tertiary:#00A5CF" style={{ width: "100px", height: "100px" }}></lord-icon>
                             <h2>Service</h2>
-                            <p className="justified-text">We offer a variety of services tailored to specific project needs. Through our chat you can have ideas for ventures immediately.</p>
+                            <p className="justified-text pe-1">We offer a variety of services tailored to specific project needs. Through our chat you can have ideas for ventures immediately.</p>
                         </div>
-                        <div className="col-lg-4 service">
+                        <div className="col-lg-4 service pt-1">
                             <lord-icon src="https://cdn.lordicon.com/emnyyrrn.json" trigger="loop" delay="500" colors="primary:#121331,secondary:#646e78,tertiary:#00A5CF,quaternary:#ebe6ef" style={{ width: "120px", height: "120px" }}></lord-icon>
                             <h2>Contact</h2>
-                            <p className="justified-text">Ready to elevate your project? Sign up now to start using AI for free, explore creative solutions.</p>
+                            <p className="justify-content-start pe-1">Ready to elevate your project? Sign up now to start using AI for free, explore creative solutions.</p>
                         </div>
                     </div>
                 </div>
@@ -129,7 +129,7 @@ export const Body = () => {
                             <img src={ChatIA} />
                         </div>
                         <div className="col-md-7 info">
-                            <h2 className="">Smart Conversions To Boost Your Ideas</h2>
+                            <h2 className="">Boost Your Ideas With AI</h2>
                             <p className="">
                                 Our AI-powered chat tool is designed to give you personalized support in real-time. With just a few clicks, you can access innovative ideas, fast solutions, and expert advice tailored to your needs. Explore everything our AI has to offer!
                                 Talking to our AI is easy! Start a conversation now and find out how we can help you take your project to the next level.
