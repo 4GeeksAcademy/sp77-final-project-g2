@@ -54,6 +54,7 @@ hr {
   justify-content: center;
   align-items: center;
   margin: 0px auto;
+  text-align: justify;
 }
 
 .service {

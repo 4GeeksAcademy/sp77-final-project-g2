@@ -53,6 +53,7 @@ const Dashboard = () => {
     const handleCancelDelete = () => {
         setShowConfirmModal(false);
     };
+    
 
     return (
         <div className="container">
@@ -65,7 +66,7 @@ const Dashboard = () => {
                     </button>
                 )}
                 <button className="delete-user" onClick={handleShowConfirmModal}>
-                    Eliminar cuenta
+                    Delete my account
                 </button>
 
                 <div className="row mt-4">
